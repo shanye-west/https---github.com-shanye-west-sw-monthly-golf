@@ -75,9 +75,23 @@ export default function EventPage() {
     fetchEvent();
   }, [id]);
 
-  if (loading) return <div>Loading event details...</div>;
-  if (error) return <div>Error: {error}</div>;
-  if (!event) return <div>Event not found</div>;
+  if (loading) return (
+    <div className="min-h-screen flex items-center justify-center">
+      <div className="text-lg text-muted-foreground">Loading event details...</div>
+    </div>
+  );
+  
+  if (error) return (
+    <div className="min-h-screen flex items-center justify-center">
+      <div className="text-lg text-destructive">Error: {error}</div>
+    </div>
+  );
+  
+  if (!event) return (
+    <div className="min-h-screen flex items-center justify-center">
+      <div className="text-lg text-muted-foreground">Event not found</div>
+    </div>
+  );
 
   const calculateLeaderboard = () => {
     const playerScores = event.participants.map(player => {
@@ -97,36 +111,56 @@ export default function EventPage() {
   const leaderboard = calculateLeaderboard();
 
   return (
-    <div className="container">
-      <h1>{event.name}</h1>
+    <div className="container mx-auto px-4 py-8">
+      <h1 className="text-3xl font-heading font-bold text-center mb-8">{event.name}</h1>
       
-      <div className="tabs">
+      <div className="flex space-x-2 border-b border-border mb-8">
         <button 
-          className={activeTab === 'details' ? 'active' : ''} 
+          className={`px-4 py-2 font-medium transition-colors ${
+            activeTab === 'details' 
+              ? 'text-primary border-b-2 border-primary' 
+              : 'text-muted-foreground hover:text-foreground'
+          }`}
           onClick={() => setActiveTab('details')}
         >
           Tournament Details
         </button>
         <button 
-          className={activeTab === 'registration' ? 'active' : ''} 
+          className={`px-4 py-2 font-medium transition-colors ${
+            activeTab === 'registration' 
+              ? 'text-primary border-b-2 border-primary' 
+              : 'text-muted-foreground hover:text-foreground'
+          }`}
           onClick={() => setActiveTab('registration')}
         >
           Registration
         </button>
         <button 
-          className={activeTab === 'groups' ? 'active' : ''} 
+          className={`px-4 py-2 font-medium transition-colors ${
+            activeTab === 'groups' 
+              ? 'text-primary border-b-2 border-primary' 
+              : 'text-muted-foreground hover:text-foreground'
+          }`}
           onClick={() => setActiveTab('groups')}
         >
           Groups & Tee Times
         </button>
         <button 
-          className={activeTab === 'scoring' ? 'active' : ''} 
+          className={`px-4 py-2 font-medium transition-colors ${
+            activeTab === 'scoring' 
+              ? 'text-primary border-b-2 border-primary' 
+              : 'text-muted-foreground hover:text-foreground'
+          }`}
           onClick={() => setActiveTab('scoring')}
         >
           Live Scoring
         </button>
         <button 
-          className={activeTab === 'leaderboard' ? 'active' : ''} 
+          className={`px-4 py-2 font-medium transition-colors ${
+            activeTab === 'leaderboard' 
+              ? 'text-primary border-b-2 border-primary' 
+              : 'text-muted-foreground hover:text-foreground'
+          }`}
           onClick={() => setActiveTab('leaderboard')}
         >
           Leaderboard
@@ -134,131 +168,135 @@ export default function EventPage() {
       </div>
 
       {activeTab === 'details' && (
-        <div className="event-details">
-          <div className="tournament-info">
-            <h2>Tournament Information</h2>
-            <p><strong>Date:</strong> {new Date(event.date).toLocaleDateString()}</p>
-            <p><strong>Course:</strong> {event.course.name}</p>
-            <p><strong>Location:</strong> {event.course.address}</p>
-            <p><strong>Entry Fee:</strong> ${event.entryFee}</p>
-            <p><strong>Status:</strong> {event.status}</p>
-            <p><strong>Description:</strong> {event.description}</p>
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+          <div className="bg-card text-card-foreground rounded-lg shadow-md p-6">
+            <h2 className="text-xl font-heading font-semibold mb-4">Tournament Information</h2>
+            <div className="space-y-2">
+              <p><span className="font-medium">Date:</span> {new Date(event.date).toLocaleDateString()}</p>
+              <p><span className="font-medium">Course:</span> {event.course.name}</p>
+              <p><span className="font-medium">Location:</span> {event.course.address}</p>
+              <p><span className="font-medium">Entry Fee:</span> ${event.entryFee}</p>
+              <p><span className="font-medium">Status:</span> {event.status}</p>
+              <p><span className="font-medium">Description:</span> {event.description}</p>
+            </div>
           </div>
           
-          <div className="course-info">
-            <h2>Course Information</h2>
-            <table className="course-layout">
-              <thead>
-                <tr>
-                  <th>Hole</th>
-                  <th>Par</th>
-                  <th>Handicap</th>
-                </tr>
-              </thead>
-              <tbody>
-                {event.course.holes.map(hole => (
-                  <tr key={hole.number}>
-                    <td>{hole.number}</td>
-                    <td>{hole.par}</td>
-                    <td>{hole.handicap}</td>
+          <div className="bg-card text-card-foreground rounded-lg shadow-md p-6">
+            <h2 className="text-xl font-heading font-semibold mb-4">Course Information</h2>
+            <div className="overflow-x-auto">
+              <table className="w-full border-collapse">
+                <thead>
+                  <tr className="bg-muted">
+                    <th className="px-4 py-2 text-left">Hole</th>
+                    <th className="px-4 py-2 text-left">Par</th>
+                    <th className="px-4 py-2 text-left">Handicap</th>
                   </tr>
-                ))}
-              </tbody>
-            </table>
+                </thead>
+                <tbody>
+                  {event.course.holes.map(hole => (
+                    <tr key={hole.number} className="border-b border-border">
+                      <td className="px-4 py-2">{hole.number}</td>
+                      <td className="px-4 py-2">{hole.par}</td>
+                      <td className="px-4 py-2">{hole.handicap}</td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            </div>
           </div>
         </div>
       )}
 
       {activeTab === 'registration' && (
-        <div className="registration">
-          <h2>Player Registration</h2>
-          <div className="registration-status">
-            <p><strong>Registered Players:</strong> {event.participants.length}/{event.maxPlayers}</p>
+        <div className="bg-card text-card-foreground rounded-lg shadow-md p-6">
+          <h2 className="text-xl font-heading font-semibold mb-4">Player Registration</h2>
+          <div className="bg-muted p-4 rounded-md mb-6">
+            <p className="font-medium">Registered Players: {event.participants.length}/{event.maxPlayers}</p>
           </div>
-          <div className="registered-players">
-            <h3>Registered Players</h3>
-            <table>
+          <div className="overflow-x-auto">
+            <table className="w-full border-collapse">
               <thead>
-                <tr>
-                  <th>Name</th>
-                  <th>Handicap</th>
-                  <th>Email</th>
-                  <th>Phone</th>
+                <tr className="bg-muted">
+                  <th className="px-4 py-2 text-left">Name</th>
+                  <th className="px-4 py-2 text-left">Handicap</th>
+                  <th className="px-4 py-2 text-left">Email</th>
+                  <th className="px-4 py-2 text-left">Phone</th>
                 </tr>
               </thead>
               <tbody>
                 {event.participants.map(player => (
-                  <tr key={player.id}>
-                    <td>{player.name}</td>
-                    <td>{player.handicap}</td>
-                    <td>{player.email}</td>
-                    <td>{player.phone}</td>
+                  <tr key={player.id} className="border-b border-border">
+                    <td className="px-4 py-2">{player.name}</td>
+                    <td className="px-4 py-2">{player.handicap}</td>
+                    <td className="px-4 py-2">{player.email}</td>
+                    <td className="px-4 py-2">{player.phone}</td>
                   </tr>
                 ))}
               </tbody>
             </table>
           </div>
           {event.participants.length < event.maxPlayers && (
-            <button className="register-button">Register for Tournament</button>
+            <button className="mt-6 bg-primary text-primary-foreground px-6 py-2 rounded-md hover:bg-primary/90 transition-colors">
+              Register for Tournament
+            </button>
           )}
         </div>
       )}
 
       {activeTab === 'groups' && (
-        <div className="groups">
-          <h2>Groups & Tee Times</h2>
-          <div className="groups-grid">
-            {event.groups.map(group => (
-              <div key={group.id} className="group-card">
-                <h3>Group {group.groupNumber}</h3>
-                <p><strong>Tee Time:</strong> {new Date(group.teeTime).toLocaleTimeString()}</p>
-                <ul>
-                  {group.members.map(member => (
-                    <li key={member.id}>
-                      {member.name} (Handicap: {member.handicap})
-                    </li>
-                  ))}
-                </ul>
-                <button 
-                  className="view-scorecard"
-                  onClick={() => {
-                    setSelectedGroup(group.id);
-                    setActiveTab('scoring');
-                  }}
-                >
-                  Enter Scores
-                </button>
-              </div>
-            ))}
-          </div>
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+          {event.groups.map(group => (
+            <div key={group.id} className="bg-card text-card-foreground rounded-lg shadow-md p-6">
+              <h3 className="text-lg font-heading font-semibold mb-2">Group {group.groupNumber}</h3>
+              <p className="text-sm text-muted-foreground mb-4">
+                Tee Time: {new Date(group.teeTime).toLocaleTimeString()}
+              </p>
+              <ul className="space-y-2">
+                {group.members.map(member => (
+                  <li key={member.id} className="border-b border-border pb-2">
+                    {member.name} <span className="text-muted-foreground">(Handicap: {member.handicap})</span>
+                  </li>
+                ))}
+              </ul>
+              <button 
+                className="mt-4 w-full bg-primary text-primary-foreground px-4 py-2 rounded-md hover:bg-primary/90 transition-colors"
+                onClick={() => {
+                  setSelectedGroup(group.id);
+                  setActiveTab('scoring');
+                }}
+              >
+                Enter Scores
+              </button>
+            </div>
+          ))}
         </div>
       )}
 
       {activeTab === 'scoring' && (
-        <div className="scoring">
-          <h2>Live Scoring</h2>
+        <div className="bg-card text-card-foreground rounded-lg shadow-md p-6">
+          <h2 className="text-xl font-heading font-semibold mb-4">Live Scoring</h2>
           {selectedGroup ? (
-            <div className="scorecard">
-              <h3>Group {event.groups.find(g => g.id === selectedGroup)?.groupNumber} Scorecard</h3>
-              <table>
+            <div className="overflow-x-auto">
+              <table className="w-full border-collapse">
                 <thead>
-                  <tr>
-                    <th>Hole</th>
+                  <tr className="bg-muted">
+                    <th className="px-4 py-2 text-left">Hole</th>
                     {event.groups.find(g => g.id === selectedGroup)?.members.map(member => (
-                      <th key={member.id}>{member.name}</th>
+                      <th key={member.id} className="px-4 py-2 text-left">{member.name}</th>
                     ))}
                   </tr>
                 </thead>
                 <tbody>
                   {event.course.holes.map(hole => (
-                    <tr key={hole.number}>
-                      <td>{hole.number}</td>
+                    <tr key={hole.number} className="border-b border-border">
+                      <td className="px-4 py-2">{hole.number}</td>
                       {event.groups.find(g => g.id === selectedGroup)?.members.map(member => (
-                        <td key={member.id}>
+                        <td key={member.id} className="px-4 py-2">
                           <input 
                             type="number" 
                             min="1" 
                             max="20"
+                            className="w-16 px-2 py-1 border border-input rounded-md focus:outline-none focus:ring-2 focus:ring-primary"
                             placeholder="Score"
                           />
                         </td>
@@ -267,39 +305,43 @@ export default function EventPage() {
                   ))}
                 </tbody>
               </table>
-              <button className="submit-scores">Submit Scores</button>
+              <button className="mt-6 bg-primary text-primary-foreground px-6 py-2 rounded-md hover:bg-primary/90 transition-colors">
+                Submit Scores
+              </button>
             </div>
           ) : (
-            <p>Select a group to enter scores</p>
+            <p className="text-muted-foreground">Select a group to enter scores</p>
           )}
         </div>
       )}
 
       {activeTab === 'leaderboard' && (
-        <div className="leaderboard">
-          <h2>Leaderboard</h2>
-          <table>
-            <thead>
-              <tr>
-                <th>Position</th>
-                <th>Player</th>
-                <th>Handicap</th>
-                <th>Gross</th>
-                <th>Net</th>
-              </tr>
-            </thead>
-            <tbody>
-              {leaderboard.map((player, index) => (
-                <tr key={player.id}>
-                  <td>{index + 1}</td>
-                  <td>{player.name}</td>
-                  <td>{player.handicap}</td>
-                  <td>{player.totalGross}</td>
-                  <td>{player.totalNet}</td>
+        <div className="bg-card text-card-foreground rounded-lg shadow-md p-6">
+          <h2 className="text-xl font-heading font-semibold mb-4">Leaderboard</h2>
+          <div className="overflow-x-auto">
+            <table className="w-full border-collapse">
+              <thead>
+                <tr className="bg-muted">
+                  <th className="px-4 py-2 text-left">Position</th>
+                  <th className="px-4 py-2 text-left">Player</th>
+                  <th className="px-4 py-2 text-left">Handicap</th>
+                  <th className="px-4 py-2 text-left">Gross</th>
+                  <th className="px-4 py-2 text-left">Net</th>
                 </tr>
-              ))}
-            </tbody>
-          </table>
+              </thead>
+              <tbody>
+                {leaderboard.map((player, index) => (
+                  <tr key={player.id} className="border-b border-border">
+                    <td className="px-4 py-2">{index + 1}</td>
+                    <td className="px-4 py-2">{player.name}</td>
+                    <td className="px-4 py-2">{player.handicap}</td>
+                    <td className="px-4 py-2">{player.totalGross}</td>
+                    <td className="px-4 py-2">{player.totalNet}</td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
         </div>
       )}
     </div>
