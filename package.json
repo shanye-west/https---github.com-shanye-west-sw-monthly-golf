@@ -6,18 +6,25 @@
     "client",
     "server"
   ],
+  "prisma": {
+    "seed": "ts-node server/prisma/seed.ts"
+  },
   "scripts": {
     "dev": "concurrently \"npm run dev:client\" \"npm run dev:server\"",
     "dev:client": "npm run dev --workspace=client",
     "dev:server": "npm run dev --workspace=server",
     "build": "npm run build --workspaces",
-    "start": "npm run start --workspace=server"
+    "start": "npm run start --workspace=server",
+    "seed": "prisma db seed"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "description": "Monthly Golf PWA with React/Vite frontend and Express backend",
   "devDependencies": {
-    "concurrently": "^8.2.2"
+    "concurrently": "^8.2.2",
+    "ts-node": "^10.9.2",
+    "typescript": "^5.3.3",
+    "@types/node": "^20.11.20"
   }
 }

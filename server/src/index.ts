@@ -3,6 +3,7 @@ import cors from 'cors';
 import helmet from 'helmet';
 import dotenv from 'dotenv';
 import { PrismaClient } from '@prisma/client';
+import eventRoutes from './routes/events';
 
 // Load environment variables
 dotenv.config();
@@ -15,6 +16,9 @@ const port = process.env.PORT || 3000;
 app.use(cors());
 app.use(helmet());
 app.use(express.json());
+
+// Routes
+app.use('/api/events', eventRoutes);
 
 // Health check endpoint
 app.get('/health', (req, res) => {
