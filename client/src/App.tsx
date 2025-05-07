@@ -1,6 +1,7 @@
 import { BrowserRouter as Router, Routes, Route, Link } from 'react-router-dom'
 import { useState, useEffect } from 'react'
 import './App.css'
+import EventPage from './pages/EventPage'
 
 interface Event {
   id: string;
@@ -74,15 +75,6 @@ function HomePage() {
   )
 }
 
-function EventPage() {
-  return (
-    <div className="container">
-      <h1>Event Details</h1>
-      {/* We'll implement this next */}
-    </div>
-  )
-}
-
 function GroupPage() {
   return (
     <div className="container">
@@ -102,20 +94,24 @@ function AdminPage() {
 }
 
 function App() {
+  console.log('App component rendering');
+  
   return (
-    <Router>
-      <nav className="main-nav">
-        <Link to="/">Home</Link>
-        <Link to="/admin">Admin</Link>
-      </nav>
-      
-      <Routes>
-        <Route path="/" element={<HomePage />} />
-        <Route path="/events/:id" element={<EventPage />} />
-        <Route path="/groups/:id" element={<GroupPage />} />
-        <Route path="/admin" element={<AdminPage />} />
-      </Routes>
-    </Router>
+    <div style={{ padding: '20px' }}>
+      <Router>
+        <nav className="main-nav">
+          <Link to="/">Home</Link>
+          <Link to="/admin">Admin</Link>
+        </nav>
+        
+        <Routes>
+          <Route path="/" element={<HomePage />} />
+          <Route path="/events/:id" element={<EventPage />} />
+          <Route path="/groups/:id" element={<GroupPage />} />
+          <Route path="/admin" element={<AdminPage />} />
+        </Routes>
+      </Router>
+    </div>
   )
 }
 
