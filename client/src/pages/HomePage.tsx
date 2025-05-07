@@ -1,129 +1,115 @@
-import { useQuery } from "@tanstack/react-query";
-import { Link } from "react-router-dom";
-import { Calendar, Plus, Pencil, Trash2 } from "lucide-react";
-import { useAuth } from "../lib/auth";
-import { Button } from "../components/ui/button";
+import { useState } from 'react';
+import { useQuery } from '@tanstack/react-query';
+import { Link } from 'react-router-dom';
+import { useAuth } from '@/lib/auth';
+import { Button } from '@/components/ui/button';
+import { PlusIcon } from '@heroicons/react/24/outline';
+import AddEventModal from '@/components/AddEventModal';
 
 interface Event {
-  id: number;
+  id: string;
   name: string;
   date: string;
-  courseName: string;
-  startTime: string;
-  isComplete: boolean;
+  description: string;
   maxPlayers: number;
   entryFee: number;
   status: string;
+  course: {
+    name: string;
+    address: string;
+  };
+  participants: {
+    name: string;
+    handicap: number;
+  }[];
 }
 
-const HomePage = () => {
+export default function HomePage() {
   const { user } = useAuth();
-  const isAdmin = user?.isAdmin;
+  const [isAddEventModalOpen, setIsAddEventModalOpen] = useState(false);
 
-  // Fetch events data
-  const { data: events = [], isLoading } = useQuery<Event[]>({
+  const { data: events, isLoading, refetch } = useQuery<Event[]>({
     queryKey: ['/api/events'],
+    queryFn: async () => {
+      const response = await fetch('http://localhost:3001/api/events');
+      if (!response.ok) {
+        throw new Error('Failed to fetch events');
+      }
+      return response.json();
+    }
   });
 
   if (isLoading) {
     return (
-      <div className="min-h-[calc(100vh-4rem)] flex items-center justify-center">
-        <div className="text-lg text-muted-foreground">Loading events...</div>
+      <div className="container mx-auto px-4 py-8">
+        <div className="animate-pulse space-y-4">
+          {[...Array(3)].map((_, i) => (
+            <div key={i} className="bg-card rounded-lg p-6 h-48" />
+          ))}
+        </div>
       </div>
     );
   }
 
   return (
     <div className="container mx-auto px-4 py-8">
-      <div className="max-w-4xl mx-auto">
-        <div className="flex justify-between items-center mb-8">
-          <div>
-            <h1 className="text-4xl font-heading font-bold text-center mb-2">SW Monthly Golf Events</h1>
-            <p className="text-center text-muted-foreground">Join us for our monthly golf tournaments</p>
-          </div>
-          {isAdmin && (
-            <Button asChild>
-              <Link to="/events/new" className="flex items-center gap-2">
-                <Plus className="w-4 h-4" />
-                Add Event
-              </Link>
-            </Button>
-          )}
-        </div>
-        
-        {events.length === 0 ? (
-          <div className="bg-card text-card-foreground rounded-lg shadow-md p-8 text-center">
-            <p className="text-muted-foreground">No events found. Check back later!</p>
-          </div>
-        ) : (
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-            {events.map((event) => (
-              <div key={event.id} className="bg-card text-card-foreground rounded-lg shadow-md p-6 transition-all duration-200 hover:shadow-lg">
-                <div className="flex flex-col h-full">
-                  <div className="flex-1">
-                    <div className="flex justify-between items-start mb-4">
-                      <h2 className="text-xl font-heading font-semibold text-primary">{event.name}</h2>
-                      {isAdmin && (
-                        <div className="flex gap-2">
-                          <Button variant="ghost" size="icon" asChild>
-                            <Link to={`/events/${event.id}/edit`}>
-                              <Pencil className="w-4 h-4" />
-                            </Link>
-                          </Button>
-                          <Button variant="ghost" size="icon" className="text-destructive">
-                            <Trash2 className="w-4 h-4" />
-                          </Button>
-                        </div>
-                      )}
-                    </div>
-                    <div className="space-y-2 text-sm text-muted-foreground">
-                      <p className="flex items-center gap-2">
-                        <Calendar className="w-4 h-4" />
-                        {new Date(event.date).toLocaleDateString()}
-                      </p>
-                      <p className="flex items-center gap-2">
-                        <span className="font-medium text-foreground">Course:</span> 
-                        {event.courseName}
-                      </p>
-                      <p className="flex items-center gap-2">
-                        <span className="font-medium text-foreground">Time:</span> 
-                        {event.startTime}
-                      </p>
-                      <p className="flex items-center gap-2">
-                        <span className="font-medium text-foreground">Entry Fee:</span> 
-                        ${event.entryFee}
-                      </p>
-                      <p className="flex items-center gap-2">
-                        <span className="font-medium text-foreground">Status:</span> 
-                        <span className={`px-2 py-1 rounded-full text-xs ${
-                          event.status === 'Open' ? 'bg-green-100 text-green-800' :
-                          event.status === 'Full' ? 'bg-red-100 text-red-800' :
-                          'bg-yellow-100 text-yellow-800'
-                        }`}>
-                          {event.status}
-                        </span>
-                      </p>
-                      <p className="flex items-center gap-2">
-                        <span className="font-medium text-foreground">Players:</span> 
-                        {event.maxPlayers} max
-                      </p>
-                    </div>
-                  </div>
-                  <div className="mt-4">
-                    <Button asChild className="w-full">
-                      <Link to={`/events/${event.id}`}>
-                        View Details
-                      </Link>
-                    </Button>
-                  </div>
-                </div>
-              </div>
-            ))}
-          </div>
+      <div className="flex justify-between items-center mb-8">
+        <h1 className="text-3xl font-bold">Upcoming Events</h1>
+        {user?.isAdmin && (
+          <Button onClick={() => setIsAddEventModalOpen(true)}>
+            <PlusIcon className="h-4 w-4 mr-2" />
+            Add Event
+          </Button>
         )}
       </div>
+
+      <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
+        {events?.map((event: Event) => (
+          <Link 
+            key={event.id} 
+            to={`/events/${event.id}`}
+            className="block bg-card rounded-lg shadow-lg hover:shadow-xl transition-shadow"
+          >
+            <div className="p-6">
+              <div className="flex justify-between items-start mb-4">
+                <h2 className="text-xl font-semibold">{event.name}</h2>
+                <span className={`px-2 py-1 rounded text-sm ${
+                  event.status === 'open' ? 'bg-green-100 text-green-800' :
+                  event.status === 'full' ? 'bg-red-100 text-red-800' :
+                  'bg-gray-100 text-gray-800'
+                }`}>
+                  {event.status.charAt(0).toUpperCase() + event.status.slice(1)}
+                </span>
+              </div>
+              
+              <div className="space-y-2 text-sm text-muted-foreground">
+                <p className="flex items-center">
+                  <span className="font-medium">Date:</span>
+                  <span className="ml-2">{new Date(event.date).toLocaleDateString()}</span>
+                </p>
+                <p className="flex items-center">
+                  <span className="font-medium">Course:</span>
+                  <span className="ml-2">{event.course.name}</span>
+                </p>
+                <p className="flex items-center">
+                  <span className="font-medium">Players:</span>
+                  <span className="ml-2">{event.participants.length}/{event.maxPlayers}</span>
+                </p>
+                <p className="flex items-center">
+                  <span className="font-medium">Entry Fee:</span>
+                  <span className="ml-2">${event.entryFee}</span>
+                </p>
+              </div>
+            </div>
+          </Link>
+        ))}
+      </div>
+
+      <AddEventModal 
+        isOpen={isAddEventModalOpen}
+        onClose={() => setIsAddEventModalOpen(false)}
+        onEventAdded={() => refetch()}
+      />
     </div>
   );
-};
-
-export default HomePage; 
+} 
