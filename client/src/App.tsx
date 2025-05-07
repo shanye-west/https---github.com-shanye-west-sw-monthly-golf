@@ -6,7 +6,6 @@ import HomePage from "@/pages/HomePage";
 import EventPage from "@/pages/EventPage";
 import GroupPage from "@/pages/GroupPage";
 import LoginPage from "@/pages/LoginPage";
-import AdminPage from "@/pages/AdminPage";
 import { ToastProvider } from '@/components/ui/toast-provider';
 import { AuthProvider } from '@/lib/auth';
 import ProtectedRoute from '@/components/ProtectedRoute';
@@ -104,14 +103,6 @@ function App() {
                 <Route path="/login" element={<LoginPage />} />
                 <Route path="/events/:id" element={<EventPage />} />
                 <Route path="/groups/:id" element={<GroupPage />} />
-                <Route
-                  path="/admin"
-                  element={
-                    <ProtectedRoute requireAdmin>
-                      <AdminPage />
-                    </ProtectedRoute>
-                  }
-                />
               </Routes>
             </Layout>
           </BrowserRouter>

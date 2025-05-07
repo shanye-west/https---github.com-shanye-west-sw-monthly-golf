@@ -1,8 +1,10 @@
 import { useQuery, useMutation, useQueryClient } from "@tanstack/react-query";
 import { useState, useEffect } from "react";
 import { Link, useParams } from "react-router-dom";
-import { ChevronLeft, Lock, Unlock } from "lucide-react";
+import { ChevronLeft, Lock, Unlock, Pencil, Trash2, Plus } from "lucide-react";
 import Scorecard from "@/components/Scorecard";
+import { useAuth } from "../lib/auth";
+import { Button } from "../components/ui/button";
 
 interface Group {
   id: number;
@@ -47,6 +49,8 @@ interface Player {
 const GroupPage = () => {
   const { id } = useParams<{ id: string }>();
   const queryClient = useQueryClient();
+  const { user } = useAuth();
+  const isAdmin = user?.isAdmin;
   const [isLocked, setIsLocked] = useState(false);
 
   // Fetch group data
@@ -182,22 +186,42 @@ const GroupPage = () => {
             <ChevronLeft className="w-4 h-4 mr-1" />
             Back to Event
           </Link>
-          <button
-            onClick={handleToggleLock}
-            className="inline-flex items-center px-4 py-2 rounded-md bg-primary text-primary-foreground hover:bg-primary/90 transition-colors"
-          >
-            {isLocked ? (
+          <div className="flex gap-2">
+            {isAdmin && (
               <>
-                <Unlock className="w-4 h-4 mr-2" />
-                Unlock Scores
-              </>
-            ) : (
-              <>
-                <Lock className="w-4 h-4 mr-2" />
-                Lock Scores
+                <Button variant="ghost" size="icon" asChild>
+                  <Link to={`/groups/${group.id}/edit`}>
+                    <Pencil className="w-4 h-4" />
+                  </Link>
+                </Button>
+                <Button variant="ghost" size="icon" className="text-destructive">
+                  <Trash2 className="w-4 h-4" />
+                </Button>
+                <Button variant="ghost" size="icon" asChild>
+                  <Link to={`/groups/${group.id}/players/add`}>
+                    <Plus className="w-4 h-4" />
+                  </Link>
+                </Button>
               </>
             )}
-          </button>
+            <Button
+              onClick={handleToggleLock}
+              variant="outline"
+              className="inline-flex items-center"
+            >
+              {isLocked ? (
+                <>
+                  <Unlock className="w-4 h-4 mr-2" />
+                  Unlock Scores
+                </>
+              ) : (
+                <>
+                  <Lock className="w-4 h-4 mr-2" />
+                  Lock Scores
+                </>
+              )}
+            </Button>
+          </div>
         </div>
 
         <div className="bg-card text-card-foreground rounded-lg shadow-md p-6 mb-8">

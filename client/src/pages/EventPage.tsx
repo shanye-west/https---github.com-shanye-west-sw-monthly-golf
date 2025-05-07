@@ -1,9 +1,11 @@
 import { useState, useEffect } from 'react';
 import { useParams, useNavigate, Link } from 'react-router-dom';
-import { ChevronLeft, Users } from "lucide-react";
+import { ChevronLeft, Users, Plus, Pencil, Trash2 } from "lucide-react";
 import { useQuery } from "@tanstack/react-query";
+import { useAuth } from "../lib/auth";
+import { Button } from "../components/ui/button";
 
-const API_URL = 'http://localhost:3000';
+const API_URL = 'http://localhost:3001';
 
 interface Event {
   id: string;
@@ -60,6 +62,8 @@ interface Group {
 export default function EventPage() {
   const { id } = useParams<{ id: string }>();
   const navigate = useNavigate();
+  const { user } = useAuth();
+  const isAdmin = user?.isAdmin;
   const [event, setEvent] = useState<Event | null>(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
@@ -69,34 +73,35 @@ export default function EventPage() {
   // Fetch event data
   const { data: eventData, isLoading: isEventLoading } = useQuery<Event>({
     queryKey: [`/api/events/${id}`],
+    queryFn: async () => {
+      const response = await fetch(`${API_URL}/api/events/${id}`);
+      if (!response.ok) {
+        throw new Error('Failed to fetch event');
+      }
+      return response.json();
+    },
     enabled: !!id,
   });
 
   // Fetch groups for this event
   const { data: groups = [], isLoading: isGroupsLoading } = useQuery<Group[]>({
     queryKey: [`/api/groups?eventId=${id}`],
+    queryFn: async () => {
+      const response = await fetch(`${API_URL}/api/groups?eventId=${id}`);
+      if (!response.ok) {
+        throw new Error('Failed to fetch groups');
+      }
+      return response.json();
+    },
     enabled: !!id,
   });
 
   useEffect(() => {
-    const fetchEvent = async () => {
-      try {
-        const response = await fetch(`${API_URL}/api/events/${id}`);
-        if (!response.ok) {
-          throw new Error('Failed to fetch event');
-        }
-        const data = await response.json();
-        setEvent(data);
-      } catch (err) {
-        setError(err instanceof Error ? err.message : 'An error occurred');
-        console.error('Error fetching event:', err);
-      } finally {
-        setLoading(false);
-      }
-    };
-
-    fetchEvent();
-  }, [id]);
+    if (eventData) {
+      setEvent(eventData);
+      setLoading(false);
+    }
+  }, [eventData]);
 
   if (isEventLoading || isGroupsLoading) {
     return (
@@ -147,7 +152,21 @@ export default function EventPage() {
         </Link>
 
         <div className="bg-card text-card-foreground rounded-lg shadow-md p-6 mb-8">
-          <h1 className="text-3xl font-heading font-bold mb-2">{event.name}</h1>
+          <div className="flex justify-between items-start mb-4">
+            <h1 className="text-3xl font-heading font-bold">{event.name}</h1>
+            {isAdmin && (
+              <div className="flex gap-2">
+                <Button variant="ghost" size="icon" asChild>
+                  <Link to={`/events/${event.id}/edit`}>
+                    <Pencil className="w-4 h-4" />
+                  </Link>
+                </Button>
+                <Button variant="ghost" size="icon" className="text-destructive">
+                  <Trash2 className="w-4 h-4" />
+                </Button>
+              </div>
+            )}
+          </div>
           <div className="space-y-2 text-sm text-muted-foreground">
             <p className="flex items-center gap-2">
               <span className="font-medium text-foreground">Date:</span>
@@ -174,7 +193,17 @@ export default function EventPage() {
           </div>
         </div>
 
-        <h2 className="text-2xl font-heading font-semibold mb-4">Groups</h2>
+        <div className="flex justify-between items-center mb-4">
+          <h2 className="text-2xl font-heading font-semibold">Groups</h2>
+          {isAdmin && (
+            <Button asChild>
+              <Link to={`/events/${event.id}/groups/new`} className="flex items-center gap-2">
+                <Plus className="w-4 h-4" />
+                Add Group
+              </Link>
+            </Button>
+          )}
+        </div>
         
         {groups.length === 0 ? (
           <div className="bg-card text-card-foreground rounded-lg shadow-md p-8 text-center">
@@ -182,15 +211,28 @@ export default function EventPage() {
           </div>
         ) : (
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-            {groups.map((group) => (
-              <Link
+            {groups.map((group: Group) => (
+              <div
                 key={group.id}
-                to={`/groups/${group.id}`}
                 className="bg-card text-card-foreground rounded-lg shadow-md p-6 transition-all duration-200 hover:shadow-lg"
               >
                 <div className="flex flex-col h-full">
                   <div className="flex-1">
-                    <h3 className="text-lg font-semibold mb-2">{group.name}</h3>
+                    <div className="flex justify-between items-start mb-2">
+                      <h3 className="text-lg font-semibold">{group.name}</h3>
+                      {isAdmin && (
+                        <div className="flex gap-2">
+                          <Button variant="ghost" size="icon" asChild>
+                            <Link to={`/groups/${group.id}/edit`}>
+                              <Pencil className="w-4 h-4" />
+                            </Link>
+                          </Button>
+                          <Button variant="ghost" size="icon" className="text-destructive">
+                            <Trash2 className="w-4 h-4" />
+                          </Button>
+                        </div>
+                      )}
+                    </div>
                     <div className="space-y-2 text-sm text-muted-foreground">
                       <p className="flex items-center gap-2">
                         <Users className="w-4 h-4" />
@@ -216,8 +258,15 @@ export default function EventPage() {
                       )}
                     </div>
                   </div>
+                  <div className="mt-4">
+                    <Button asChild className="w-full">
+                      <Link to={`/groups/${group.id}`}>
+                        View Details
+                      </Link>
+                    </Button>
+                  </div>
                 </div>
-              </Link>
+              </div>
             ))}
           </div>
         )}

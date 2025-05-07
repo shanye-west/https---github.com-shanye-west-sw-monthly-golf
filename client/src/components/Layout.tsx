@@ -1,10 +1,13 @@
 import { Link } from "react-router-dom";
+import { useAuth } from "@/lib/auth";
 
 interface LayoutProps {
   children: React.ReactNode;
 }
 
 const Layout = ({ children }: LayoutProps) => {
+  const { user, logout } = useAuth();
+
   return (
     <div className="min-h-screen flex flex-col bg-background">
       <header className="bg-card border-b border-border sticky top-0 z-50">
@@ -20,12 +23,21 @@ const Layout = ({ children }: LayoutProps) => {
               >
                 Home
               </Link>
-              <Link 
-                to="/admin" 
-                className="text-foreground hover:text-primary transition-colors font-medium"
-              >
-                Admin
-              </Link>
+              {user ? (
+                <button
+                  onClick={() => logout()}
+                  className="text-foreground hover:text-primary transition-colors font-medium"
+                >
+                  Logout
+                </button>
+              ) : (
+                <Link 
+                  to="/login" 
+                  className="text-foreground hover:text-primary transition-colors font-medium"
+                >
+                  Login
+                </Link>
+              )}
             </div>
           </nav>
         </div>
@@ -47,12 +59,6 @@ const Layout = ({ children }: LayoutProps) => {
                 className="text-sm text-foreground hover:text-primary transition-colors"
               >
                 Home
-              </Link>
-              <Link 
-                to="/admin" 
-                className="text-sm text-foreground hover:text-primary transition-colors"
-              >
-                Admin
               </Link>
             </div>
           </div>

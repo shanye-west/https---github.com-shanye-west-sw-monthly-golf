@@ -21,7 +21,7 @@ export default function LoginPage() {
         title: "Success",
         description: "You have been logged in successfully."
       });
-      navigate('/admin');
+      navigate('/');
     } catch (error) {
       console.error('Login error:', error);
       toast({
@@ -37,9 +37,9 @@ export default function LoginPage() {
     <div className="min-h-screen flex items-center justify-center bg-background">
       <div className="w-full max-w-md p-8 space-y-8 bg-card rounded-lg shadow-lg">
         <div className="text-center">
-          <h1 className="text-2xl font-bold text-foreground">Admin Login</h1>
+          <h1 className="text-2xl font-bold text-foreground">Login</h1>
           <p className="mt-2 text-sm text-muted-foreground">
-            Enter your credentials to access the admin panel
+            Enter your credentials to access the system
           </p>
         </div>
 
