@@ -6,6 +6,7 @@ import { PrismaClient } from '@prisma/client';
 import eventRoutes from './routes/events';
 import groupRoutes from './routes/groups';
 import playerRoutes from './routes/players';
+import authRoutes from './routes/auth';
 
 // Load environment variables
 dotenv.config();
@@ -20,6 +21,7 @@ app.use(helmet());
 app.use(express.json());
 
 // Routes
+app.use('/api/auth', authRoutes);
 app.use('/api/events', eventRoutes);
 app.use('/api/groups', groupRoutes);
 app.use('/api/players', playerRoutes);

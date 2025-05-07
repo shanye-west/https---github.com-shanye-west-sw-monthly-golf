@@ -5,10 +5,14 @@ import Layout from "@/components/Layout";
 import HomePage from "@/pages/HomePage";
 import EventPage from "@/pages/EventPage";
 import GroupPage from "@/pages/GroupPage";
+import LoginPage from "@/pages/LoginPage";
+import AdminPage from "@/pages/AdminPage";
 import { ToastProvider } from '@/components/ui/toast-provider';
+import { AuthProvider } from '@/lib/auth';
+import ProtectedRoute from '@/components/ProtectedRoute';
 import './App.css'
 
-const API_URL = 'http://localhost:3000';
+const API_URL = 'http://localhost:3001';
 
 interface Event {
   id: string;
@@ -78,21 +82,6 @@ function EventCard({ event }: { event: Event }) {
   )
 }
 
-function AdminPage() {
-  return (
-    <div className="container mx-auto px-4 py-8">
-      <div className="max-w-4xl mx-auto">
-        <h1 className="text-4xl font-heading font-bold text-center mb-2">Admin Dashboard</h1>
-        <p className="text-center text-muted-foreground mb-8">Manage tournaments and players</p>
-        
-        <div className="bg-card text-card-foreground rounded-lg shadow-md p-8">
-          <p className="text-muted-foreground text-center">Admin features coming soon...</p>
-        </div>
-      </div>
-    </div>
-  )
-}
-
 // Create a client
 const queryClient = new QueryClient({
   defaultOptions: {
@@ -106,17 +95,28 @@ const queryClient = new QueryClient({
 function App() {
   return (
     <QueryClientProvider client={queryClient}>
-      <ToastProvider>
-        <BrowserRouter>
-          <Layout>
-            <Routes>
-              <Route path="/" element={<HomePage />} />
-              <Route path="/events/:id" element={<EventPage />} />
-              <Route path="/groups/:id" element={<GroupPage />} />
-            </Routes>
-          </Layout>
-        </BrowserRouter>
-      </ToastProvider>
+      <AuthProvider>
+        <ToastProvider>
+          <BrowserRouter>
+            <Layout>
+              <Routes>
+                <Route path="/" element={<HomePage />} />
+                <Route path="/login" element={<LoginPage />} />
+                <Route path="/events/:id" element={<EventPage />} />
+                <Route path="/groups/:id" element={<GroupPage />} />
+                <Route
+                  path="/admin"
+                  element={
+                    <ProtectedRoute requireAdmin>
+                      <AdminPage />
+                    </ProtectedRoute>
+                  }
+                />
+              </Routes>
+            </Layout>
+          </BrowserRouter>
+        </ToastProvider>
+      </AuthProvider>
     </QueryClientProvider>
   );
 }
