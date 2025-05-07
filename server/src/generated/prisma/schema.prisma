@@ -15,14 +15,16 @@ datasource db {
 }
 
 model User {
-  id           String   @id @default(cuid())
+  id           Int      @id @default(autoincrement())
   email        String   @unique
+  password     String
   name         String
+  isAdmin      Boolean  @default(false)
+  createdAt    DateTime @default(now())
+  updatedAt    DateTime @updatedAt
   handicap     Float?
   phoneNumber  String?
   profileImage String?
-  createdAt    DateTime @default(now())
-  updatedAt    DateTime @updatedAt
   events       Event[]  @relation("EventParticipants")
   scores       Score[]
   groups       Group[]  @relation("GroupMembers")
@@ -87,7 +89,7 @@ model Group {
 model Score {
   id         String   @id @default(cuid())
   eventId    String
-  userId     String
+  userId     Int
   holeId     String
   grossScore Int // Actual score on the hole
   netScore   Int? // Score after handicap adjustment

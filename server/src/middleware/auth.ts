@@ -1,33 +1,60 @@
 import { Request, Response, NextFunction } from 'express';
-import { PrismaClient } from '@prisma/client';
+import jwt from 'jsonwebtoken';
+import { PrismaClient } from '../generated/prisma';
 
 const prisma = new PrismaClient();
 
-interface RequestWithUser extends Request {
+interface AuthRequest extends Request {
   user?: {
-    id: number;
+    userId: number;
     isAdmin: boolean;
   };
 }
 
-export const isAdmin = async (req: RequestWithUser, res: Response, next: NextFunction) => {
+export const authMiddleware = async (
+  req: AuthRequest,
+  res: Response,
+  next: NextFunction
+) => {
   try {
-    const userId = req.user?.id;
-    if (!userId) {
-      return res.status(401).json({ error: 'Unauthorized' });
+    const token = req.headers.authorization?.split(' ')[1];
+
+    if (!token) {
+      return res.status(401).json({ message: 'No token provided' });
     }
+
+    const decoded = jwt.verify(
+      token,
+      process.env.JWT_SECRET || 'your-secret-key'
+    ) as { userId: number; isAdmin: boolean };
 
     const user = await prisma.user.findUnique({
-      where: { id: userId },
+      where: { id: decoded.userId },
     });
 
-    if (!user || !user.isAdmin) {
-      return res.status(403).json({ error: 'Forbidden - Admin access required' });
+    if (!user) {
+      return res.status(401).json({ message: 'User not found' });
     }
+
+    req.user = {
+      userId: user.id,
+      isAdmin: user.isAdmin,
+    };
 
     next();
   } catch (error) {
     console.error('Auth middleware error:', error);
-    res.status(500).json({ error: 'Internal server error' });
+    res.status(401).json({ message: 'Invalid token' });
   }
+};
+
+export const adminMiddleware = (
+  req: AuthRequest,
+  res: Response,
+  next: NextFunction
+) => {
+  if (!req.user?.isAdmin) {
+    return res.status(403).json({ message: 'Admin access required' });
+  }
+  next();
 }; 

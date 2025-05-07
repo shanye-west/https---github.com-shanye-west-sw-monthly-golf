@@ -2,11 +2,12 @@ import express from 'express';
 import cors from 'cors';
 import helmet from 'helmet';
 import dotenv from 'dotenv';
-import { PrismaClient } from '@prisma/client';
+import { PrismaClient } from './generated/prisma';
 import eventRoutes from './routes/events';
 import groupRoutes from './routes/groups';
 import playerRoutes from './routes/players';
 import authRoutes from './routes/auth';
+import { authMiddleware, adminMiddleware } from './middleware/auth';
 
 // Load environment variables
 dotenv.config();
@@ -25,6 +26,11 @@ app.use('/api/auth', authRoutes);
 app.use('/api/events', eventRoutes);
 app.use('/api/groups', groupRoutes);
 app.use('/api/players', playerRoutes);
+
+// Protected routes
+app.use('/api/admin', authMiddleware, adminMiddleware, (req, res) => {
+  res.json({ message: 'Admin access granted' });
+});
 
 // Health check endpoint
 app.get('/health', (req, res) => {

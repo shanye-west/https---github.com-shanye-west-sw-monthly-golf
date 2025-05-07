@@ -1,39 +1,31 @@
-import { PrismaClient } from '@prisma/client';
-import bcrypt from 'bcryptjs';
-import dotenv from 'dotenv';
-
-dotenv.config();
+import { PrismaClient } from '../generated/prisma';
+import bcrypt from 'bcrypt';
 
 const prisma = new PrismaClient();
 
-async function createAdminUser() {
+async function createAdmin() {
   try {
-    const email = process.env.ADMIN_EMAIL || 'admin@example.com';
-    const password = process.env.ADMIN_PASSWORD || 'admin123';
+    const username = process.env.ADMIN_USERNAME || 'admin';
+    const pin = process.env.ADMIN_PIN || '1234';
 
-    // Check if admin user already exists
-    const existingUser = await prisma.user.findUnique({
-      where: { email },
-    });
-
-    if (existingUser) {
-      console.log('Admin user already exists');
-      return;
-    }
-
-    // Hash password
-    const hashedPassword = await bcrypt.hash(password, 10);
+    // Hash the PIN
+    const hashedPin = await bcrypt.hash(pin, 10);
 
     // Create admin user
-    const user = await prisma.user.create({
-      data: {
-        email,
-        password: hashedPassword,
+    const admin = await prisma.user.upsert({
+      where: { username },
+      update: {
+        pin: hashedPin,
+        isAdmin: true,
+      },
+      create: {
+        username,
+        pin: hashedPin,
         isAdmin: true,
       },
     });
 
-    console.log('Admin user created successfully:', user.email);
+    console.log('Admin user created/updated successfully:', admin.username);
   } catch (error) {
     console.error('Error creating admin user:', error);
   } finally {
@@ -41,4 +33,4 @@ async function createAdminUser() {
   }
 }
 
-createAdminUser(); 
+createAdmin(); 

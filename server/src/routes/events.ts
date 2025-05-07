@@ -1,8 +1,8 @@
-import express from 'express';
-import { PrismaClient } from '@prisma/client';
-import { isAdmin } from '../middleware/auth';
+import { Router } from 'express';
+import { PrismaClient } from '../generated/prisma';
+import { authMiddleware, adminMiddleware } from '../middleware/auth';
 
-const router = express.Router();
+const router = Router();
 const prisma = new PrismaClient();
 
 // Get all events
@@ -10,13 +10,14 @@ router.get('/', async (req, res) => {
   try {
     const events = await prisma.event.findMany({
       include: {
-        players: true,
+        course: true,
+        participants: true,
       },
     });
     res.json(events);
   } catch (error) {
     console.error('Error fetching events:', error);
-    res.status(500).json({ error: 'Failed to fetch events' });
+    res.status(500).json({ message: 'Internal server error' });
   }
 });
 
@@ -26,68 +27,59 @@ router.get('/:id', async (req, res) => {
     const event = await prisma.event.findUnique({
       where: { id: req.params.id },
       include: {
-        course: {
-          include: {
-            holes: true,
-          },
-        },
+        course: true,
         participants: true,
         groups: {
           include: {
             members: true,
           },
         },
-        scores: {
-          include: {
-            user: true,
-            hole: true,
-          },
-        },
       },
     });
-    
+
     if (!event) {
-      return res.status(404).json({ error: 'Event not found' });
+      return res.status(404).json({ message: 'Event not found' });
     }
-    
+
     res.json(event);
   } catch (error) {
-    res.status(500).json({ error: 'Failed to fetch event' });
+    console.error('Error fetching event:', error);
+    res.status(500).json({ message: 'Internal server error' });
   }
 });
 
 // Create a new event (admin only)
-router.post('/', isAdmin, async (req, res) => {
+router.post('/', authMiddleware, adminMiddleware, async (req, res) => {
   try {
-    const { name, date, course, maxPlayers, entryFee } = req.body;
+    const { name, date, courseId, maxPlayers, entryFee } = req.body;
     const event = await prisma.event.create({
       data: {
         name,
         date: new Date(date),
-        course,
+        courseId,
         maxPlayers,
         entryFee,
-        status: 'not_started',
+        status: 'upcoming',
       },
     });
     res.status(201).json(event);
   } catch (error) {
     console.error('Error creating event:', error);
-    res.status(500).json({ error: 'Failed to create event' });
+    res.status(500).json({ message: 'Internal server error' });
   }
 });
 
 // Update an event (admin only)
-router.put('/:id', isAdmin, async (req, res) => {
+router.put('/:id', authMiddleware, adminMiddleware, async (req, res) => {
   try {
     const { id } = req.params;
-    const { name, date, course, maxPlayers, entryFee, status } = req.body;
+    const { name, date, courseId, maxPlayers, entryFee, status } = req.body;
     const event = await prisma.event.update({
-      where: { id: parseInt(id) },
+      where: { id },
       data: {
         name,
         date: date ? new Date(date) : undefined,
-        course,
+        courseId,
         maxPlayers,
         entryFee,
         status,
@@ -96,51 +88,51 @@ router.put('/:id', isAdmin, async (req, res) => {
     res.json(event);
   } catch (error) {
     console.error('Error updating event:', error);
-    res.status(500).json({ error: 'Failed to update event' });
+    res.status(500).json({ message: 'Internal server error' });
   }
 });
 
 // Delete an event (admin only)
-router.delete('/:id', isAdmin, async (req, res) => {
+router.delete('/:id', authMiddleware, adminMiddleware, async (req, res) => {
   try {
     const { id } = req.params;
     await prisma.event.delete({
-      where: { id: parseInt(id) },
+      where: { id },
     });
     res.status(204).send();
   } catch (error) {
     console.error('Error deleting event:', error);
-    res.status(500).json({ error: 'Failed to delete event' });
+    res.status(500).json({ message: 'Internal server error' });
   }
 });
 
 // Delete all events (admin only)
-router.delete('/', isAdmin, async (req, res) => {
+router.delete('/', authMiddleware, adminMiddleware, async (req, res) => {
   try {
     await prisma.event.deleteMany();
     res.status(204).send();
   } catch (error) {
     console.error('Error deleting all events:', error);
-    res.status(500).json({ error: 'Failed to delete all events' });
+    res.status(500).json({ message: 'Internal server error' });
   }
 });
 
 // Reset all events (admin only)
-router.put('/reset/all', isAdmin, async (req, res) => {
+router.put('/reset/all', authMiddleware, adminMiddleware, async (req, res) => {
   try {
     const events = await prisma.event.findMany();
     for (const event of events) {
       await prisma.event.update({
         where: { id: event.id },
         data: {
-          status: 'not_started',
+          status: 'upcoming',
         },
       });
     }
     res.json({ message: 'All events have been reset' });
   } catch (error) {
     console.error('Error resetting events:', error);
-    res.status(500).json({ error: 'Failed to reset events' });
+    res.status(500).json({ message: 'Internal server error' });
   }
 });
 

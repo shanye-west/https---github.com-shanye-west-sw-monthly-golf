@@ -1,8 +1,8 @@
-import express from 'express';
-import { PrismaClient } from '@prisma/client';
-import { isAdmin } from '../middleware/auth';
+import { Router } from 'express';
+import { PrismaClient } from '../generated/prisma';
+import { authMiddleware, adminMiddleware } from '../middleware/auth';
 
-const router = express.Router();
+const router = Router();
 const prisma = new PrismaClient();
 
 // Get all groups
@@ -11,109 +11,132 @@ router.get('/', async (req, res) => {
     const groups = await prisma.group.findMany({
       include: {
         event: true,
-        players: true,
+        members: true,
       },
     });
     res.json(groups);
   } catch (error) {
     console.error('Error fetching groups:', error);
-    res.status(500).json({ error: 'Failed to fetch groups' });
+    res.status(500).json({ message: 'Internal server error' });
+  }
+});
+
+// Get group by ID
+router.get('/:id', async (req, res) => {
+  try {
+    const group = await prisma.group.findUnique({
+      where: { id: req.params.id },
+      include: {
+        event: true,
+        members: true,
+      },
+    });
+
+    if (!group) {
+      return res.status(404).json({ message: 'Group not found' });
+    }
+
+    res.json(group);
+  } catch (error) {
+    console.error('Error fetching group:', error);
+    res.status(500).json({ message: 'Internal server error' });
   }
 });
 
 // Create a new group (admin only)
-router.post('/', isAdmin, async (req, res) => {
+router.post('/', authMiddleware, adminMiddleware, async (req, res) => {
   try {
-    const { name, eventId, players } = req.body;
+    const { eventId, groupNumber, teeTime } = req.body;
     const group = await prisma.group.create({
       data: {
-        name,
         eventId,
-        status: 'not_started',
-        players: {
-          connect: players.map((id: number) => ({ id })),
-        },
-      },
-      include: {
-        event: true,
-        players: true,
+        groupNumber,
+        teeTime: teeTime ? new Date(teeTime) : null,
       },
     });
     res.status(201).json(group);
   } catch (error) {
     console.error('Error creating group:', error);
-    res.status(500).json({ error: 'Failed to create group' });
+    res.status(500).json({ message: 'Internal server error' });
   }
 });
 
 // Update a group (admin only)
-router.put('/:id', isAdmin, async (req, res) => {
+router.put('/:id', authMiddleware, adminMiddleware, async (req, res) => {
   try {
     const { id } = req.params;
-    const { name, eventId, status, players } = req.body;
+    const { eventId, groupNumber, teeTime } = req.body;
     const group = await prisma.group.update({
-      where: { id: parseInt(id) },
+      where: { id },
       data: {
-        name,
         eventId,
-        status,
-        players: {
-          set: players.map((id: number) => ({ id })),
-        },
-      },
-      include: {
-        event: true,
-        players: true,
+        groupNumber,
+        teeTime: teeTime ? new Date(teeTime) : null,
       },
     });
     res.json(group);
   } catch (error) {
     console.error('Error updating group:', error);
-    res.status(500).json({ error: 'Failed to update group' });
+    res.status(500).json({ message: 'Internal server error' });
   }
 });
 
 // Delete a group (admin only)
-router.delete('/:id', isAdmin, async (req, res) => {
+router.delete('/:id', authMiddleware, adminMiddleware, async (req, res) => {
   try {
     const { id } = req.params;
     await prisma.group.delete({
-      where: { id: parseInt(id) },
+      where: { id },
     });
     res.status(204).send();
   } catch (error) {
     console.error('Error deleting group:', error);
-    res.status(500).json({ error: 'Failed to delete group' });
+    res.status(500).json({ message: 'Internal server error' });
   }
 });
 
-// Delete all groups (admin only)
-router.delete('/', isAdmin, async (req, res) => {
+// Add a member to a group (admin only)
+router.post('/:id/members', authMiddleware, adminMiddleware, async (req, res) => {
   try {
-    await prisma.group.deleteMany();
-    res.status(204).send();
-  } catch (error) {
-    console.error('Error deleting all groups:', error);
-    res.status(500).json({ error: 'Failed to delete all groups' });
-  }
-});
-
-// Reset all groups (admin only)
-router.put('/reset/all', isAdmin, async (req, res) => {
-  try {
-    const groups = await prisma.group.findMany();
-    for (const group of groups) {
-      await prisma.group.update({
-        where: { id: group.id },
-        data: {
-          status: 'not_started',
+    const { id } = req.params;
+    const { userId } = req.body;
+    const group = await prisma.group.update({
+      where: { id },
+      data: {
+        members: {
+          connect: { id: userId },
         },
-      });
-    }
-    res.json({ message: 'All groups have been reset' });
+      },
+      include: {
+        members: true,
+      },
+    });
+    res.json(group);
   } catch (error) {
-    console.error('Error resetting groups:', error);
-    res.status(500).json({ error: 'Failed to reset groups' });
+    console.error('Error adding member to group:', error);
+    res.status(500).json({ message: 'Internal server error' });
+  }
+});
+
+// Remove a member from a group (admin only)
+router.delete('/:id/members/:userId', authMiddleware, adminMiddleware, async (req, res) => {
+  try {
+    const { id, userId } = req.params;
+    const group = await prisma.group.update({
+      where: { id },
+      data: {
+        members: {
+          disconnect: { id: parseInt(userId) },
+        },
+      },
+      include: {
+        members: true,
+      },
+    });
+    res.json(group);
+  } catch (error) {
+    console.error('Error removing member from group:', error);
+    res.status(500).json({ message: 'Internal server error' });
   }
 });
 
