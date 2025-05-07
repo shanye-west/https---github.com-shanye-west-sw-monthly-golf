@@ -1,12 +1,23 @@
 {
   "name": "sw-monthly-golf",
   "version": "1.0.0",
-  "main": "index.js",
+  "private": true,
+  "workspaces": [
+    "client",
+    "server"
+  ],
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "dev": "concurrently \"npm run dev:client\" \"npm run dev:server\"",
+    "dev:client": "npm run dev --workspace=client",
+    "dev:server": "npm run dev --workspace=server",
+    "build": "npm run build --workspaces",
+    "start": "npm run start --workspace=server"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
-  "description": ""
+  "description": "Monthly Golf PWA with React/Vite frontend and Express backend",
+  "devDependencies": {
+    "concurrently": "^8.2.2"
+  }
 }
