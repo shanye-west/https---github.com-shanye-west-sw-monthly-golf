@@ -1,6 +1,8 @@
 import { useState, useEffect } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 
+const API_URL = 'http://localhost:3000';
+
 interface Event {
   id: string;
   name: string;
@@ -56,7 +58,7 @@ export default function EventPage() {
   useEffect(() => {
     const fetchEvent = async () => {
       try {
-        const response = await fetch(`${import.meta.env.VITE_API_URL}/api/events/${id}`);
+        const response = await fetch(`${API_URL}/api/events/${id}`);
         if (!response.ok) {
           throw new Error('Failed to fetch event');
         }
@@ -64,6 +66,7 @@ export default function EventPage() {
         setEvent(data);
       } catch (err) {
         setError(err instanceof Error ? err.message : 'An error occurred');
+        console.error('Error fetching event:', err);
       } finally {
         setLoading(false);
       }

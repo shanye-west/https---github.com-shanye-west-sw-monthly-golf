@@ -3,6 +3,8 @@ import { useState, useEffect } from 'react'
 import './App.css'
 import EventPage from './pages/EventPage'
 
+const API_URL = 'http://localhost:3000';
+
 interface Event {
   id: string;
   name: string;
@@ -44,7 +46,7 @@ function HomePage() {
   useEffect(() => {
     const fetchEvents = async () => {
       try {
-        const response = await fetch(`${import.meta.env.VITE_API_URL}/api/events`);
+        const response = await fetch(`${API_URL}/api/events`);
         if (!response.ok) {
           throw new Error('Failed to fetch events');
         }
@@ -52,6 +54,7 @@ function HomePage() {
         setEvents(data);
       } catch (err) {
         setError(err instanceof Error ? err.message : 'An error occurred');
+        console.error('Error fetching events:', err);
       } finally {
         setLoading(false);
       }
@@ -66,11 +69,15 @@ function HomePage() {
   return (
     <div className="container">
       <h1>SW Monthly Golf Events</h1>
-      <div className="events-grid">
-        {events.map((event) => (
-          <EventCard key={event.id} event={event} />
-        ))}
-      </div>
+      {events.length === 0 ? (
+        <p>No events found. Check back later!</p>
+      ) : (
+        <div className="events-grid">
+          {events.map((event) => (
+            <EventCard key={event.id} event={event} />
+          ))}
+        </div>
+      )}
     </div>
   )
 }
