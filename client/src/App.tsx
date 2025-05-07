@@ -1,5 +1,5 @@
+import React from 'react'
 import { BrowserRouter as Router, Routes, Route, Link } from 'react-router-dom'
-import { useState, useEffect } from 'react'
 import './App.css'
 import EventPage from './pages/EventPage'
 
@@ -25,32 +25,60 @@ interface Event {
 
 function EventCard({ event }: { event: Event }) {
   return (
-    <div className="bg-card text-card-foreground rounded-lg shadow-md p-6 transition-transform hover:scale-[1.02]">
-      <h2 className="text-xl font-heading font-semibold mb-4">{event.name}</h2>
-      <div className="space-y-2 text-sm">
-        <p><span className="font-medium">Date:</span> {new Date(event.date).toLocaleDateString()}</p>
-        <p><span className="font-medium">Course:</span> {event.course.name}</p>
-        <p><span className="font-medium">Location:</span> {event.course.address}</p>
-        <p><span className="font-medium">Entry Fee:</span> ${event.entryFee}</p>
-        <p><span className="font-medium">Status:</span> {event.status}</p>
-        <p><span className="font-medium">Participants:</span> {event.participants.length}/{event.maxPlayers}</p>
+    <div className="bg-card text-card-foreground rounded-lg shadow-md p-6 transition-all duration-200 hover:shadow-lg">
+      <div className="flex flex-col h-full">
+        <div className="flex-1">
+          <h2 className="text-xl font-heading font-semibold mb-4 text-primary">{event.name}</h2>
+          <div className="space-y-2 text-sm text-muted-foreground">
+            <p className="flex items-center gap-2">
+              <span className="font-medium text-foreground">Date:</span> 
+              {new Date(event.date).toLocaleDateString()}
+            </p>
+            <p className="flex items-center gap-2">
+              <span className="font-medium text-foreground">Course:</span> 
+              {event.course.name}
+            </p>
+            <p className="flex items-center gap-2">
+              <span className="font-medium text-foreground">Location:</span> 
+              {event.course.address}
+            </p>
+            <p className="flex items-center gap-2">
+              <span className="font-medium text-foreground">Entry Fee:</span> 
+              ${event.entryFee}
+            </p>
+            <p className="flex items-center gap-2">
+              <span className="font-medium text-foreground">Status:</span> 
+              <span className={`px-2 py-1 rounded-full text-xs ${
+                event.status === 'Open' ? 'bg-green-100 text-green-800' :
+                event.status === 'Full' ? 'bg-red-100 text-red-800' :
+                'bg-yellow-100 text-yellow-800'
+              }`}>
+                {event.status}
+              </span>
+            </p>
+            <p className="flex items-center gap-2">
+              <span className="font-medium text-foreground">Participants:</span> 
+              {event.participants.length}/{event.maxPlayers}
+            </p>
+          </div>
+        </div>
+        <Link 
+          to={`/events/${event.id}`} 
+          className="mt-6 inline-flex items-center justify-center bg-primary text-primary-foreground px-6 py-2 rounded-md hover:bg-primary/90 transition-colors w-full"
+        >
+          View Details
+        </Link>
       </div>
-      <Link 
-        to={`/events/${event.id}`} 
-        className="mt-4 inline-block bg-primary text-primary-foreground px-4 py-2 rounded-md hover:bg-primary/90 transition-colors"
-      >
-        View Details
-      </Link>
     </div>
   )
 }
 
 function HomePage() {
-  const [events, setEvents] = useState<Event[]>([]);
-  const [loading, setLoading] = useState(true);
-  const [error, setError] = useState<string | null>(null);
+  const [events, setEvents] = React.useState<Event[]>([]);
+  const [loading, setLoading] = React.useState(true);
+  const [error, setError] = React.useState<string | null>(null);
 
-  useEffect(() => {
+  React.useEffect(() => {
     const fetchEvents = async () => {
       try {
         const response = await fetch(`${API_URL}/api/events`);
@@ -71,29 +99,35 @@ function HomePage() {
   }, []);
 
   if (loading) return (
-    <div className="min-h-screen flex items-center justify-center">
+    <div className="min-h-[calc(100vh-4rem)] flex items-center justify-center">
       <div className="text-lg text-muted-foreground">Loading events...</div>
     </div>
   );
   
   if (error) return (
-    <div className="min-h-screen flex items-center justify-center">
+    <div className="min-h-[calc(100vh-4rem)] flex items-center justify-center">
       <div className="text-lg text-destructive">Error: {error}</div>
     </div>
   );
 
   return (
     <div className="container mx-auto px-4 py-8">
-      <h1 className="text-3xl font-heading font-bold text-center mb-8">SW Monthly Golf Events</h1>
-      {events.length === 0 ? (
-        <p className="text-center text-muted-foreground">No events found. Check back later!</p>
-      ) : (
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-          {events.map((event) => (
-            <EventCard key={event.id} event={event} />
-          ))}
-        </div>
-      )}
+      <div className="max-w-4xl mx-auto">
+        <h1 className="text-4xl font-heading font-bold text-center mb-2">SW Monthly Golf Events</h1>
+        <p className="text-center text-muted-foreground mb-8">Join us for our monthly golf tournaments</p>
+        
+        {events.length === 0 ? (
+          <div className="bg-card text-card-foreground rounded-lg shadow-md p-8 text-center">
+            <p className="text-muted-foreground">No events found. Check back later!</p>
+          </div>
+        ) : (
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            {events.map((event) => (
+              <EventCard key={event.id} event={event} />
+            ))}
+          </div>
+        )}
+      </div>
     </div>
   )
 }
@@ -110,9 +144,13 @@ function GroupPage() {
 function AdminPage() {
   return (
     <div className="container mx-auto px-4 py-8">
-      <h1 className="text-3xl font-heading font-bold text-center mb-8">Admin Dashboard</h1>
-      <div className="bg-card text-card-foreground rounded-lg shadow-md p-6">
-        <p className="text-muted-foreground">Admin features coming soon...</p>
+      <div className="max-w-4xl mx-auto">
+        <h1 className="text-4xl font-heading font-bold text-center mb-2">Admin Dashboard</h1>
+        <p className="text-center text-muted-foreground mb-8">Manage tournaments and players</p>
+        
+        <div className="bg-card text-card-foreground rounded-lg shadow-md p-8">
+          <p className="text-muted-foreground text-center">Admin features coming soon...</p>
+        </div>
       </div>
     </div>
   )
@@ -122,22 +160,22 @@ function App() {
   return (
     <div className="min-h-screen bg-background">
       <Router>
-        <header className="bg-card shadow-sm">
-          <div className="container mx-auto px-4 py-3">
-            <nav className="flex justify-between items-center">
-              <Link to="/" className="text-xl font-heading font-semibold text-primary">
+        <header className="bg-card border-b border-border sticky top-0 z-50">
+          <div className="container mx-auto px-4">
+            <nav className="flex justify-between items-center h-16">
+              <Link to="/" className="text-2xl font-heading font-bold text-primary">
                 SW Golf
               </Link>
-              <div className="flex items-center space-x-4">
+              <div className="flex items-center space-x-6">
                 <Link 
                   to="/" 
-                  className="text-foreground hover:text-primary transition-colors"
+                  className="text-foreground hover:text-primary transition-colors font-medium"
                 >
                   Home
                 </Link>
                 <Link 
                   to="/admin" 
-                  className="text-foreground hover:text-primary transition-colors"
+                  className="text-foreground hover:text-primary transition-colors font-medium"
                 >
                   Admin
                 </Link>
@@ -146,7 +184,7 @@ function App() {
           </div>
         </header>
         
-        <main>
+        <main className="min-h-[calc(100vh-4rem)]">
           <Routes>
             <Route path="/" element={<HomePage />} />
             <Route path="/events/:id" element={<EventPage />} />
