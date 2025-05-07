@@ -1,0 +1,24 @@
+{
+    "recommendations": [
+      "esbenp.prettier-vscode",
+      "dbaeumer.vscode-eslint",
+      "mikestead.dotenv",
+      "christian-kohler.path-intellisense",
+      "coenraads.bracket-pair-colorizer-2",
+      "wix.vscode-import-cost",
+      "dsznajder.es7-react-js-snippets",
+      "formulahendry.auto-close-tag",
+      "formulahendry.auto-rename-tag",
+      "ms-azuretools.vscode-docker",
+      "ecmel.vscode-html-css",
+      "ritwickdey.liveserver",
+      "prisma.prisma",
+      "mtxr.sqltools",
+      "mtxr.sqltools-driver-pg",
+      "naumovs.color-highlight",
+      "aaron-bond.better-comments",
+      "xabikos.JavaScriptSnippets",
+      "svelte.svelte-vscode",
+      "tailwindlabs.tailwindcss-intellisense"
+    ]
+  }  
