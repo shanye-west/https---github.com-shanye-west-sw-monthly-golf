@@ -17,9 +17,8 @@
   },
   "devDependencies": {
     "@tailwindcss/typography": "^0.5.10",
-    "@types/react": "^18.2.64",
-    "@types/react-dom": "^18.2.21",
-    "@types/react-query": "^1.2.8",
+    "@types/react": "^18.3.21",
+    "@types/react-dom": "^18.3.7",
     "@typescript-eslint/eslint-plugin": "^7.1.1",
     "@typescript-eslint/parser": "^7.1.1",
     "@vitejs/plugin-react": "^4.2.1",

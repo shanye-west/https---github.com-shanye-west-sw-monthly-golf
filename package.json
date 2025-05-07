@@ -22,9 +22,13 @@
   "license": "ISC",
   "description": "Monthly Golf PWA with React/Vite frontend and Express backend",
   "devDependencies": {
+    "@types/node": "^20.11.20",
     "concurrently": "^8.2.2",
     "ts-node": "^10.9.2",
-    "typescript": "^5.3.3",
-    "@types/node": "^20.11.20"
+    "typescript": "^5.3.3"
+  },
+  "dependencies": {
+    "@tanstack/react-query": "^5.75.4",
+    "lucide-react": "^0.507.0"
   }
 }

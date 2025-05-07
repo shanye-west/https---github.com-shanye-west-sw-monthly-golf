@@ -1,8 +1,7 @@
 import React from 'react'
-import { BrowserRouter } from "react-router-dom";
+import { BrowserRouter, Routes, Route, Link } from "react-router-dom";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import Layout from "@/components/Layout";
-import { Routes, Route } from "react-router-dom";
 import HomePage from "@/pages/HomePage";
 import EventPage from "@/pages/EventPage";
 import GroupPage from "@/pages/GroupPage";
@@ -73,65 +72,6 @@ function EventCard({ event }: { event: Event }) {
         >
           View Details
         </Link>
-      </div>
-    </div>
-  )
-}
-
-function HomePage() {
-  const [events, setEvents] = React.useState<Event[]>([]);
-  const [loading, setLoading] = React.useState(true);
-  const [error, setError] = React.useState<string | null>(null);
-
-  React.useEffect(() => {
-    const fetchEvents = async () => {
-      try {
-        const response = await fetch(`${API_URL}/api/events`);
-        if (!response.ok) {
-          throw new Error('Failed to fetch events');
-        }
-        const data = await response.json();
-        setEvents(data);
-      } catch (err) {
-        setError(err instanceof Error ? err.message : 'An error occurred');
-        console.error('Error fetching events:', err);
-      } finally {
-        setLoading(false);
-      }
-    };
-
-    fetchEvents();
-  }, []);
-
-  if (loading) return (
-    <div className="min-h-[calc(100vh-4rem)] flex items-center justify-center">
-      <div className="text-lg text-muted-foreground">Loading events...</div>
-    </div>
-  );
-  
-  if (error) return (
-    <div className="min-h-[calc(100vh-4rem)] flex items-center justify-center">
-      <div className="text-lg text-destructive">Error: {error}</div>
-    </div>
-  );
-
-  return (
-    <div className="container mx-auto px-4 py-8">
-      <div className="max-w-4xl mx-auto">
-        <h1 className="text-4xl font-heading font-bold text-center mb-2">SW Monthly Golf Events</h1>
-        <p className="text-center text-muted-foreground mb-8">Join us for our monthly golf tournaments</p>
-        
-        {events.length === 0 ? (
-          <div className="bg-card text-card-foreground rounded-lg shadow-md p-8 text-center">
-            <p className="text-muted-foreground">No events found. Check back later!</p>
-          </div>
-        ) : (
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-            {events.map((event) => (
-              <EventCard key={event.id} event={event} />
-            ))}
-          </div>
-        )}
       </div>
     </div>
   )
