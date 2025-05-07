@@ -21,18 +21,19 @@ model User {
   handicap  Float?
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
-  events    Event[]
+  events    Event[]  @relation("EventParticipants")
+  scores    Score[]
 }
 
 model Event {
-  id          String   @id @default(cuid())
-  name        String
-  date        DateTime
-  location    String
-  createdAt   DateTime @default(now())
-  updatedAt   DateTime @updatedAt
-  participants User[]
-  scores      Score[]
+  id           String   @id @default(cuid())
+  name         String
+  date         DateTime
+  location     String
+  createdAt    DateTime @default(now())
+  updatedAt    DateTime @updatedAt
+  participants User[]   @relation("EventParticipants")
+  scores       Score[]
 }
 
 model Score {
