@@ -127,6 +127,28 @@ exports.Prisma.UserScalarFieldEnum = {
   email: 'email',
   name: 'name',
   handicap: 'handicap',
+  phoneNumber: 'phoneNumber',
+  profileImage: 'profileImage',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+};
+
+exports.Prisma.CourseScalarFieldEnum = {
+  id: 'id',
+  name: 'name',
+  address: 'address',
+  phoneNumber: 'phoneNumber',
+  website: 'website',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+};
+
+exports.Prisma.HoleScalarFieldEnum = {
+  id: 'id',
+  courseId: 'courseId',
+  holeNumber: 'holeNumber',
+  par: 'par',
+  handicap: 'handicap',
   createdAt: 'createdAt',
   updatedAt: 'updatedAt'
 };
@@ -135,7 +157,20 @@ exports.Prisma.EventScalarFieldEnum = {
   id: 'id',
   name: 'name',
   date: 'date',
-  location: 'location',
+  courseId: 'courseId',
+  description: 'description',
+  maxPlayers: 'maxPlayers',
+  entryFee: 'entryFee',
+  status: 'status',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+};
+
+exports.Prisma.GroupScalarFieldEnum = {
+  id: 'id',
+  eventId: 'eventId',
+  groupNumber: 'groupNumber',
+  teeTime: 'teeTime',
   createdAt: 'createdAt',
   updatedAt: 'updatedAt'
 };
@@ -144,7 +179,10 @@ exports.Prisma.ScoreScalarFieldEnum = {
   id: 'id',
   eventId: 'eventId',
   userId: 'userId',
-  score: 'score',
+  holeId: 'holeId',
+  grossScore: 'grossScore',
+  netScore: 'netScore',
+  skinWon: 'skinWon',
   createdAt: 'createdAt',
   updatedAt: 'updatedAt'
 };
@@ -167,7 +205,10 @@ exports.Prisma.NullsOrder = {
 
 exports.Prisma.ModelName = {
   User: 'User',
+  Course: 'Course',
+  Hole: 'Hole',
   Event: 'Event',
+  Group: 'Group',
   Score: 'Score'
 };
 

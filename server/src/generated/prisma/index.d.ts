@@ -19,10 +19,25 @@ export type PrismaPromise<T> = $Public.PrismaPromise<T>
  */
 export type User = $Result.DefaultSelection<Prisma.$UserPayload>
 /**
+ * Model Course
+ * 
+ */
+export type Course = $Result.DefaultSelection<Prisma.$CoursePayload>
+/**
+ * Model Hole
+ * 
+ */
+export type Hole = $Result.DefaultSelection<Prisma.$HolePayload>
+/**
  * Model Event
  * 
  */
 export type Event = $Result.DefaultSelection<Prisma.$EventPayload>
+/**
+ * Model Group
+ * 
+ */
+export type Group = $Result.DefaultSelection<Prisma.$GroupPayload>
 /**
  * Model Score
  * 
@@ -163,6 +178,26 @@ export class PrismaClient<
   get user(): Prisma.UserDelegate<ExtArgs>;
 
   /**
+   * `prisma.course`: Exposes CRUD operations for the **Course** model.
+    * Example usage:
+    * ```ts
+    * // Fetch zero or more Courses
+    * const courses = await prisma.course.findMany()
+    * ```
+    */
+  get course(): Prisma.CourseDelegate<ExtArgs>;
+
+  /**
+   * `prisma.hole`: Exposes CRUD operations for the **Hole** model.
+    * Example usage:
+    * ```ts
+    * // Fetch zero or more Holes
+    * const holes = await prisma.hole.findMany()
+    * ```
+    */
+  get hole(): Prisma.HoleDelegate<ExtArgs>;
+
+  /**
    * `prisma.event`: Exposes CRUD operations for the **Event** model.
     * Example usage:
     * ```ts
@@ -171,6 +206,16 @@ export class PrismaClient<
     * ```
     */
   get event(): Prisma.EventDelegate<ExtArgs>;
+
+  /**
+   * `prisma.group`: Exposes CRUD operations for the **Group** model.
+    * Example usage:
+    * ```ts
+    * // Fetch zero or more Groups
+    * const groups = await prisma.group.findMany()
+    * ```
+    */
+  get group(): Prisma.GroupDelegate<ExtArgs>;
 
   /**
    * `prisma.score`: Exposes CRUD operations for the **Score** model.
@@ -623,7 +668,10 @@ export namespace Prisma {
 
   export const ModelName: {
     User: 'User',
+    Course: 'Course',
+    Hole: 'Hole',
     Event: 'Event',
+    Group: 'Group',
     Score: 'Score'
   };
 
@@ -640,7 +688,7 @@ export namespace Prisma {
 
   export type TypeMap<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, ClientOptions = {}> = {
     meta: {
-      modelProps: "user" | "event" | "score"
+      modelProps: "user" | "course" | "hole" | "event" | "group" | "score"
       txIsolationLevel: Prisma.TransactionIsolationLevel
     }
     model: {
@@ -714,6 +762,146 @@ export namespace Prisma {
           }
         }
       }
+      Course: {
+        payload: Prisma.$CoursePayload<ExtArgs>
+        fields: Prisma.CourseFieldRefs
+        operations: {
+          findUnique: {
+            args: Prisma.CourseFindUniqueArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$CoursePayload> | null
+          }
+          findUniqueOrThrow: {
+            args: Prisma.CourseFindUniqueOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$CoursePayload>
+          }
+          findFirst: {
+            args: Prisma.CourseFindFirstArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$CoursePayload> | null
+          }
+          findFirstOrThrow: {
+            args: Prisma.CourseFindFirstOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$CoursePayload>
+          }
+          findMany: {
+            args: Prisma.CourseFindManyArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$CoursePayload>[]
+          }
+          create: {
+            args: Prisma.CourseCreateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$CoursePayload>
+          }
+          createMany: {
+            args: Prisma.CourseCreateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          createManyAndReturn: {
+            args: Prisma.CourseCreateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$CoursePayload>[]
+          }
+          delete: {
+            args: Prisma.CourseDeleteArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$CoursePayload>
+          }
+          update: {
+            args: Prisma.CourseUpdateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$CoursePayload>
+          }
+          deleteMany: {
+            args: Prisma.CourseDeleteManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateMany: {
+            args: Prisma.CourseUpdateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          upsert: {
+            args: Prisma.CourseUpsertArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$CoursePayload>
+          }
+          aggregate: {
+            args: Prisma.CourseAggregateArgs<ExtArgs>
+            result: $Utils.Optional<AggregateCourse>
+          }
+          groupBy: {
+            args: Prisma.CourseGroupByArgs<ExtArgs>
+            result: $Utils.Optional<CourseGroupByOutputType>[]
+          }
+          count: {
+            args: Prisma.CourseCountArgs<ExtArgs>
+            result: $Utils.Optional<CourseCountAggregateOutputType> | number
+          }
+        }
+      }
+      Hole: {
+        payload: Prisma.$HolePayload<ExtArgs>
+        fields: Prisma.HoleFieldRefs
+        operations: {
+          findUnique: {
+            args: Prisma.HoleFindUniqueArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$HolePayload> | null
+          }
+          findUniqueOrThrow: {
+            args: Prisma.HoleFindUniqueOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$HolePayload>
+          }
+          findFirst: {
+            args: Prisma.HoleFindFirstArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$HolePayload> | null
+          }
+          findFirstOrThrow: {
+            args: Prisma.HoleFindFirstOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$HolePayload>
+          }
+          findMany: {
+            args: Prisma.HoleFindManyArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$HolePayload>[]
+          }
+          create: {
+            args: Prisma.HoleCreateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$HolePayload>
+          }
+          createMany: {
+            args: Prisma.HoleCreateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          createManyAndReturn: {
+            args: Prisma.HoleCreateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$HolePayload>[]
+          }
+          delete: {
+            args: Prisma.HoleDeleteArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$HolePayload>
+          }
+          update: {
+            args: Prisma.HoleUpdateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$HolePayload>
+          }
+          deleteMany: {
+            args: Prisma.HoleDeleteManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateMany: {
+            args: Prisma.HoleUpdateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          upsert: {
+            args: Prisma.HoleUpsertArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$HolePayload>
+          }
+          aggregate: {
+            args: Prisma.HoleAggregateArgs<ExtArgs>
+            result: $Utils.Optional<AggregateHole>
+          }
+          groupBy: {
+            args: Prisma.HoleGroupByArgs<ExtArgs>
+            result: $Utils.Optional<HoleGroupByOutputType>[]
+          }
+          count: {
+            args: Prisma.HoleCountArgs<ExtArgs>
+            result: $Utils.Optional<HoleCountAggregateOutputType> | number
+          }
+        }
+      }
       Event: {
         payload: Prisma.$EventPayload<ExtArgs>
         fields: Prisma.EventFieldRefs
@@ -781,6 +969,76 @@ export namespace Prisma {
           count: {
             args: Prisma.EventCountArgs<ExtArgs>
             result: $Utils.Optional<EventCountAggregateOutputType> | number
+          }
+        }
+      }
+      Group: {
+        payload: Prisma.$GroupPayload<ExtArgs>
+        fields: Prisma.GroupFieldRefs
+        operations: {
+          findUnique: {
+            args: Prisma.GroupFindUniqueArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$GroupPayload> | null
+          }
+          findUniqueOrThrow: {
+            args: Prisma.GroupFindUniqueOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$GroupPayload>
+          }
+          findFirst: {
+            args: Prisma.GroupFindFirstArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$GroupPayload> | null
+          }
+          findFirstOrThrow: {
+            args: Prisma.GroupFindFirstOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$GroupPayload>
+          }
+          findMany: {
+            args: Prisma.GroupFindManyArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$GroupPayload>[]
+          }
+          create: {
+            args: Prisma.GroupCreateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$GroupPayload>
+          }
+          createMany: {
+            args: Prisma.GroupCreateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          createManyAndReturn: {
+            args: Prisma.GroupCreateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$GroupPayload>[]
+          }
+          delete: {
+            args: Prisma.GroupDeleteArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$GroupPayload>
+          }
+          update: {
+            args: Prisma.GroupUpdateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$GroupPayload>
+          }
+          deleteMany: {
+            args: Prisma.GroupDeleteManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateMany: {
+            args: Prisma.GroupUpdateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          upsert: {
+            args: Prisma.GroupUpsertArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$GroupPayload>
+          }
+          aggregate: {
+            args: Prisma.GroupAggregateArgs<ExtArgs>
+            result: $Utils.Optional<AggregateGroup>
+          }
+          groupBy: {
+            args: Prisma.GroupGroupByArgs<ExtArgs>
+            result: $Utils.Optional<GroupGroupByOutputType>[]
+          }
+          count: {
+            args: Prisma.GroupCountArgs<ExtArgs>
+            result: $Utils.Optional<GroupCountAggregateOutputType> | number
           }
         }
       }
@@ -1017,11 +1275,13 @@ export namespace Prisma {
   export type UserCountOutputType = {
     events: number
     scores: number
+    groups: number
   }
 
   export type UserCountOutputTypeSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     events?: boolean | UserCountOutputTypeCountEventsArgs
     scores?: boolean | UserCountOutputTypeCountScoresArgs
+    groups?: boolean | UserCountOutputTypeCountGroupsArgs
   }
 
   // Custom InputTypes
@@ -1049,6 +1309,84 @@ export namespace Prisma {
     where?: ScoreWhereInput
   }
 
+  /**
+   * UserCountOutputType without action
+   */
+  export type UserCountOutputTypeCountGroupsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: GroupWhereInput
+  }
+
+
+  /**
+   * Count Type CourseCountOutputType
+   */
+
+  export type CourseCountOutputType = {
+    events: number
+    holes: number
+  }
+
+  export type CourseCountOutputTypeSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    events?: boolean | CourseCountOutputTypeCountEventsArgs
+    holes?: boolean | CourseCountOutputTypeCountHolesArgs
+  }
+
+  // Custom InputTypes
+  /**
+   * CourseCountOutputType without action
+   */
+  export type CourseCountOutputTypeDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the CourseCountOutputType
+     */
+    select?: CourseCountOutputTypeSelect<ExtArgs> | null
+  }
+
+  /**
+   * CourseCountOutputType without action
+   */
+  export type CourseCountOutputTypeCountEventsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: EventWhereInput
+  }
+
+  /**
+   * CourseCountOutputType without action
+   */
+  export type CourseCountOutputTypeCountHolesArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: HoleWhereInput
+  }
+
+
+  /**
+   * Count Type HoleCountOutputType
+   */
+
+  export type HoleCountOutputType = {
+    scores: number
+  }
+
+  export type HoleCountOutputTypeSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    scores?: boolean | HoleCountOutputTypeCountScoresArgs
+  }
+
+  // Custom InputTypes
+  /**
+   * HoleCountOutputType without action
+   */
+  export type HoleCountOutputTypeDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the HoleCountOutputType
+     */
+    select?: HoleCountOutputTypeSelect<ExtArgs> | null
+  }
+
+  /**
+   * HoleCountOutputType without action
+   */
+  export type HoleCountOutputTypeCountScoresArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: ScoreWhereInput
+  }
+
 
   /**
    * Count Type EventCountOutputType
@@ -1056,11 +1394,13 @@ export namespace Prisma {
 
   export type EventCountOutputType = {
     participants: number
+    groups: number
     scores: number
   }
 
   export type EventCountOutputTypeSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     participants?: boolean | EventCountOutputTypeCountParticipantsArgs
+    groups?: boolean | EventCountOutputTypeCountGroupsArgs
     scores?: boolean | EventCountOutputTypeCountScoresArgs
   }
 
@@ -1085,8 +1425,46 @@ export namespace Prisma {
   /**
    * EventCountOutputType without action
    */
+  export type EventCountOutputTypeCountGroupsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: GroupWhereInput
+  }
+
+  /**
+   * EventCountOutputType without action
+   */
   export type EventCountOutputTypeCountScoresArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     where?: ScoreWhereInput
+  }
+
+
+  /**
+   * Count Type GroupCountOutputType
+   */
+
+  export type GroupCountOutputType = {
+    members: number
+  }
+
+  export type GroupCountOutputTypeSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    members?: boolean | GroupCountOutputTypeCountMembersArgs
+  }
+
+  // Custom InputTypes
+  /**
+   * GroupCountOutputType without action
+   */
+  export type GroupCountOutputTypeDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the GroupCountOutputType
+     */
+    select?: GroupCountOutputTypeSelect<ExtArgs> | null
+  }
+
+  /**
+   * GroupCountOutputType without action
+   */
+  export type GroupCountOutputTypeCountMembersArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: UserWhereInput
   }
 
 
@@ -1119,6 +1497,8 @@ export namespace Prisma {
     email: string | null
     name: string | null
     handicap: number | null
+    phoneNumber: string | null
+    profileImage: string | null
     createdAt: Date | null
     updatedAt: Date | null
   }
@@ -1128,6 +1508,8 @@ export namespace Prisma {
     email: string | null
     name: string | null
     handicap: number | null
+    phoneNumber: string | null
+    profileImage: string | null
     createdAt: Date | null
     updatedAt: Date | null
   }
@@ -1137,6 +1519,8 @@ export namespace Prisma {
     email: number
     name: number
     handicap: number
+    phoneNumber: number
+    profileImage: number
     createdAt: number
     updatedAt: number
     _all: number
@@ -1156,6 +1540,8 @@ export namespace Prisma {
     email?: true
     name?: true
     handicap?: true
+    phoneNumber?: true
+    profileImage?: true
     createdAt?: true
     updatedAt?: true
   }
@@ -1165,6 +1551,8 @@ export namespace Prisma {
     email?: true
     name?: true
     handicap?: true
+    phoneNumber?: true
+    profileImage?: true
     createdAt?: true
     updatedAt?: true
   }
@@ -1174,6 +1562,8 @@ export namespace Prisma {
     email?: true
     name?: true
     handicap?: true
+    phoneNumber?: true
+    profileImage?: true
     createdAt?: true
     updatedAt?: true
     _all?: true
@@ -1270,6 +1660,8 @@ export namespace Prisma {
     email: string
     name: string
     handicap: number | null
+    phoneNumber: string | null
+    profileImage: string | null
     createdAt: Date
     updatedAt: Date
     _count: UserCountAggregateOutputType | null
@@ -1298,10 +1690,13 @@ export namespace Prisma {
     email?: boolean
     name?: boolean
     handicap?: boolean
+    phoneNumber?: boolean
+    profileImage?: boolean
     createdAt?: boolean
     updatedAt?: boolean
     events?: boolean | User$eventsArgs<ExtArgs>
     scores?: boolean | User$scoresArgs<ExtArgs>
+    groups?: boolean | User$groupsArgs<ExtArgs>
     _count?: boolean | UserCountOutputTypeDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["user"]>
 
@@ -1310,6 +1705,8 @@ export namespace Prisma {
     email?: boolean
     name?: boolean
     handicap?: boolean
+    phoneNumber?: boolean
+    profileImage?: boolean
     createdAt?: boolean
     updatedAt?: boolean
   }, ExtArgs["result"]["user"]>
@@ -1319,6 +1716,8 @@ export namespace Prisma {
     email?: boolean
     name?: boolean
     handicap?: boolean
+    phoneNumber?: boolean
+    profileImage?: boolean
     createdAt?: boolean
     updatedAt?: boolean
   }
@@ -1326,6 +1725,7 @@ export namespace Prisma {
   export type UserInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     events?: boolean | User$eventsArgs<ExtArgs>
     scores?: boolean | User$scoresArgs<ExtArgs>
+    groups?: boolean | User$groupsArgs<ExtArgs>
     _count?: boolean | UserCountOutputTypeDefaultArgs<ExtArgs>
   }
   export type UserIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {}
@@ -1335,12 +1735,15 @@ export namespace Prisma {
     objects: {
       events: Prisma.$EventPayload<ExtArgs>[]
       scores: Prisma.$ScorePayload<ExtArgs>[]
+      groups: Prisma.$GroupPayload<ExtArgs>[]
     }
     scalars: $Extensions.GetPayloadResult<{
       id: string
       email: string
       name: string
       handicap: number | null
+      phoneNumber: string | null
+      profileImage: string | null
       createdAt: Date
       updatedAt: Date
     }, ExtArgs["result"]["user"]>
@@ -1709,6 +2112,7 @@ export namespace Prisma {
     readonly [Symbol.toStringTag]: "PrismaPromise"
     events<T extends User$eventsArgs<ExtArgs> = {}>(args?: Subset<T, User$eventsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$EventPayload<ExtArgs>, T, "findMany"> | Null>
     scores<T extends User$scoresArgs<ExtArgs> = {}>(args?: Subset<T, User$scoresArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$ScorePayload<ExtArgs>, T, "findMany"> | Null>
+    groups<T extends User$groupsArgs<ExtArgs> = {}>(args?: Subset<T, User$groupsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$GroupPayload<ExtArgs>, T, "findMany"> | Null>
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
      * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -1742,6 +2146,8 @@ export namespace Prisma {
     readonly email: FieldRef<"User", 'String'>
     readonly name: FieldRef<"User", 'String'>
     readonly handicap: FieldRef<"User", 'Float'>
+    readonly phoneNumber: FieldRef<"User", 'String'>
+    readonly profileImage: FieldRef<"User", 'String'>
     readonly createdAt: FieldRef<"User", 'DateTime'>
     readonly updatedAt: FieldRef<"User", 'DateTime'>
   }
@@ -2098,6 +2504,26 @@ export namespace Prisma {
   }
 
   /**
+   * User.groups
+   */
+  export type User$groupsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Group
+     */
+    select?: GroupSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: GroupInclude<ExtArgs> | null
+    where?: GroupWhereInput
+    orderBy?: GroupOrderByWithRelationInput | GroupOrderByWithRelationInput[]
+    cursor?: GroupWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: GroupScalarFieldEnum | GroupScalarFieldEnum[]
+  }
+
+  /**
    * User without action
    */
   export type UserDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
@@ -2113,20 +2539,2057 @@ export namespace Prisma {
 
 
   /**
+   * Model Course
+   */
+
+  export type AggregateCourse = {
+    _count: CourseCountAggregateOutputType | null
+    _min: CourseMinAggregateOutputType | null
+    _max: CourseMaxAggregateOutputType | null
+  }
+
+  export type CourseMinAggregateOutputType = {
+    id: string | null
+    name: string | null
+    address: string | null
+    phoneNumber: string | null
+    website: string | null
+    createdAt: Date | null
+    updatedAt: Date | null
+  }
+
+  export type CourseMaxAggregateOutputType = {
+    id: string | null
+    name: string | null
+    address: string | null
+    phoneNumber: string | null
+    website: string | null
+    createdAt: Date | null
+    updatedAt: Date | null
+  }
+
+  export type CourseCountAggregateOutputType = {
+    id: number
+    name: number
+    address: number
+    phoneNumber: number
+    website: number
+    createdAt: number
+    updatedAt: number
+    _all: number
+  }
+
+
+  export type CourseMinAggregateInputType = {
+    id?: true
+    name?: true
+    address?: true
+    phoneNumber?: true
+    website?: true
+    createdAt?: true
+    updatedAt?: true
+  }
+
+  export type CourseMaxAggregateInputType = {
+    id?: true
+    name?: true
+    address?: true
+    phoneNumber?: true
+    website?: true
+    createdAt?: true
+    updatedAt?: true
+  }
+
+  export type CourseCountAggregateInputType = {
+    id?: true
+    name?: true
+    address?: true
+    phoneNumber?: true
+    website?: true
+    createdAt?: true
+    updatedAt?: true
+    _all?: true
+  }
+
+  export type CourseAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which Course to aggregate.
+     */
+    where?: CourseWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of Courses to fetch.
+     */
+    orderBy?: CourseOrderByWithRelationInput | CourseOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the start position
+     */
+    cursor?: CourseWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` Courses from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` Courses.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Count returned Courses
+    **/
+    _count?: true | CourseCountAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the minimum value
+    **/
+    _min?: CourseMinAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the maximum value
+    **/
+    _max?: CourseMaxAggregateInputType
+  }
+
+  export type GetCourseAggregateType<T extends CourseAggregateArgs> = {
+        [P in keyof T & keyof AggregateCourse]: P extends '_count' | 'count'
+      ? T[P] extends true
+        ? number
+        : GetScalarType<T[P], AggregateCourse[P]>
+      : GetScalarType<T[P], AggregateCourse[P]>
+  }
+
+
+
+
+  export type CourseGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: CourseWhereInput
+    orderBy?: CourseOrderByWithAggregationInput | CourseOrderByWithAggregationInput[]
+    by: CourseScalarFieldEnum[] | CourseScalarFieldEnum
+    having?: CourseScalarWhereWithAggregatesInput
+    take?: number
+    skip?: number
+    _count?: CourseCountAggregateInputType | true
+    _min?: CourseMinAggregateInputType
+    _max?: CourseMaxAggregateInputType
+  }
+
+  export type CourseGroupByOutputType = {
+    id: string
+    name: string
+    address: string
+    phoneNumber: string | null
+    website: string | null
+    createdAt: Date
+    updatedAt: Date
+    _count: CourseCountAggregateOutputType | null
+    _min: CourseMinAggregateOutputType | null
+    _max: CourseMaxAggregateOutputType | null
+  }
+
+  type GetCourseGroupByPayload<T extends CourseGroupByArgs> = Prisma.PrismaPromise<
+    Array<
+      PickEnumerable<CourseGroupByOutputType, T['by']> &
+        {
+          [P in ((keyof T) & (keyof CourseGroupByOutputType))]: P extends '_count'
+            ? T[P] extends boolean
+              ? number
+              : GetScalarType<T[P], CourseGroupByOutputType[P]>
+            : GetScalarType<T[P], CourseGroupByOutputType[P]>
+        }
+      >
+    >
+
+
+  export type CourseSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    name?: boolean
+    address?: boolean
+    phoneNumber?: boolean
+    website?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+    events?: boolean | Course$eventsArgs<ExtArgs>
+    holes?: boolean | Course$holesArgs<ExtArgs>
+    _count?: boolean | CourseCountOutputTypeDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["course"]>
+
+  export type CourseSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    name?: boolean
+    address?: boolean
+    phoneNumber?: boolean
+    website?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+  }, ExtArgs["result"]["course"]>
+
+  export type CourseSelectScalar = {
+    id?: boolean
+    name?: boolean
+    address?: boolean
+    phoneNumber?: boolean
+    website?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+  }
+
+  export type CourseInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    events?: boolean | Course$eventsArgs<ExtArgs>
+    holes?: boolean | Course$holesArgs<ExtArgs>
+    _count?: boolean | CourseCountOutputTypeDefaultArgs<ExtArgs>
+  }
+  export type CourseIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {}
+
+  export type $CoursePayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    name: "Course"
+    objects: {
+      events: Prisma.$EventPayload<ExtArgs>[]
+      holes: Prisma.$HolePayload<ExtArgs>[]
+    }
+    scalars: $Extensions.GetPayloadResult<{
+      id: string
+      name: string
+      address: string
+      phoneNumber: string | null
+      website: string | null
+      createdAt: Date
+      updatedAt: Date
+    }, ExtArgs["result"]["course"]>
+    composites: {}
+  }
+
+  type CourseGetPayload<S extends boolean | null | undefined | CourseDefaultArgs> = $Result.GetResult<Prisma.$CoursePayload, S>
+
+  type CourseCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = 
+    Omit<CourseFindManyArgs, 'select' | 'include' | 'distinct'> & {
+      select?: CourseCountAggregateInputType | true
+    }
+
+  export interface CourseDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> {
+    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['Course'], meta: { name: 'Course' } }
+    /**
+     * Find zero or one Course that matches the filter.
+     * @param {CourseFindUniqueArgs} args - Arguments to find a Course
+     * @example
+     * // Get one Course
+     * const course = await prisma.course.findUnique({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUnique<T extends CourseFindUniqueArgs>(args: SelectSubset<T, CourseFindUniqueArgs<ExtArgs>>): Prisma__CourseClient<$Result.GetResult<Prisma.$CoursePayload<ExtArgs>, T, "findUnique"> | null, null, ExtArgs>
+
+    /**
+     * Find one Course that matches the filter or throw an error with `error.code='P2025'` 
+     * if no matches were found.
+     * @param {CourseFindUniqueOrThrowArgs} args - Arguments to find a Course
+     * @example
+     * // Get one Course
+     * const course = await prisma.course.findUniqueOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUniqueOrThrow<T extends CourseFindUniqueOrThrowArgs>(args: SelectSubset<T, CourseFindUniqueOrThrowArgs<ExtArgs>>): Prisma__CourseClient<$Result.GetResult<Prisma.$CoursePayload<ExtArgs>, T, "findUniqueOrThrow">, never, ExtArgs>
+
+    /**
+     * Find the first Course that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {CourseFindFirstArgs} args - Arguments to find a Course
+     * @example
+     * // Get one Course
+     * const course = await prisma.course.findFirst({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirst<T extends CourseFindFirstArgs>(args?: SelectSubset<T, CourseFindFirstArgs<ExtArgs>>): Prisma__CourseClient<$Result.GetResult<Prisma.$CoursePayload<ExtArgs>, T, "findFirst"> | null, null, ExtArgs>
+
+    /**
+     * Find the first Course that matches the filter or
+     * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {CourseFindFirstOrThrowArgs} args - Arguments to find a Course
+     * @example
+     * // Get one Course
+     * const course = await prisma.course.findFirstOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirstOrThrow<T extends CourseFindFirstOrThrowArgs>(args?: SelectSubset<T, CourseFindFirstOrThrowArgs<ExtArgs>>): Prisma__CourseClient<$Result.GetResult<Prisma.$CoursePayload<ExtArgs>, T, "findFirstOrThrow">, never, ExtArgs>
+
+    /**
+     * Find zero or more Courses that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {CourseFindManyArgs} args - Arguments to filter and select certain fields only.
+     * @example
+     * // Get all Courses
+     * const courses = await prisma.course.findMany()
+     * 
+     * // Get first 10 Courses
+     * const courses = await prisma.course.findMany({ take: 10 })
+     * 
+     * // Only select the `id`
+     * const courseWithIdOnly = await prisma.course.findMany({ select: { id: true } })
+     * 
+     */
+    findMany<T extends CourseFindManyArgs>(args?: SelectSubset<T, CourseFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$CoursePayload<ExtArgs>, T, "findMany">>
+
+    /**
+     * Create a Course.
+     * @param {CourseCreateArgs} args - Arguments to create a Course.
+     * @example
+     * // Create one Course
+     * const Course = await prisma.course.create({
+     *   data: {
+     *     // ... data to create a Course
+     *   }
+     * })
+     * 
+     */
+    create<T extends CourseCreateArgs>(args: SelectSubset<T, CourseCreateArgs<ExtArgs>>): Prisma__CourseClient<$Result.GetResult<Prisma.$CoursePayload<ExtArgs>, T, "create">, never, ExtArgs>
+
+    /**
+     * Create many Courses.
+     * @param {CourseCreateManyArgs} args - Arguments to create many Courses.
+     * @example
+     * // Create many Courses
+     * const course = await prisma.course.createMany({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     *     
+     */
+    createMany<T extends CourseCreateManyArgs>(args?: SelectSubset<T, CourseCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Create many Courses and returns the data saved in the database.
+     * @param {CourseCreateManyAndReturnArgs} args - Arguments to create many Courses.
+     * @example
+     * // Create many Courses
+     * const course = await prisma.course.createManyAndReturn({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Create many Courses and only return the `id`
+     * const courseWithIdOnly = await prisma.course.createManyAndReturn({ 
+     *   select: { id: true },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    createManyAndReturn<T extends CourseCreateManyAndReturnArgs>(args?: SelectSubset<T, CourseCreateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$CoursePayload<ExtArgs>, T, "createManyAndReturn">>
+
+    /**
+     * Delete a Course.
+     * @param {CourseDeleteArgs} args - Arguments to delete one Course.
+     * @example
+     * // Delete one Course
+     * const Course = await prisma.course.delete({
+     *   where: {
+     *     // ... filter to delete one Course
+     *   }
+     * })
+     * 
+     */
+    delete<T extends CourseDeleteArgs>(args: SelectSubset<T, CourseDeleteArgs<ExtArgs>>): Prisma__CourseClient<$Result.GetResult<Prisma.$CoursePayload<ExtArgs>, T, "delete">, never, ExtArgs>
+
+    /**
+     * Update one Course.
+     * @param {CourseUpdateArgs} args - Arguments to update one Course.
+     * @example
+     * // Update one Course
+     * const course = await prisma.course.update({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    update<T extends CourseUpdateArgs>(args: SelectSubset<T, CourseUpdateArgs<ExtArgs>>): Prisma__CourseClient<$Result.GetResult<Prisma.$CoursePayload<ExtArgs>, T, "update">, never, ExtArgs>
+
+    /**
+     * Delete zero or more Courses.
+     * @param {CourseDeleteManyArgs} args - Arguments to filter Courses to delete.
+     * @example
+     * // Delete a few Courses
+     * const { count } = await prisma.course.deleteMany({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     * 
+     */
+    deleteMany<T extends CourseDeleteManyArgs>(args?: SelectSubset<T, CourseDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more Courses.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {CourseUpdateManyArgs} args - Arguments to update one or more rows.
+     * @example
+     * // Update many Courses
+     * const course = await prisma.course.updateMany({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    updateMany<T extends CourseUpdateManyArgs>(args: SelectSubset<T, CourseUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Create or update one Course.
+     * @param {CourseUpsertArgs} args - Arguments to update or create a Course.
+     * @example
+     * // Update or create a Course
+     * const course = await prisma.course.upsert({
+     *   create: {
+     *     // ... data to create a Course
+     *   },
+     *   update: {
+     *     // ... in case it already exists, update
+     *   },
+     *   where: {
+     *     // ... the filter for the Course we want to update
+     *   }
+     * })
+     */
+    upsert<T extends CourseUpsertArgs>(args: SelectSubset<T, CourseUpsertArgs<ExtArgs>>): Prisma__CourseClient<$Result.GetResult<Prisma.$CoursePayload<ExtArgs>, T, "upsert">, never, ExtArgs>
+
+
+    /**
+     * Count the number of Courses.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {CourseCountArgs} args - Arguments to filter Courses to count.
+     * @example
+     * // Count the number of Courses
+     * const count = await prisma.course.count({
+     *   where: {
+     *     // ... the filter for the Courses we want to count
+     *   }
+     * })
+    **/
+    count<T extends CourseCountArgs>(
+      args?: Subset<T, CourseCountArgs>,
+    ): Prisma.PrismaPromise<
+      T extends $Utils.Record<'select', any>
+        ? T['select'] extends true
+          ? number
+          : GetScalarType<T['select'], CourseCountAggregateOutputType>
+        : number
+    >
+
+    /**
+     * Allows you to perform aggregations operations on a Course.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {CourseAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
+     * @example
+     * // Ordered by age ascending
+     * // Where email contains prisma.io
+     * // Limited to the 10 users
+     * const aggregations = await prisma.user.aggregate({
+     *   _avg: {
+     *     age: true,
+     *   },
+     *   where: {
+     *     email: {
+     *       contains: "prisma.io",
+     *     },
+     *   },
+     *   orderBy: {
+     *     age: "asc",
+     *   },
+     *   take: 10,
+     * })
+    **/
+    aggregate<T extends CourseAggregateArgs>(args: Subset<T, CourseAggregateArgs>): Prisma.PrismaPromise<GetCourseAggregateType<T>>
+
+    /**
+     * Group by Course.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {CourseGroupByArgs} args - Group by arguments.
+     * @example
+     * // Group by city, order by createdAt, get count
+     * const result = await prisma.user.groupBy({
+     *   by: ['city', 'createdAt'],
+     *   orderBy: {
+     *     createdAt: true
+     *   },
+     *   _count: {
+     *     _all: true
+     *   },
+     * })
+     * 
+    **/
+    groupBy<
+      T extends CourseGroupByArgs,
+      HasSelectOrTake extends Or<
+        Extends<'skip', Keys<T>>,
+        Extends<'take', Keys<T>>
+      >,
+      OrderByArg extends True extends HasSelectOrTake
+        ? { orderBy: CourseGroupByArgs['orderBy'] }
+        : { orderBy?: CourseGroupByArgs['orderBy'] },
+      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
+      ByFields extends MaybeTupleToUnion<T['by']>,
+      ByValid extends Has<ByFields, OrderFields>,
+      HavingFields extends GetHavingFields<T['having']>,
+      HavingValid extends Has<ByFields, HavingFields>,
+      ByEmpty extends T['by'] extends never[] ? True : False,
+      InputErrors extends ByEmpty extends True
+      ? `Error: "by" must not be empty.`
+      : HavingValid extends False
+      ? {
+          [P in HavingFields]: P extends ByFields
+            ? never
+            : P extends string
+            ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
+            : [
+                Error,
+                'Field ',
+                P,
+                ` in "having" needs to be provided in "by"`,
+              ]
+        }[HavingFields]
+      : 'take' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "take", you also need to provide "orderBy"'
+      : 'skip' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "skip", you also need to provide "orderBy"'
+      : ByValid extends True
+      ? {}
+      : {
+          [P in OrderFields]: P extends ByFields
+            ? never
+            : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+        }[OrderFields]
+    >(args: SubsetIntersection<T, CourseGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetCourseGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
+  /**
+   * Fields of the Course model
+   */
+  readonly fields: CourseFieldRefs;
+  }
+
+  /**
+   * The delegate class that acts as a "Promise-like" for Course.
+   * Why is this prefixed with `Prisma__`?
+   * Because we want to prevent naming conflicts as mentioned in
+   * https://github.com/prisma/prisma-client-js/issues/707
+   */
+  export interface Prisma__CourseClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> extends Prisma.PrismaPromise<T> {
+    readonly [Symbol.toStringTag]: "PrismaPromise"
+    events<T extends Course$eventsArgs<ExtArgs> = {}>(args?: Subset<T, Course$eventsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$EventPayload<ExtArgs>, T, "findMany"> | Null>
+    holes<T extends Course$holesArgs<ExtArgs> = {}>(args?: Subset<T, Course$holesArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$HolePayload<ExtArgs>, T, "findMany"> | Null>
+    /**
+     * Attaches callbacks for the resolution and/or rejection of the Promise.
+     * @param onfulfilled The callback to execute when the Promise is resolved.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of which ever callback is executed.
+     */
+    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>
+    /**
+     * Attaches a callback for only the rejection of the Promise.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of the callback.
+     */
+    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>
+    /**
+     * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
+     * resolved value cannot be modified from the callback.
+     * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
+     * @returns A Promise for the completion of the callback.
+     */
+    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>
+  }
+
+
+
+
+  /**
+   * Fields of the Course model
+   */ 
+  interface CourseFieldRefs {
+    readonly id: FieldRef<"Course", 'String'>
+    readonly name: FieldRef<"Course", 'String'>
+    readonly address: FieldRef<"Course", 'String'>
+    readonly phoneNumber: FieldRef<"Course", 'String'>
+    readonly website: FieldRef<"Course", 'String'>
+    readonly createdAt: FieldRef<"Course", 'DateTime'>
+    readonly updatedAt: FieldRef<"Course", 'DateTime'>
+  }
+    
+
+  // Custom InputTypes
+  /**
+   * Course findUnique
+   */
+  export type CourseFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Course
+     */
+    select?: CourseSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: CourseInclude<ExtArgs> | null
+    /**
+     * Filter, which Course to fetch.
+     */
+    where: CourseWhereUniqueInput
+  }
+
+  /**
+   * Course findUniqueOrThrow
+   */
+  export type CourseFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Course
+     */
+    select?: CourseSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: CourseInclude<ExtArgs> | null
+    /**
+     * Filter, which Course to fetch.
+     */
+    where: CourseWhereUniqueInput
+  }
+
+  /**
+   * Course findFirst
+   */
+  export type CourseFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Course
+     */
+    select?: CourseSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: CourseInclude<ExtArgs> | null
+    /**
+     * Filter, which Course to fetch.
+     */
+    where?: CourseWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of Courses to fetch.
+     */
+    orderBy?: CourseOrderByWithRelationInput | CourseOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for Courses.
+     */
+    cursor?: CourseWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` Courses from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` Courses.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of Courses.
+     */
+    distinct?: CourseScalarFieldEnum | CourseScalarFieldEnum[]
+  }
+
+  /**
+   * Course findFirstOrThrow
+   */
+  export type CourseFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Course
+     */
+    select?: CourseSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: CourseInclude<ExtArgs> | null
+    /**
+     * Filter, which Course to fetch.
+     */
+    where?: CourseWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of Courses to fetch.
+     */
+    orderBy?: CourseOrderByWithRelationInput | CourseOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for Courses.
+     */
+    cursor?: CourseWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` Courses from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` Courses.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of Courses.
+     */
+    distinct?: CourseScalarFieldEnum | CourseScalarFieldEnum[]
+  }
+
+  /**
+   * Course findMany
+   */
+  export type CourseFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Course
+     */
+    select?: CourseSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: CourseInclude<ExtArgs> | null
+    /**
+     * Filter, which Courses to fetch.
+     */
+    where?: CourseWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of Courses to fetch.
+     */
+    orderBy?: CourseOrderByWithRelationInput | CourseOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for listing Courses.
+     */
+    cursor?: CourseWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` Courses from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` Courses.
+     */
+    skip?: number
+    distinct?: CourseScalarFieldEnum | CourseScalarFieldEnum[]
+  }
+
+  /**
+   * Course create
+   */
+  export type CourseCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Course
+     */
+    select?: CourseSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: CourseInclude<ExtArgs> | null
+    /**
+     * The data needed to create a Course.
+     */
+    data: XOR<CourseCreateInput, CourseUncheckedCreateInput>
+  }
+
+  /**
+   * Course createMany
+   */
+  export type CourseCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to create many Courses.
+     */
+    data: CourseCreateManyInput | CourseCreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+  /**
+   * Course createManyAndReturn
+   */
+  export type CourseCreateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Course
+     */
+    select?: CourseSelectCreateManyAndReturn<ExtArgs> | null
+    /**
+     * The data used to create many Courses.
+     */
+    data: CourseCreateManyInput | CourseCreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+  /**
+   * Course update
+   */
+  export type CourseUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Course
+     */
+    select?: CourseSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: CourseInclude<ExtArgs> | null
+    /**
+     * The data needed to update a Course.
+     */
+    data: XOR<CourseUpdateInput, CourseUncheckedUpdateInput>
+    /**
+     * Choose, which Course to update.
+     */
+    where: CourseWhereUniqueInput
+  }
+
+  /**
+   * Course updateMany
+   */
+  export type CourseUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to update Courses.
+     */
+    data: XOR<CourseUpdateManyMutationInput, CourseUncheckedUpdateManyInput>
+    /**
+     * Filter which Courses to update
+     */
+    where?: CourseWhereInput
+  }
+
+  /**
+   * Course upsert
+   */
+  export type CourseUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Course
+     */
+    select?: CourseSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: CourseInclude<ExtArgs> | null
+    /**
+     * The filter to search for the Course to update in case it exists.
+     */
+    where: CourseWhereUniqueInput
+    /**
+     * In case the Course found by the `where` argument doesn't exist, create a new Course with this data.
+     */
+    create: XOR<CourseCreateInput, CourseUncheckedCreateInput>
+    /**
+     * In case the Course was found with the provided `where` argument, update it with this data.
+     */
+    update: XOR<CourseUpdateInput, CourseUncheckedUpdateInput>
+  }
+
+  /**
+   * Course delete
+   */
+  export type CourseDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Course
+     */
+    select?: CourseSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: CourseInclude<ExtArgs> | null
+    /**
+     * Filter which Course to delete.
+     */
+    where: CourseWhereUniqueInput
+  }
+
+  /**
+   * Course deleteMany
+   */
+  export type CourseDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which Courses to delete
+     */
+    where?: CourseWhereInput
+  }
+
+  /**
+   * Course.events
+   */
+  export type Course$eventsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Event
+     */
+    select?: EventSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: EventInclude<ExtArgs> | null
+    where?: EventWhereInput
+    orderBy?: EventOrderByWithRelationInput | EventOrderByWithRelationInput[]
+    cursor?: EventWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: EventScalarFieldEnum | EventScalarFieldEnum[]
+  }
+
+  /**
+   * Course.holes
+   */
+  export type Course$holesArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Hole
+     */
+    select?: HoleSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: HoleInclude<ExtArgs> | null
+    where?: HoleWhereInput
+    orderBy?: HoleOrderByWithRelationInput | HoleOrderByWithRelationInput[]
+    cursor?: HoleWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: HoleScalarFieldEnum | HoleScalarFieldEnum[]
+  }
+
+  /**
+   * Course without action
+   */
+  export type CourseDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Course
+     */
+    select?: CourseSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: CourseInclude<ExtArgs> | null
+  }
+
+
+  /**
+   * Model Hole
+   */
+
+  export type AggregateHole = {
+    _count: HoleCountAggregateOutputType | null
+    _avg: HoleAvgAggregateOutputType | null
+    _sum: HoleSumAggregateOutputType | null
+    _min: HoleMinAggregateOutputType | null
+    _max: HoleMaxAggregateOutputType | null
+  }
+
+  export type HoleAvgAggregateOutputType = {
+    holeNumber: number | null
+    par: number | null
+    handicap: number | null
+  }
+
+  export type HoleSumAggregateOutputType = {
+    holeNumber: number | null
+    par: number | null
+    handicap: number | null
+  }
+
+  export type HoleMinAggregateOutputType = {
+    id: string | null
+    courseId: string | null
+    holeNumber: number | null
+    par: number | null
+    handicap: number | null
+    createdAt: Date | null
+    updatedAt: Date | null
+  }
+
+  export type HoleMaxAggregateOutputType = {
+    id: string | null
+    courseId: string | null
+    holeNumber: number | null
+    par: number | null
+    handicap: number | null
+    createdAt: Date | null
+    updatedAt: Date | null
+  }
+
+  export type HoleCountAggregateOutputType = {
+    id: number
+    courseId: number
+    holeNumber: number
+    par: number
+    handicap: number
+    createdAt: number
+    updatedAt: number
+    _all: number
+  }
+
+
+  export type HoleAvgAggregateInputType = {
+    holeNumber?: true
+    par?: true
+    handicap?: true
+  }
+
+  export type HoleSumAggregateInputType = {
+    holeNumber?: true
+    par?: true
+    handicap?: true
+  }
+
+  export type HoleMinAggregateInputType = {
+    id?: true
+    courseId?: true
+    holeNumber?: true
+    par?: true
+    handicap?: true
+    createdAt?: true
+    updatedAt?: true
+  }
+
+  export type HoleMaxAggregateInputType = {
+    id?: true
+    courseId?: true
+    holeNumber?: true
+    par?: true
+    handicap?: true
+    createdAt?: true
+    updatedAt?: true
+  }
+
+  export type HoleCountAggregateInputType = {
+    id?: true
+    courseId?: true
+    holeNumber?: true
+    par?: true
+    handicap?: true
+    createdAt?: true
+    updatedAt?: true
+    _all?: true
+  }
+
+  export type HoleAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which Hole to aggregate.
+     */
+    where?: HoleWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of Holes to fetch.
+     */
+    orderBy?: HoleOrderByWithRelationInput | HoleOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the start position
+     */
+    cursor?: HoleWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` Holes from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` Holes.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Count returned Holes
+    **/
+    _count?: true | HoleCountAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to average
+    **/
+    _avg?: HoleAvgAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to sum
+    **/
+    _sum?: HoleSumAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the minimum value
+    **/
+    _min?: HoleMinAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the maximum value
+    **/
+    _max?: HoleMaxAggregateInputType
+  }
+
+  export type GetHoleAggregateType<T extends HoleAggregateArgs> = {
+        [P in keyof T & keyof AggregateHole]: P extends '_count' | 'count'
+      ? T[P] extends true
+        ? number
+        : GetScalarType<T[P], AggregateHole[P]>
+      : GetScalarType<T[P], AggregateHole[P]>
+  }
+
+
+
+
+  export type HoleGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: HoleWhereInput
+    orderBy?: HoleOrderByWithAggregationInput | HoleOrderByWithAggregationInput[]
+    by: HoleScalarFieldEnum[] | HoleScalarFieldEnum
+    having?: HoleScalarWhereWithAggregatesInput
+    take?: number
+    skip?: number
+    _count?: HoleCountAggregateInputType | true
+    _avg?: HoleAvgAggregateInputType
+    _sum?: HoleSumAggregateInputType
+    _min?: HoleMinAggregateInputType
+    _max?: HoleMaxAggregateInputType
+  }
+
+  export type HoleGroupByOutputType = {
+    id: string
+    courseId: string
+    holeNumber: number
+    par: number
+    handicap: number
+    createdAt: Date
+    updatedAt: Date
+    _count: HoleCountAggregateOutputType | null
+    _avg: HoleAvgAggregateOutputType | null
+    _sum: HoleSumAggregateOutputType | null
+    _min: HoleMinAggregateOutputType | null
+    _max: HoleMaxAggregateOutputType | null
+  }
+
+  type GetHoleGroupByPayload<T extends HoleGroupByArgs> = Prisma.PrismaPromise<
+    Array<
+      PickEnumerable<HoleGroupByOutputType, T['by']> &
+        {
+          [P in ((keyof T) & (keyof HoleGroupByOutputType))]: P extends '_count'
+            ? T[P] extends boolean
+              ? number
+              : GetScalarType<T[P], HoleGroupByOutputType[P]>
+            : GetScalarType<T[P], HoleGroupByOutputType[P]>
+        }
+      >
+    >
+
+
+  export type HoleSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    courseId?: boolean
+    holeNumber?: boolean
+    par?: boolean
+    handicap?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+    course?: boolean | CourseDefaultArgs<ExtArgs>
+    scores?: boolean | Hole$scoresArgs<ExtArgs>
+    _count?: boolean | HoleCountOutputTypeDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["hole"]>
+
+  export type HoleSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    courseId?: boolean
+    holeNumber?: boolean
+    par?: boolean
+    handicap?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+    course?: boolean | CourseDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["hole"]>
+
+  export type HoleSelectScalar = {
+    id?: boolean
+    courseId?: boolean
+    holeNumber?: boolean
+    par?: boolean
+    handicap?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+  }
+
+  export type HoleInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    course?: boolean | CourseDefaultArgs<ExtArgs>
+    scores?: boolean | Hole$scoresArgs<ExtArgs>
+    _count?: boolean | HoleCountOutputTypeDefaultArgs<ExtArgs>
+  }
+  export type HoleIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    course?: boolean | CourseDefaultArgs<ExtArgs>
+  }
+
+  export type $HolePayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    name: "Hole"
+    objects: {
+      course: Prisma.$CoursePayload<ExtArgs>
+      scores: Prisma.$ScorePayload<ExtArgs>[]
+    }
+    scalars: $Extensions.GetPayloadResult<{
+      id: string
+      courseId: string
+      holeNumber: number
+      par: number
+      handicap: number
+      createdAt: Date
+      updatedAt: Date
+    }, ExtArgs["result"]["hole"]>
+    composites: {}
+  }
+
+  type HoleGetPayload<S extends boolean | null | undefined | HoleDefaultArgs> = $Result.GetResult<Prisma.$HolePayload, S>
+
+  type HoleCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = 
+    Omit<HoleFindManyArgs, 'select' | 'include' | 'distinct'> & {
+      select?: HoleCountAggregateInputType | true
+    }
+
+  export interface HoleDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> {
+    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['Hole'], meta: { name: 'Hole' } }
+    /**
+     * Find zero or one Hole that matches the filter.
+     * @param {HoleFindUniqueArgs} args - Arguments to find a Hole
+     * @example
+     * // Get one Hole
+     * const hole = await prisma.hole.findUnique({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUnique<T extends HoleFindUniqueArgs>(args: SelectSubset<T, HoleFindUniqueArgs<ExtArgs>>): Prisma__HoleClient<$Result.GetResult<Prisma.$HolePayload<ExtArgs>, T, "findUnique"> | null, null, ExtArgs>
+
+    /**
+     * Find one Hole that matches the filter or throw an error with `error.code='P2025'` 
+     * if no matches were found.
+     * @param {HoleFindUniqueOrThrowArgs} args - Arguments to find a Hole
+     * @example
+     * // Get one Hole
+     * const hole = await prisma.hole.findUniqueOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUniqueOrThrow<T extends HoleFindUniqueOrThrowArgs>(args: SelectSubset<T, HoleFindUniqueOrThrowArgs<ExtArgs>>): Prisma__HoleClient<$Result.GetResult<Prisma.$HolePayload<ExtArgs>, T, "findUniqueOrThrow">, never, ExtArgs>
+
+    /**
+     * Find the first Hole that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {HoleFindFirstArgs} args - Arguments to find a Hole
+     * @example
+     * // Get one Hole
+     * const hole = await prisma.hole.findFirst({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirst<T extends HoleFindFirstArgs>(args?: SelectSubset<T, HoleFindFirstArgs<ExtArgs>>): Prisma__HoleClient<$Result.GetResult<Prisma.$HolePayload<ExtArgs>, T, "findFirst"> | null, null, ExtArgs>
+
+    /**
+     * Find the first Hole that matches the filter or
+     * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {HoleFindFirstOrThrowArgs} args - Arguments to find a Hole
+     * @example
+     * // Get one Hole
+     * const hole = await prisma.hole.findFirstOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirstOrThrow<T extends HoleFindFirstOrThrowArgs>(args?: SelectSubset<T, HoleFindFirstOrThrowArgs<ExtArgs>>): Prisma__HoleClient<$Result.GetResult<Prisma.$HolePayload<ExtArgs>, T, "findFirstOrThrow">, never, ExtArgs>
+
+    /**
+     * Find zero or more Holes that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {HoleFindManyArgs} args - Arguments to filter and select certain fields only.
+     * @example
+     * // Get all Holes
+     * const holes = await prisma.hole.findMany()
+     * 
+     * // Get first 10 Holes
+     * const holes = await prisma.hole.findMany({ take: 10 })
+     * 
+     * // Only select the `id`
+     * const holeWithIdOnly = await prisma.hole.findMany({ select: { id: true } })
+     * 
+     */
+    findMany<T extends HoleFindManyArgs>(args?: SelectSubset<T, HoleFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$HolePayload<ExtArgs>, T, "findMany">>
+
+    /**
+     * Create a Hole.
+     * @param {HoleCreateArgs} args - Arguments to create a Hole.
+     * @example
+     * // Create one Hole
+     * const Hole = await prisma.hole.create({
+     *   data: {
+     *     // ... data to create a Hole
+     *   }
+     * })
+     * 
+     */
+    create<T extends HoleCreateArgs>(args: SelectSubset<T, HoleCreateArgs<ExtArgs>>): Prisma__HoleClient<$Result.GetResult<Prisma.$HolePayload<ExtArgs>, T, "create">, never, ExtArgs>
+
+    /**
+     * Create many Holes.
+     * @param {HoleCreateManyArgs} args - Arguments to create many Holes.
+     * @example
+     * // Create many Holes
+     * const hole = await prisma.hole.createMany({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     *     
+     */
+    createMany<T extends HoleCreateManyArgs>(args?: SelectSubset<T, HoleCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Create many Holes and returns the data saved in the database.
+     * @param {HoleCreateManyAndReturnArgs} args - Arguments to create many Holes.
+     * @example
+     * // Create many Holes
+     * const hole = await prisma.hole.createManyAndReturn({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Create many Holes and only return the `id`
+     * const holeWithIdOnly = await prisma.hole.createManyAndReturn({ 
+     *   select: { id: true },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    createManyAndReturn<T extends HoleCreateManyAndReturnArgs>(args?: SelectSubset<T, HoleCreateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$HolePayload<ExtArgs>, T, "createManyAndReturn">>
+
+    /**
+     * Delete a Hole.
+     * @param {HoleDeleteArgs} args - Arguments to delete one Hole.
+     * @example
+     * // Delete one Hole
+     * const Hole = await prisma.hole.delete({
+     *   where: {
+     *     // ... filter to delete one Hole
+     *   }
+     * })
+     * 
+     */
+    delete<T extends HoleDeleteArgs>(args: SelectSubset<T, HoleDeleteArgs<ExtArgs>>): Prisma__HoleClient<$Result.GetResult<Prisma.$HolePayload<ExtArgs>, T, "delete">, never, ExtArgs>
+
+    /**
+     * Update one Hole.
+     * @param {HoleUpdateArgs} args - Arguments to update one Hole.
+     * @example
+     * // Update one Hole
+     * const hole = await prisma.hole.update({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    update<T extends HoleUpdateArgs>(args: SelectSubset<T, HoleUpdateArgs<ExtArgs>>): Prisma__HoleClient<$Result.GetResult<Prisma.$HolePayload<ExtArgs>, T, "update">, never, ExtArgs>
+
+    /**
+     * Delete zero or more Holes.
+     * @param {HoleDeleteManyArgs} args - Arguments to filter Holes to delete.
+     * @example
+     * // Delete a few Holes
+     * const { count } = await prisma.hole.deleteMany({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     * 
+     */
+    deleteMany<T extends HoleDeleteManyArgs>(args?: SelectSubset<T, HoleDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more Holes.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {HoleUpdateManyArgs} args - Arguments to update one or more rows.
+     * @example
+     * // Update many Holes
+     * const hole = await prisma.hole.updateMany({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    updateMany<T extends HoleUpdateManyArgs>(args: SelectSubset<T, HoleUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Create or update one Hole.
+     * @param {HoleUpsertArgs} args - Arguments to update or create a Hole.
+     * @example
+     * // Update or create a Hole
+     * const hole = await prisma.hole.upsert({
+     *   create: {
+     *     // ... data to create a Hole
+     *   },
+     *   update: {
+     *     // ... in case it already exists, update
+     *   },
+     *   where: {
+     *     // ... the filter for the Hole we want to update
+     *   }
+     * })
+     */
+    upsert<T extends HoleUpsertArgs>(args: SelectSubset<T, HoleUpsertArgs<ExtArgs>>): Prisma__HoleClient<$Result.GetResult<Prisma.$HolePayload<ExtArgs>, T, "upsert">, never, ExtArgs>
+
+
+    /**
+     * Count the number of Holes.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {HoleCountArgs} args - Arguments to filter Holes to count.
+     * @example
+     * // Count the number of Holes
+     * const count = await prisma.hole.count({
+     *   where: {
+     *     // ... the filter for the Holes we want to count
+     *   }
+     * })
+    **/
+    count<T extends HoleCountArgs>(
+      args?: Subset<T, HoleCountArgs>,
+    ): Prisma.PrismaPromise<
+      T extends $Utils.Record<'select', any>
+        ? T['select'] extends true
+          ? number
+          : GetScalarType<T['select'], HoleCountAggregateOutputType>
+        : number
+    >
+
+    /**
+     * Allows you to perform aggregations operations on a Hole.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {HoleAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
+     * @example
+     * // Ordered by age ascending
+     * // Where email contains prisma.io
+     * // Limited to the 10 users
+     * const aggregations = await prisma.user.aggregate({
+     *   _avg: {
+     *     age: true,
+     *   },
+     *   where: {
+     *     email: {
+     *       contains: "prisma.io",
+     *     },
+     *   },
+     *   orderBy: {
+     *     age: "asc",
+     *   },
+     *   take: 10,
+     * })
+    **/
+    aggregate<T extends HoleAggregateArgs>(args: Subset<T, HoleAggregateArgs>): Prisma.PrismaPromise<GetHoleAggregateType<T>>
+
+    /**
+     * Group by Hole.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {HoleGroupByArgs} args - Group by arguments.
+     * @example
+     * // Group by city, order by createdAt, get count
+     * const result = await prisma.user.groupBy({
+     *   by: ['city', 'createdAt'],
+     *   orderBy: {
+     *     createdAt: true
+     *   },
+     *   _count: {
+     *     _all: true
+     *   },
+     * })
+     * 
+    **/
+    groupBy<
+      T extends HoleGroupByArgs,
+      HasSelectOrTake extends Or<
+        Extends<'skip', Keys<T>>,
+        Extends<'take', Keys<T>>
+      >,
+      OrderByArg extends True extends HasSelectOrTake
+        ? { orderBy: HoleGroupByArgs['orderBy'] }
+        : { orderBy?: HoleGroupByArgs['orderBy'] },
+      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
+      ByFields extends MaybeTupleToUnion<T['by']>,
+      ByValid extends Has<ByFields, OrderFields>,
+      HavingFields extends GetHavingFields<T['having']>,
+      HavingValid extends Has<ByFields, HavingFields>,
+      ByEmpty extends T['by'] extends never[] ? True : False,
+      InputErrors extends ByEmpty extends True
+      ? `Error: "by" must not be empty.`
+      : HavingValid extends False
+      ? {
+          [P in HavingFields]: P extends ByFields
+            ? never
+            : P extends string
+            ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
+            : [
+                Error,
+                'Field ',
+                P,
+                ` in "having" needs to be provided in "by"`,
+              ]
+        }[HavingFields]
+      : 'take' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "take", you also need to provide "orderBy"'
+      : 'skip' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "skip", you also need to provide "orderBy"'
+      : ByValid extends True
+      ? {}
+      : {
+          [P in OrderFields]: P extends ByFields
+            ? never
+            : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+        }[OrderFields]
+    >(args: SubsetIntersection<T, HoleGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetHoleGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
+  /**
+   * Fields of the Hole model
+   */
+  readonly fields: HoleFieldRefs;
+  }
+
+  /**
+   * The delegate class that acts as a "Promise-like" for Hole.
+   * Why is this prefixed with `Prisma__`?
+   * Because we want to prevent naming conflicts as mentioned in
+   * https://github.com/prisma/prisma-client-js/issues/707
+   */
+  export interface Prisma__HoleClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> extends Prisma.PrismaPromise<T> {
+    readonly [Symbol.toStringTag]: "PrismaPromise"
+    course<T extends CourseDefaultArgs<ExtArgs> = {}>(args?: Subset<T, CourseDefaultArgs<ExtArgs>>): Prisma__CourseClient<$Result.GetResult<Prisma.$CoursePayload<ExtArgs>, T, "findUniqueOrThrow"> | Null, Null, ExtArgs>
+    scores<T extends Hole$scoresArgs<ExtArgs> = {}>(args?: Subset<T, Hole$scoresArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$ScorePayload<ExtArgs>, T, "findMany"> | Null>
+    /**
+     * Attaches callbacks for the resolution and/or rejection of the Promise.
+     * @param onfulfilled The callback to execute when the Promise is resolved.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of which ever callback is executed.
+     */
+    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>
+    /**
+     * Attaches a callback for only the rejection of the Promise.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of the callback.
+     */
+    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>
+    /**
+     * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
+     * resolved value cannot be modified from the callback.
+     * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
+     * @returns A Promise for the completion of the callback.
+     */
+    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>
+  }
+
+
+
+
+  /**
+   * Fields of the Hole model
+   */ 
+  interface HoleFieldRefs {
+    readonly id: FieldRef<"Hole", 'String'>
+    readonly courseId: FieldRef<"Hole", 'String'>
+    readonly holeNumber: FieldRef<"Hole", 'Int'>
+    readonly par: FieldRef<"Hole", 'Int'>
+    readonly handicap: FieldRef<"Hole", 'Int'>
+    readonly createdAt: FieldRef<"Hole", 'DateTime'>
+    readonly updatedAt: FieldRef<"Hole", 'DateTime'>
+  }
+    
+
+  // Custom InputTypes
+  /**
+   * Hole findUnique
+   */
+  export type HoleFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Hole
+     */
+    select?: HoleSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: HoleInclude<ExtArgs> | null
+    /**
+     * Filter, which Hole to fetch.
+     */
+    where: HoleWhereUniqueInput
+  }
+
+  /**
+   * Hole findUniqueOrThrow
+   */
+  export type HoleFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Hole
+     */
+    select?: HoleSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: HoleInclude<ExtArgs> | null
+    /**
+     * Filter, which Hole to fetch.
+     */
+    where: HoleWhereUniqueInput
+  }
+
+  /**
+   * Hole findFirst
+   */
+  export type HoleFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Hole
+     */
+    select?: HoleSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: HoleInclude<ExtArgs> | null
+    /**
+     * Filter, which Hole to fetch.
+     */
+    where?: HoleWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of Holes to fetch.
+     */
+    orderBy?: HoleOrderByWithRelationInput | HoleOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for Holes.
+     */
+    cursor?: HoleWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` Holes from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` Holes.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of Holes.
+     */
+    distinct?: HoleScalarFieldEnum | HoleScalarFieldEnum[]
+  }
+
+  /**
+   * Hole findFirstOrThrow
+   */
+  export type HoleFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Hole
+     */
+    select?: HoleSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: HoleInclude<ExtArgs> | null
+    /**
+     * Filter, which Hole to fetch.
+     */
+    where?: HoleWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of Holes to fetch.
+     */
+    orderBy?: HoleOrderByWithRelationInput | HoleOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for Holes.
+     */
+    cursor?: HoleWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` Holes from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` Holes.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of Holes.
+     */
+    distinct?: HoleScalarFieldEnum | HoleScalarFieldEnum[]
+  }
+
+  /**
+   * Hole findMany
+   */
+  export type HoleFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Hole
+     */
+    select?: HoleSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: HoleInclude<ExtArgs> | null
+    /**
+     * Filter, which Holes to fetch.
+     */
+    where?: HoleWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of Holes to fetch.
+     */
+    orderBy?: HoleOrderByWithRelationInput | HoleOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for listing Holes.
+     */
+    cursor?: HoleWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` Holes from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` Holes.
+     */
+    skip?: number
+    distinct?: HoleScalarFieldEnum | HoleScalarFieldEnum[]
+  }
+
+  /**
+   * Hole create
+   */
+  export type HoleCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Hole
+     */
+    select?: HoleSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: HoleInclude<ExtArgs> | null
+    /**
+     * The data needed to create a Hole.
+     */
+    data: XOR<HoleCreateInput, HoleUncheckedCreateInput>
+  }
+
+  /**
+   * Hole createMany
+   */
+  export type HoleCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to create many Holes.
+     */
+    data: HoleCreateManyInput | HoleCreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+  /**
+   * Hole createManyAndReturn
+   */
+  export type HoleCreateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Hole
+     */
+    select?: HoleSelectCreateManyAndReturn<ExtArgs> | null
+    /**
+     * The data used to create many Holes.
+     */
+    data: HoleCreateManyInput | HoleCreateManyInput[]
+    skipDuplicates?: boolean
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: HoleIncludeCreateManyAndReturn<ExtArgs> | null
+  }
+
+  /**
+   * Hole update
+   */
+  export type HoleUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Hole
+     */
+    select?: HoleSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: HoleInclude<ExtArgs> | null
+    /**
+     * The data needed to update a Hole.
+     */
+    data: XOR<HoleUpdateInput, HoleUncheckedUpdateInput>
+    /**
+     * Choose, which Hole to update.
+     */
+    where: HoleWhereUniqueInput
+  }
+
+  /**
+   * Hole updateMany
+   */
+  export type HoleUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to update Holes.
+     */
+    data: XOR<HoleUpdateManyMutationInput, HoleUncheckedUpdateManyInput>
+    /**
+     * Filter which Holes to update
+     */
+    where?: HoleWhereInput
+  }
+
+  /**
+   * Hole upsert
+   */
+  export type HoleUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Hole
+     */
+    select?: HoleSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: HoleInclude<ExtArgs> | null
+    /**
+     * The filter to search for the Hole to update in case it exists.
+     */
+    where: HoleWhereUniqueInput
+    /**
+     * In case the Hole found by the `where` argument doesn't exist, create a new Hole with this data.
+     */
+    create: XOR<HoleCreateInput, HoleUncheckedCreateInput>
+    /**
+     * In case the Hole was found with the provided `where` argument, update it with this data.
+     */
+    update: XOR<HoleUpdateInput, HoleUncheckedUpdateInput>
+  }
+
+  /**
+   * Hole delete
+   */
+  export type HoleDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Hole
+     */
+    select?: HoleSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: HoleInclude<ExtArgs> | null
+    /**
+     * Filter which Hole to delete.
+     */
+    where: HoleWhereUniqueInput
+  }
+
+  /**
+   * Hole deleteMany
+   */
+  export type HoleDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which Holes to delete
+     */
+    where?: HoleWhereInput
+  }
+
+  /**
+   * Hole.scores
+   */
+  export type Hole$scoresArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Score
+     */
+    select?: ScoreSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ScoreInclude<ExtArgs> | null
+    where?: ScoreWhereInput
+    orderBy?: ScoreOrderByWithRelationInput | ScoreOrderByWithRelationInput[]
+    cursor?: ScoreWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: ScoreScalarFieldEnum | ScoreScalarFieldEnum[]
+  }
+
+  /**
+   * Hole without action
+   */
+  export type HoleDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Hole
+     */
+    select?: HoleSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: HoleInclude<ExtArgs> | null
+  }
+
+
+  /**
    * Model Event
    */
 
   export type AggregateEvent = {
     _count: EventCountAggregateOutputType | null
+    _avg: EventAvgAggregateOutputType | null
+    _sum: EventSumAggregateOutputType | null
     _min: EventMinAggregateOutputType | null
     _max: EventMaxAggregateOutputType | null
+  }
+
+  export type EventAvgAggregateOutputType = {
+    maxPlayers: number | null
+    entryFee: number | null
+  }
+
+  export type EventSumAggregateOutputType = {
+    maxPlayers: number | null
+    entryFee: number | null
   }
 
   export type EventMinAggregateOutputType = {
     id: string | null
     name: string | null
     date: Date | null
-    location: string | null
+    courseId: string | null
+    description: string | null
+    maxPlayers: number | null
+    entryFee: number | null
+    status: string | null
     createdAt: Date | null
     updatedAt: Date | null
   }
@@ -2135,7 +4598,11 @@ export namespace Prisma {
     id: string | null
     name: string | null
     date: Date | null
-    location: string | null
+    courseId: string | null
+    description: string | null
+    maxPlayers: number | null
+    entryFee: number | null
+    status: string | null
     createdAt: Date | null
     updatedAt: Date | null
   }
@@ -2144,18 +4611,36 @@ export namespace Prisma {
     id: number
     name: number
     date: number
-    location: number
+    courseId: number
+    description: number
+    maxPlayers: number
+    entryFee: number
+    status: number
     createdAt: number
     updatedAt: number
     _all: number
   }
 
 
+  export type EventAvgAggregateInputType = {
+    maxPlayers?: true
+    entryFee?: true
+  }
+
+  export type EventSumAggregateInputType = {
+    maxPlayers?: true
+    entryFee?: true
+  }
+
   export type EventMinAggregateInputType = {
     id?: true
     name?: true
     date?: true
-    location?: true
+    courseId?: true
+    description?: true
+    maxPlayers?: true
+    entryFee?: true
+    status?: true
     createdAt?: true
     updatedAt?: true
   }
@@ -2164,7 +4649,11 @@ export namespace Prisma {
     id?: true
     name?: true
     date?: true
-    location?: true
+    courseId?: true
+    description?: true
+    maxPlayers?: true
+    entryFee?: true
+    status?: true
     createdAt?: true
     updatedAt?: true
   }
@@ -2173,7 +4662,11 @@ export namespace Prisma {
     id?: true
     name?: true
     date?: true
-    location?: true
+    courseId?: true
+    description?: true
+    maxPlayers?: true
+    entryFee?: true
+    status?: true
     createdAt?: true
     updatedAt?: true
     _all?: true
@@ -2217,6 +4710,18 @@ export namespace Prisma {
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
      * 
+     * Select which fields to average
+    **/
+    _avg?: EventAvgAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to sum
+    **/
+    _sum?: EventSumAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
      * Select which fields to find the minimum value
     **/
     _min?: EventMinAggregateInputType
@@ -2247,6 +4752,8 @@ export namespace Prisma {
     take?: number
     skip?: number
     _count?: EventCountAggregateInputType | true
+    _avg?: EventAvgAggregateInputType
+    _sum?: EventSumAggregateInputType
     _min?: EventMinAggregateInputType
     _max?: EventMaxAggregateInputType
   }
@@ -2255,10 +4762,16 @@ export namespace Prisma {
     id: string
     name: string
     date: Date
-    location: string
+    courseId: string
+    description: string | null
+    maxPlayers: number | null
+    entryFee: number | null
+    status: string
     createdAt: Date
     updatedAt: Date
     _count: EventCountAggregateOutputType | null
+    _avg: EventAvgAggregateOutputType | null
+    _sum: EventSumAggregateOutputType | null
     _min: EventMinAggregateOutputType | null
     _max: EventMaxAggregateOutputType | null
   }
@@ -2281,10 +4794,16 @@ export namespace Prisma {
     id?: boolean
     name?: boolean
     date?: boolean
-    location?: boolean
+    courseId?: boolean
+    description?: boolean
+    maxPlayers?: boolean
+    entryFee?: boolean
+    status?: boolean
     createdAt?: boolean
     updatedAt?: boolean
+    course?: boolean | CourseDefaultArgs<ExtArgs>
     participants?: boolean | Event$participantsArgs<ExtArgs>
+    groups?: boolean | Event$groupsArgs<ExtArgs>
     scores?: boolean | Event$scoresArgs<ExtArgs>
     _count?: boolean | EventCountOutputTypeDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["event"]>
@@ -2293,38 +4812,57 @@ export namespace Prisma {
     id?: boolean
     name?: boolean
     date?: boolean
-    location?: boolean
+    courseId?: boolean
+    description?: boolean
+    maxPlayers?: boolean
+    entryFee?: boolean
+    status?: boolean
     createdAt?: boolean
     updatedAt?: boolean
+    course?: boolean | CourseDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["event"]>
 
   export type EventSelectScalar = {
     id?: boolean
     name?: boolean
     date?: boolean
-    location?: boolean
+    courseId?: boolean
+    description?: boolean
+    maxPlayers?: boolean
+    entryFee?: boolean
+    status?: boolean
     createdAt?: boolean
     updatedAt?: boolean
   }
 
   export type EventInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    course?: boolean | CourseDefaultArgs<ExtArgs>
     participants?: boolean | Event$participantsArgs<ExtArgs>
+    groups?: boolean | Event$groupsArgs<ExtArgs>
     scores?: boolean | Event$scoresArgs<ExtArgs>
     _count?: boolean | EventCountOutputTypeDefaultArgs<ExtArgs>
   }
-  export type EventIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {}
+  export type EventIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    course?: boolean | CourseDefaultArgs<ExtArgs>
+  }
 
   export type $EventPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     name: "Event"
     objects: {
+      course: Prisma.$CoursePayload<ExtArgs>
       participants: Prisma.$UserPayload<ExtArgs>[]
+      groups: Prisma.$GroupPayload<ExtArgs>[]
       scores: Prisma.$ScorePayload<ExtArgs>[]
     }
     scalars: $Extensions.GetPayloadResult<{
       id: string
       name: string
       date: Date
-      location: string
+      courseId: string
+      description: string | null
+      maxPlayers: number | null
+      entryFee: number | null
+      status: string
       createdAt: Date
       updatedAt: Date
     }, ExtArgs["result"]["event"]>
@@ -2691,7 +5229,9 @@ export namespace Prisma {
    */
   export interface Prisma__EventClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> extends Prisma.PrismaPromise<T> {
     readonly [Symbol.toStringTag]: "PrismaPromise"
+    course<T extends CourseDefaultArgs<ExtArgs> = {}>(args?: Subset<T, CourseDefaultArgs<ExtArgs>>): Prisma__CourseClient<$Result.GetResult<Prisma.$CoursePayload<ExtArgs>, T, "findUniqueOrThrow"> | Null, Null, ExtArgs>
     participants<T extends Event$participantsArgs<ExtArgs> = {}>(args?: Subset<T, Event$participantsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$UserPayload<ExtArgs>, T, "findMany"> | Null>
+    groups<T extends Event$groupsArgs<ExtArgs> = {}>(args?: Subset<T, Event$groupsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$GroupPayload<ExtArgs>, T, "findMany"> | Null>
     scores<T extends Event$scoresArgs<ExtArgs> = {}>(args?: Subset<T, Event$scoresArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$ScorePayload<ExtArgs>, T, "findMany"> | Null>
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
@@ -2725,7 +5265,11 @@ export namespace Prisma {
     readonly id: FieldRef<"Event", 'String'>
     readonly name: FieldRef<"Event", 'String'>
     readonly date: FieldRef<"Event", 'DateTime'>
-    readonly location: FieldRef<"Event", 'String'>
+    readonly courseId: FieldRef<"Event", 'String'>
+    readonly description: FieldRef<"Event", 'String'>
+    readonly maxPlayers: FieldRef<"Event", 'Int'>
+    readonly entryFee: FieldRef<"Event", 'Float'>
+    readonly status: FieldRef<"Event", 'String'>
     readonly createdAt: FieldRef<"Event", 'DateTime'>
     readonly updatedAt: FieldRef<"Event", 'DateTime'>
   }
@@ -2949,6 +5493,10 @@ export namespace Prisma {
      */
     data: EventCreateManyInput | EventCreateManyInput[]
     skipDuplicates?: boolean
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: EventIncludeCreateManyAndReturn<ExtArgs> | null
   }
 
   /**
@@ -3062,6 +5610,26 @@ export namespace Prisma {
   }
 
   /**
+   * Event.groups
+   */
+  export type Event$groupsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Group
+     */
+    select?: GroupSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: GroupInclude<ExtArgs> | null
+    where?: GroupWhereInput
+    orderBy?: GroupOrderByWithRelationInput | GroupOrderByWithRelationInput[]
+    cursor?: GroupWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: GroupScalarFieldEnum | GroupScalarFieldEnum[]
+  }
+
+  /**
    * Event.scores
    */
   export type Event$scoresArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
@@ -3097,6 +5665,1011 @@ export namespace Prisma {
 
 
   /**
+   * Model Group
+   */
+
+  export type AggregateGroup = {
+    _count: GroupCountAggregateOutputType | null
+    _avg: GroupAvgAggregateOutputType | null
+    _sum: GroupSumAggregateOutputType | null
+    _min: GroupMinAggregateOutputType | null
+    _max: GroupMaxAggregateOutputType | null
+  }
+
+  export type GroupAvgAggregateOutputType = {
+    groupNumber: number | null
+  }
+
+  export type GroupSumAggregateOutputType = {
+    groupNumber: number | null
+  }
+
+  export type GroupMinAggregateOutputType = {
+    id: string | null
+    eventId: string | null
+    groupNumber: number | null
+    teeTime: Date | null
+    createdAt: Date | null
+    updatedAt: Date | null
+  }
+
+  export type GroupMaxAggregateOutputType = {
+    id: string | null
+    eventId: string | null
+    groupNumber: number | null
+    teeTime: Date | null
+    createdAt: Date | null
+    updatedAt: Date | null
+  }
+
+  export type GroupCountAggregateOutputType = {
+    id: number
+    eventId: number
+    groupNumber: number
+    teeTime: number
+    createdAt: number
+    updatedAt: number
+    _all: number
+  }
+
+
+  export type GroupAvgAggregateInputType = {
+    groupNumber?: true
+  }
+
+  export type GroupSumAggregateInputType = {
+    groupNumber?: true
+  }
+
+  export type GroupMinAggregateInputType = {
+    id?: true
+    eventId?: true
+    groupNumber?: true
+    teeTime?: true
+    createdAt?: true
+    updatedAt?: true
+  }
+
+  export type GroupMaxAggregateInputType = {
+    id?: true
+    eventId?: true
+    groupNumber?: true
+    teeTime?: true
+    createdAt?: true
+    updatedAt?: true
+  }
+
+  export type GroupCountAggregateInputType = {
+    id?: true
+    eventId?: true
+    groupNumber?: true
+    teeTime?: true
+    createdAt?: true
+    updatedAt?: true
+    _all?: true
+  }
+
+  export type GroupAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which Group to aggregate.
+     */
+    where?: GroupWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of Groups to fetch.
+     */
+    orderBy?: GroupOrderByWithRelationInput | GroupOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the start position
+     */
+    cursor?: GroupWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` Groups from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` Groups.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Count returned Groups
+    **/
+    _count?: true | GroupCountAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to average
+    **/
+    _avg?: GroupAvgAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to sum
+    **/
+    _sum?: GroupSumAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the minimum value
+    **/
+    _min?: GroupMinAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the maximum value
+    **/
+    _max?: GroupMaxAggregateInputType
+  }
+
+  export type GetGroupAggregateType<T extends GroupAggregateArgs> = {
+        [P in keyof T & keyof AggregateGroup]: P extends '_count' | 'count'
+      ? T[P] extends true
+        ? number
+        : GetScalarType<T[P], AggregateGroup[P]>
+      : GetScalarType<T[P], AggregateGroup[P]>
+  }
+
+
+
+
+  export type GroupGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: GroupWhereInput
+    orderBy?: GroupOrderByWithAggregationInput | GroupOrderByWithAggregationInput[]
+    by: GroupScalarFieldEnum[] | GroupScalarFieldEnum
+    having?: GroupScalarWhereWithAggregatesInput
+    take?: number
+    skip?: number
+    _count?: GroupCountAggregateInputType | true
+    _avg?: GroupAvgAggregateInputType
+    _sum?: GroupSumAggregateInputType
+    _min?: GroupMinAggregateInputType
+    _max?: GroupMaxAggregateInputType
+  }
+
+  export type GroupGroupByOutputType = {
+    id: string
+    eventId: string
+    groupNumber: number
+    teeTime: Date | null
+    createdAt: Date
+    updatedAt: Date
+    _count: GroupCountAggregateOutputType | null
+    _avg: GroupAvgAggregateOutputType | null
+    _sum: GroupSumAggregateOutputType | null
+    _min: GroupMinAggregateOutputType | null
+    _max: GroupMaxAggregateOutputType | null
+  }
+
+  type GetGroupGroupByPayload<T extends GroupGroupByArgs> = Prisma.PrismaPromise<
+    Array<
+      PickEnumerable<GroupGroupByOutputType, T['by']> &
+        {
+          [P in ((keyof T) & (keyof GroupGroupByOutputType))]: P extends '_count'
+            ? T[P] extends boolean
+              ? number
+              : GetScalarType<T[P], GroupGroupByOutputType[P]>
+            : GetScalarType<T[P], GroupGroupByOutputType[P]>
+        }
+      >
+    >
+
+
+  export type GroupSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    eventId?: boolean
+    groupNumber?: boolean
+    teeTime?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+    event?: boolean | EventDefaultArgs<ExtArgs>
+    members?: boolean | Group$membersArgs<ExtArgs>
+    _count?: boolean | GroupCountOutputTypeDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["group"]>
+
+  export type GroupSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    eventId?: boolean
+    groupNumber?: boolean
+    teeTime?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+    event?: boolean | EventDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["group"]>
+
+  export type GroupSelectScalar = {
+    id?: boolean
+    eventId?: boolean
+    groupNumber?: boolean
+    teeTime?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+  }
+
+  export type GroupInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    event?: boolean | EventDefaultArgs<ExtArgs>
+    members?: boolean | Group$membersArgs<ExtArgs>
+    _count?: boolean | GroupCountOutputTypeDefaultArgs<ExtArgs>
+  }
+  export type GroupIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    event?: boolean | EventDefaultArgs<ExtArgs>
+  }
+
+  export type $GroupPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    name: "Group"
+    objects: {
+      event: Prisma.$EventPayload<ExtArgs>
+      members: Prisma.$UserPayload<ExtArgs>[]
+    }
+    scalars: $Extensions.GetPayloadResult<{
+      id: string
+      eventId: string
+      groupNumber: number
+      teeTime: Date | null
+      createdAt: Date
+      updatedAt: Date
+    }, ExtArgs["result"]["group"]>
+    composites: {}
+  }
+
+  type GroupGetPayload<S extends boolean | null | undefined | GroupDefaultArgs> = $Result.GetResult<Prisma.$GroupPayload, S>
+
+  type GroupCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = 
+    Omit<GroupFindManyArgs, 'select' | 'include' | 'distinct'> & {
+      select?: GroupCountAggregateInputType | true
+    }
+
+  export interface GroupDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> {
+    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['Group'], meta: { name: 'Group' } }
+    /**
+     * Find zero or one Group that matches the filter.
+     * @param {GroupFindUniqueArgs} args - Arguments to find a Group
+     * @example
+     * // Get one Group
+     * const group = await prisma.group.findUnique({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUnique<T extends GroupFindUniqueArgs>(args: SelectSubset<T, GroupFindUniqueArgs<ExtArgs>>): Prisma__GroupClient<$Result.GetResult<Prisma.$GroupPayload<ExtArgs>, T, "findUnique"> | null, null, ExtArgs>
+
+    /**
+     * Find one Group that matches the filter or throw an error with `error.code='P2025'` 
+     * if no matches were found.
+     * @param {GroupFindUniqueOrThrowArgs} args - Arguments to find a Group
+     * @example
+     * // Get one Group
+     * const group = await prisma.group.findUniqueOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUniqueOrThrow<T extends GroupFindUniqueOrThrowArgs>(args: SelectSubset<T, GroupFindUniqueOrThrowArgs<ExtArgs>>): Prisma__GroupClient<$Result.GetResult<Prisma.$GroupPayload<ExtArgs>, T, "findUniqueOrThrow">, never, ExtArgs>
+
+    /**
+     * Find the first Group that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {GroupFindFirstArgs} args - Arguments to find a Group
+     * @example
+     * // Get one Group
+     * const group = await prisma.group.findFirst({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirst<T extends GroupFindFirstArgs>(args?: SelectSubset<T, GroupFindFirstArgs<ExtArgs>>): Prisma__GroupClient<$Result.GetResult<Prisma.$GroupPayload<ExtArgs>, T, "findFirst"> | null, null, ExtArgs>
+
+    /**
+     * Find the first Group that matches the filter or
+     * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {GroupFindFirstOrThrowArgs} args - Arguments to find a Group
+     * @example
+     * // Get one Group
+     * const group = await prisma.group.findFirstOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirstOrThrow<T extends GroupFindFirstOrThrowArgs>(args?: SelectSubset<T, GroupFindFirstOrThrowArgs<ExtArgs>>): Prisma__GroupClient<$Result.GetResult<Prisma.$GroupPayload<ExtArgs>, T, "findFirstOrThrow">, never, ExtArgs>
+
+    /**
+     * Find zero or more Groups that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {GroupFindManyArgs} args - Arguments to filter and select certain fields only.
+     * @example
+     * // Get all Groups
+     * const groups = await prisma.group.findMany()
+     * 
+     * // Get first 10 Groups
+     * const groups = await prisma.group.findMany({ take: 10 })
+     * 
+     * // Only select the `id`
+     * const groupWithIdOnly = await prisma.group.findMany({ select: { id: true } })
+     * 
+     */
+    findMany<T extends GroupFindManyArgs>(args?: SelectSubset<T, GroupFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$GroupPayload<ExtArgs>, T, "findMany">>
+
+    /**
+     * Create a Group.
+     * @param {GroupCreateArgs} args - Arguments to create a Group.
+     * @example
+     * // Create one Group
+     * const Group = await prisma.group.create({
+     *   data: {
+     *     // ... data to create a Group
+     *   }
+     * })
+     * 
+     */
+    create<T extends GroupCreateArgs>(args: SelectSubset<T, GroupCreateArgs<ExtArgs>>): Prisma__GroupClient<$Result.GetResult<Prisma.$GroupPayload<ExtArgs>, T, "create">, never, ExtArgs>
+
+    /**
+     * Create many Groups.
+     * @param {GroupCreateManyArgs} args - Arguments to create many Groups.
+     * @example
+     * // Create many Groups
+     * const group = await prisma.group.createMany({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     *     
+     */
+    createMany<T extends GroupCreateManyArgs>(args?: SelectSubset<T, GroupCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Create many Groups and returns the data saved in the database.
+     * @param {GroupCreateManyAndReturnArgs} args - Arguments to create many Groups.
+     * @example
+     * // Create many Groups
+     * const group = await prisma.group.createManyAndReturn({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Create many Groups and only return the `id`
+     * const groupWithIdOnly = await prisma.group.createManyAndReturn({ 
+     *   select: { id: true },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    createManyAndReturn<T extends GroupCreateManyAndReturnArgs>(args?: SelectSubset<T, GroupCreateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$GroupPayload<ExtArgs>, T, "createManyAndReturn">>
+
+    /**
+     * Delete a Group.
+     * @param {GroupDeleteArgs} args - Arguments to delete one Group.
+     * @example
+     * // Delete one Group
+     * const Group = await prisma.group.delete({
+     *   where: {
+     *     // ... filter to delete one Group
+     *   }
+     * })
+     * 
+     */
+    delete<T extends GroupDeleteArgs>(args: SelectSubset<T, GroupDeleteArgs<ExtArgs>>): Prisma__GroupClient<$Result.GetResult<Prisma.$GroupPayload<ExtArgs>, T, "delete">, never, ExtArgs>
+
+    /**
+     * Update one Group.
+     * @param {GroupUpdateArgs} args - Arguments to update one Group.
+     * @example
+     * // Update one Group
+     * const group = await prisma.group.update({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    update<T extends GroupUpdateArgs>(args: SelectSubset<T, GroupUpdateArgs<ExtArgs>>): Prisma__GroupClient<$Result.GetResult<Prisma.$GroupPayload<ExtArgs>, T, "update">, never, ExtArgs>
+
+    /**
+     * Delete zero or more Groups.
+     * @param {GroupDeleteManyArgs} args - Arguments to filter Groups to delete.
+     * @example
+     * // Delete a few Groups
+     * const { count } = await prisma.group.deleteMany({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     * 
+     */
+    deleteMany<T extends GroupDeleteManyArgs>(args?: SelectSubset<T, GroupDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more Groups.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {GroupUpdateManyArgs} args - Arguments to update one or more rows.
+     * @example
+     * // Update many Groups
+     * const group = await prisma.group.updateMany({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    updateMany<T extends GroupUpdateManyArgs>(args: SelectSubset<T, GroupUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Create or update one Group.
+     * @param {GroupUpsertArgs} args - Arguments to update or create a Group.
+     * @example
+     * // Update or create a Group
+     * const group = await prisma.group.upsert({
+     *   create: {
+     *     // ... data to create a Group
+     *   },
+     *   update: {
+     *     // ... in case it already exists, update
+     *   },
+     *   where: {
+     *     // ... the filter for the Group we want to update
+     *   }
+     * })
+     */
+    upsert<T extends GroupUpsertArgs>(args: SelectSubset<T, GroupUpsertArgs<ExtArgs>>): Prisma__GroupClient<$Result.GetResult<Prisma.$GroupPayload<ExtArgs>, T, "upsert">, never, ExtArgs>
+
+
+    /**
+     * Count the number of Groups.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {GroupCountArgs} args - Arguments to filter Groups to count.
+     * @example
+     * // Count the number of Groups
+     * const count = await prisma.group.count({
+     *   where: {
+     *     // ... the filter for the Groups we want to count
+     *   }
+     * })
+    **/
+    count<T extends GroupCountArgs>(
+      args?: Subset<T, GroupCountArgs>,
+    ): Prisma.PrismaPromise<
+      T extends $Utils.Record<'select', any>
+        ? T['select'] extends true
+          ? number
+          : GetScalarType<T['select'], GroupCountAggregateOutputType>
+        : number
+    >
+
+    /**
+     * Allows you to perform aggregations operations on a Group.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {GroupAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
+     * @example
+     * // Ordered by age ascending
+     * // Where email contains prisma.io
+     * // Limited to the 10 users
+     * const aggregations = await prisma.user.aggregate({
+     *   _avg: {
+     *     age: true,
+     *   },
+     *   where: {
+     *     email: {
+     *       contains: "prisma.io",
+     *     },
+     *   },
+     *   orderBy: {
+     *     age: "asc",
+     *   },
+     *   take: 10,
+     * })
+    **/
+    aggregate<T extends GroupAggregateArgs>(args: Subset<T, GroupAggregateArgs>): Prisma.PrismaPromise<GetGroupAggregateType<T>>
+
+    /**
+     * Group by Group.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {GroupGroupByArgs} args - Group by arguments.
+     * @example
+     * // Group by city, order by createdAt, get count
+     * const result = await prisma.user.groupBy({
+     *   by: ['city', 'createdAt'],
+     *   orderBy: {
+     *     createdAt: true
+     *   },
+     *   _count: {
+     *     _all: true
+     *   },
+     * })
+     * 
+    **/
+    groupBy<
+      T extends GroupGroupByArgs,
+      HasSelectOrTake extends Or<
+        Extends<'skip', Keys<T>>,
+        Extends<'take', Keys<T>>
+      >,
+      OrderByArg extends True extends HasSelectOrTake
+        ? { orderBy: GroupGroupByArgs['orderBy'] }
+        : { orderBy?: GroupGroupByArgs['orderBy'] },
+      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
+      ByFields extends MaybeTupleToUnion<T['by']>,
+      ByValid extends Has<ByFields, OrderFields>,
+      HavingFields extends GetHavingFields<T['having']>,
+      HavingValid extends Has<ByFields, HavingFields>,
+      ByEmpty extends T['by'] extends never[] ? True : False,
+      InputErrors extends ByEmpty extends True
+      ? `Error: "by" must not be empty.`
+      : HavingValid extends False
+      ? {
+          [P in HavingFields]: P extends ByFields
+            ? never
+            : P extends string
+            ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
+            : [
+                Error,
+                'Field ',
+                P,
+                ` in "having" needs to be provided in "by"`,
+              ]
+        }[HavingFields]
+      : 'take' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "take", you also need to provide "orderBy"'
+      : 'skip' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "skip", you also need to provide "orderBy"'
+      : ByValid extends True
+      ? {}
+      : {
+          [P in OrderFields]: P extends ByFields
+            ? never
+            : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+        }[OrderFields]
+    >(args: SubsetIntersection<T, GroupGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetGroupGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
+  /**
+   * Fields of the Group model
+   */
+  readonly fields: GroupFieldRefs;
+  }
+
+  /**
+   * The delegate class that acts as a "Promise-like" for Group.
+   * Why is this prefixed with `Prisma__`?
+   * Because we want to prevent naming conflicts as mentioned in
+   * https://github.com/prisma/prisma-client-js/issues/707
+   */
+  export interface Prisma__GroupClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> extends Prisma.PrismaPromise<T> {
+    readonly [Symbol.toStringTag]: "PrismaPromise"
+    event<T extends EventDefaultArgs<ExtArgs> = {}>(args?: Subset<T, EventDefaultArgs<ExtArgs>>): Prisma__EventClient<$Result.GetResult<Prisma.$EventPayload<ExtArgs>, T, "findUniqueOrThrow"> | Null, Null, ExtArgs>
+    members<T extends Group$membersArgs<ExtArgs> = {}>(args?: Subset<T, Group$membersArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$UserPayload<ExtArgs>, T, "findMany"> | Null>
+    /**
+     * Attaches callbacks for the resolution and/or rejection of the Promise.
+     * @param onfulfilled The callback to execute when the Promise is resolved.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of which ever callback is executed.
+     */
+    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>
+    /**
+     * Attaches a callback for only the rejection of the Promise.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of the callback.
+     */
+    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>
+    /**
+     * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
+     * resolved value cannot be modified from the callback.
+     * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
+     * @returns A Promise for the completion of the callback.
+     */
+    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>
+  }
+
+
+
+
+  /**
+   * Fields of the Group model
+   */ 
+  interface GroupFieldRefs {
+    readonly id: FieldRef<"Group", 'String'>
+    readonly eventId: FieldRef<"Group", 'String'>
+    readonly groupNumber: FieldRef<"Group", 'Int'>
+    readonly teeTime: FieldRef<"Group", 'DateTime'>
+    readonly createdAt: FieldRef<"Group", 'DateTime'>
+    readonly updatedAt: FieldRef<"Group", 'DateTime'>
+  }
+    
+
+  // Custom InputTypes
+  /**
+   * Group findUnique
+   */
+  export type GroupFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Group
+     */
+    select?: GroupSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: GroupInclude<ExtArgs> | null
+    /**
+     * Filter, which Group to fetch.
+     */
+    where: GroupWhereUniqueInput
+  }
+
+  /**
+   * Group findUniqueOrThrow
+   */
+  export type GroupFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Group
+     */
+    select?: GroupSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: GroupInclude<ExtArgs> | null
+    /**
+     * Filter, which Group to fetch.
+     */
+    where: GroupWhereUniqueInput
+  }
+
+  /**
+   * Group findFirst
+   */
+  export type GroupFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Group
+     */
+    select?: GroupSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: GroupInclude<ExtArgs> | null
+    /**
+     * Filter, which Group to fetch.
+     */
+    where?: GroupWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of Groups to fetch.
+     */
+    orderBy?: GroupOrderByWithRelationInput | GroupOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for Groups.
+     */
+    cursor?: GroupWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` Groups from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` Groups.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of Groups.
+     */
+    distinct?: GroupScalarFieldEnum | GroupScalarFieldEnum[]
+  }
+
+  /**
+   * Group findFirstOrThrow
+   */
+  export type GroupFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Group
+     */
+    select?: GroupSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: GroupInclude<ExtArgs> | null
+    /**
+     * Filter, which Group to fetch.
+     */
+    where?: GroupWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of Groups to fetch.
+     */
+    orderBy?: GroupOrderByWithRelationInput | GroupOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for Groups.
+     */
+    cursor?: GroupWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` Groups from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` Groups.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of Groups.
+     */
+    distinct?: GroupScalarFieldEnum | GroupScalarFieldEnum[]
+  }
+
+  /**
+   * Group findMany
+   */
+  export type GroupFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Group
+     */
+    select?: GroupSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: GroupInclude<ExtArgs> | null
+    /**
+     * Filter, which Groups to fetch.
+     */
+    where?: GroupWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of Groups to fetch.
+     */
+    orderBy?: GroupOrderByWithRelationInput | GroupOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for listing Groups.
+     */
+    cursor?: GroupWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` Groups from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` Groups.
+     */
+    skip?: number
+    distinct?: GroupScalarFieldEnum | GroupScalarFieldEnum[]
+  }
+
+  /**
+   * Group create
+   */
+  export type GroupCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Group
+     */
+    select?: GroupSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: GroupInclude<ExtArgs> | null
+    /**
+     * The data needed to create a Group.
+     */
+    data: XOR<GroupCreateInput, GroupUncheckedCreateInput>
+  }
+
+  /**
+   * Group createMany
+   */
+  export type GroupCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to create many Groups.
+     */
+    data: GroupCreateManyInput | GroupCreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+  /**
+   * Group createManyAndReturn
+   */
+  export type GroupCreateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Group
+     */
+    select?: GroupSelectCreateManyAndReturn<ExtArgs> | null
+    /**
+     * The data used to create many Groups.
+     */
+    data: GroupCreateManyInput | GroupCreateManyInput[]
+    skipDuplicates?: boolean
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: GroupIncludeCreateManyAndReturn<ExtArgs> | null
+  }
+
+  /**
+   * Group update
+   */
+  export type GroupUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Group
+     */
+    select?: GroupSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: GroupInclude<ExtArgs> | null
+    /**
+     * The data needed to update a Group.
+     */
+    data: XOR<GroupUpdateInput, GroupUncheckedUpdateInput>
+    /**
+     * Choose, which Group to update.
+     */
+    where: GroupWhereUniqueInput
+  }
+
+  /**
+   * Group updateMany
+   */
+  export type GroupUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to update Groups.
+     */
+    data: XOR<GroupUpdateManyMutationInput, GroupUncheckedUpdateManyInput>
+    /**
+     * Filter which Groups to update
+     */
+    where?: GroupWhereInput
+  }
+
+  /**
+   * Group upsert
+   */
+  export type GroupUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Group
+     */
+    select?: GroupSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: GroupInclude<ExtArgs> | null
+    /**
+     * The filter to search for the Group to update in case it exists.
+     */
+    where: GroupWhereUniqueInput
+    /**
+     * In case the Group found by the `where` argument doesn't exist, create a new Group with this data.
+     */
+    create: XOR<GroupCreateInput, GroupUncheckedCreateInput>
+    /**
+     * In case the Group was found with the provided `where` argument, update it with this data.
+     */
+    update: XOR<GroupUpdateInput, GroupUncheckedUpdateInput>
+  }
+
+  /**
+   * Group delete
+   */
+  export type GroupDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Group
+     */
+    select?: GroupSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: GroupInclude<ExtArgs> | null
+    /**
+     * Filter which Group to delete.
+     */
+    where: GroupWhereUniqueInput
+  }
+
+  /**
+   * Group deleteMany
+   */
+  export type GroupDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which Groups to delete
+     */
+    where?: GroupWhereInput
+  }
+
+  /**
+   * Group.members
+   */
+  export type Group$membersArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the User
+     */
+    select?: UserSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: UserInclude<ExtArgs> | null
+    where?: UserWhereInput
+    orderBy?: UserOrderByWithRelationInput | UserOrderByWithRelationInput[]
+    cursor?: UserWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: UserScalarFieldEnum | UserScalarFieldEnum[]
+  }
+
+  /**
+   * Group without action
+   */
+  export type GroupDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Group
+     */
+    select?: GroupSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: GroupInclude<ExtArgs> | null
+  }
+
+
+  /**
    * Model Score
    */
 
@@ -3109,18 +6682,23 @@ export namespace Prisma {
   }
 
   export type ScoreAvgAggregateOutputType = {
-    score: number | null
+    grossScore: number | null
+    netScore: number | null
   }
 
   export type ScoreSumAggregateOutputType = {
-    score: number | null
+    grossScore: number | null
+    netScore: number | null
   }
 
   export type ScoreMinAggregateOutputType = {
     id: string | null
     eventId: string | null
     userId: string | null
-    score: number | null
+    holeId: string | null
+    grossScore: number | null
+    netScore: number | null
+    skinWon: boolean | null
     createdAt: Date | null
     updatedAt: Date | null
   }
@@ -3129,7 +6707,10 @@ export namespace Prisma {
     id: string | null
     eventId: string | null
     userId: string | null
-    score: number | null
+    holeId: string | null
+    grossScore: number | null
+    netScore: number | null
+    skinWon: boolean | null
     createdAt: Date | null
     updatedAt: Date | null
   }
@@ -3138,7 +6719,10 @@ export namespace Prisma {
     id: number
     eventId: number
     userId: number
-    score: number
+    holeId: number
+    grossScore: number
+    netScore: number
+    skinWon: number
     createdAt: number
     updatedAt: number
     _all: number
@@ -3146,18 +6730,23 @@ export namespace Prisma {
 
 
   export type ScoreAvgAggregateInputType = {
-    score?: true
+    grossScore?: true
+    netScore?: true
   }
 
   export type ScoreSumAggregateInputType = {
-    score?: true
+    grossScore?: true
+    netScore?: true
   }
 
   export type ScoreMinAggregateInputType = {
     id?: true
     eventId?: true
     userId?: true
-    score?: true
+    holeId?: true
+    grossScore?: true
+    netScore?: true
+    skinWon?: true
     createdAt?: true
     updatedAt?: true
   }
@@ -3166,7 +6755,10 @@ export namespace Prisma {
     id?: true
     eventId?: true
     userId?: true
-    score?: true
+    holeId?: true
+    grossScore?: true
+    netScore?: true
+    skinWon?: true
     createdAt?: true
     updatedAt?: true
   }
@@ -3175,7 +6767,10 @@ export namespace Prisma {
     id?: true
     eventId?: true
     userId?: true
-    score?: true
+    holeId?: true
+    grossScore?: true
+    netScore?: true
+    skinWon?: true
     createdAt?: true
     updatedAt?: true
     _all?: true
@@ -3271,7 +6866,10 @@ export namespace Prisma {
     id: string
     eventId: string
     userId: string
-    score: number
+    holeId: string
+    grossScore: number
+    netScore: number | null
+    skinWon: boolean
     createdAt: Date
     updatedAt: Date
     _count: ScoreCountAggregateOutputType | null
@@ -3299,29 +6897,40 @@ export namespace Prisma {
     id?: boolean
     eventId?: boolean
     userId?: boolean
-    score?: boolean
+    holeId?: boolean
+    grossScore?: boolean
+    netScore?: boolean
+    skinWon?: boolean
     createdAt?: boolean
     updatedAt?: boolean
     event?: boolean | EventDefaultArgs<ExtArgs>
     user?: boolean | UserDefaultArgs<ExtArgs>
+    hole?: boolean | HoleDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["score"]>
 
   export type ScoreSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
     id?: boolean
     eventId?: boolean
     userId?: boolean
-    score?: boolean
+    holeId?: boolean
+    grossScore?: boolean
+    netScore?: boolean
+    skinWon?: boolean
     createdAt?: boolean
     updatedAt?: boolean
     event?: boolean | EventDefaultArgs<ExtArgs>
     user?: boolean | UserDefaultArgs<ExtArgs>
+    hole?: boolean | HoleDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["score"]>
 
   export type ScoreSelectScalar = {
     id?: boolean
     eventId?: boolean
     userId?: boolean
-    score?: boolean
+    holeId?: boolean
+    grossScore?: boolean
+    netScore?: boolean
+    skinWon?: boolean
     createdAt?: boolean
     updatedAt?: boolean
   }
@@ -3329,10 +6938,12 @@ export namespace Prisma {
   export type ScoreInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     event?: boolean | EventDefaultArgs<ExtArgs>
     user?: boolean | UserDefaultArgs<ExtArgs>
+    hole?: boolean | HoleDefaultArgs<ExtArgs>
   }
   export type ScoreIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     event?: boolean | EventDefaultArgs<ExtArgs>
     user?: boolean | UserDefaultArgs<ExtArgs>
+    hole?: boolean | HoleDefaultArgs<ExtArgs>
   }
 
   export type $ScorePayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
@@ -3340,12 +6951,16 @@ export namespace Prisma {
     objects: {
       event: Prisma.$EventPayload<ExtArgs>
       user: Prisma.$UserPayload<ExtArgs>
+      hole: Prisma.$HolePayload<ExtArgs>
     }
     scalars: $Extensions.GetPayloadResult<{
       id: string
       eventId: string
       userId: string
-      score: number
+      holeId: string
+      grossScore: number
+      netScore: number | null
+      skinWon: boolean
       createdAt: Date
       updatedAt: Date
     }, ExtArgs["result"]["score"]>
@@ -3714,6 +7329,7 @@ export namespace Prisma {
     readonly [Symbol.toStringTag]: "PrismaPromise"
     event<T extends EventDefaultArgs<ExtArgs> = {}>(args?: Subset<T, EventDefaultArgs<ExtArgs>>): Prisma__EventClient<$Result.GetResult<Prisma.$EventPayload<ExtArgs>, T, "findUniqueOrThrow"> | Null, Null, ExtArgs>
     user<T extends UserDefaultArgs<ExtArgs> = {}>(args?: Subset<T, UserDefaultArgs<ExtArgs>>): Prisma__UserClient<$Result.GetResult<Prisma.$UserPayload<ExtArgs>, T, "findUniqueOrThrow"> | Null, Null, ExtArgs>
+    hole<T extends HoleDefaultArgs<ExtArgs> = {}>(args?: Subset<T, HoleDefaultArgs<ExtArgs>>): Prisma__HoleClient<$Result.GetResult<Prisma.$HolePayload<ExtArgs>, T, "findUniqueOrThrow"> | Null, Null, ExtArgs>
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
      * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -3746,7 +7362,10 @@ export namespace Prisma {
     readonly id: FieldRef<"Score", 'String'>
     readonly eventId: FieldRef<"Score", 'String'>
     readonly userId: FieldRef<"Score", 'String'>
-    readonly score: FieldRef<"Score", 'Int'>
+    readonly holeId: FieldRef<"Score", 'String'>
+    readonly grossScore: FieldRef<"Score", 'Int'>
+    readonly netScore: FieldRef<"Score", 'Int'>
+    readonly skinWon: FieldRef<"Score", 'Boolean'>
     readonly createdAt: FieldRef<"Score", 'DateTime'>
     readonly updatedAt: FieldRef<"Score", 'DateTime'>
   }
@@ -4100,6 +7719,8 @@ export namespace Prisma {
     email: 'email',
     name: 'name',
     handicap: 'handicap',
+    phoneNumber: 'phoneNumber',
+    profileImage: 'profileImage',
     createdAt: 'createdAt',
     updatedAt: 'updatedAt'
   };
@@ -4107,11 +7728,41 @@ export namespace Prisma {
   export type UserScalarFieldEnum = (typeof UserScalarFieldEnum)[keyof typeof UserScalarFieldEnum]
 
 
+  export const CourseScalarFieldEnum: {
+    id: 'id',
+    name: 'name',
+    address: 'address',
+    phoneNumber: 'phoneNumber',
+    website: 'website',
+    createdAt: 'createdAt',
+    updatedAt: 'updatedAt'
+  };
+
+  export type CourseScalarFieldEnum = (typeof CourseScalarFieldEnum)[keyof typeof CourseScalarFieldEnum]
+
+
+  export const HoleScalarFieldEnum: {
+    id: 'id',
+    courseId: 'courseId',
+    holeNumber: 'holeNumber',
+    par: 'par',
+    handicap: 'handicap',
+    createdAt: 'createdAt',
+    updatedAt: 'updatedAt'
+  };
+
+  export type HoleScalarFieldEnum = (typeof HoleScalarFieldEnum)[keyof typeof HoleScalarFieldEnum]
+
+
   export const EventScalarFieldEnum: {
     id: 'id',
     name: 'name',
     date: 'date',
-    location: 'location',
+    courseId: 'courseId',
+    description: 'description',
+    maxPlayers: 'maxPlayers',
+    entryFee: 'entryFee',
+    status: 'status',
     createdAt: 'createdAt',
     updatedAt: 'updatedAt'
   };
@@ -4119,11 +7770,26 @@ export namespace Prisma {
   export type EventScalarFieldEnum = (typeof EventScalarFieldEnum)[keyof typeof EventScalarFieldEnum]
 
 
+  export const GroupScalarFieldEnum: {
+    id: 'id',
+    eventId: 'eventId',
+    groupNumber: 'groupNumber',
+    teeTime: 'teeTime',
+    createdAt: 'createdAt',
+    updatedAt: 'updatedAt'
+  };
+
+  export type GroupScalarFieldEnum = (typeof GroupScalarFieldEnum)[keyof typeof GroupScalarFieldEnum]
+
+
   export const ScoreScalarFieldEnum: {
     id: 'id',
     eventId: 'eventId',
     userId: 'userId',
-    score: 'score',
+    holeId: 'holeId',
+    grossScore: 'grossScore',
+    netScore: 'netScore',
+    skinWon: 'skinWon',
     createdAt: 'createdAt',
     updatedAt: 'updatedAt'
   };
@@ -4214,6 +7880,13 @@ export namespace Prisma {
    */
   export type ListIntFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Int[]'>
     
+
+
+  /**
+   * Reference to a field of type 'Boolean'
+   */
+  export type BooleanFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Boolean'>
+    
   /**
    * Deep Input Types
    */
@@ -4227,10 +7900,13 @@ export namespace Prisma {
     email?: StringFilter<"User"> | string
     name?: StringFilter<"User"> | string
     handicap?: FloatNullableFilter<"User"> | number | null
+    phoneNumber?: StringNullableFilter<"User"> | string | null
+    profileImage?: StringNullableFilter<"User"> | string | null
     createdAt?: DateTimeFilter<"User"> | Date | string
     updatedAt?: DateTimeFilter<"User"> | Date | string
     events?: EventListRelationFilter
     scores?: ScoreListRelationFilter
+    groups?: GroupListRelationFilter
   }
 
   export type UserOrderByWithRelationInput = {
@@ -4238,10 +7914,13 @@ export namespace Prisma {
     email?: SortOrder
     name?: SortOrder
     handicap?: SortOrderInput | SortOrder
+    phoneNumber?: SortOrderInput | SortOrder
+    profileImage?: SortOrderInput | SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
     events?: EventOrderByRelationAggregateInput
     scores?: ScoreOrderByRelationAggregateInput
+    groups?: GroupOrderByRelationAggregateInput
   }
 
   export type UserWhereUniqueInput = Prisma.AtLeast<{
@@ -4252,10 +7931,13 @@ export namespace Prisma {
     NOT?: UserWhereInput | UserWhereInput[]
     name?: StringFilter<"User"> | string
     handicap?: FloatNullableFilter<"User"> | number | null
+    phoneNumber?: StringNullableFilter<"User"> | string | null
+    profileImage?: StringNullableFilter<"User"> | string | null
     createdAt?: DateTimeFilter<"User"> | Date | string
     updatedAt?: DateTimeFilter<"User"> | Date | string
     events?: EventListRelationFilter
     scores?: ScoreListRelationFilter
+    groups?: GroupListRelationFilter
   }, "id" | "email">
 
   export type UserOrderByWithAggregationInput = {
@@ -4263,6 +7945,8 @@ export namespace Prisma {
     email?: SortOrder
     name?: SortOrder
     handicap?: SortOrderInput | SortOrder
+    phoneNumber?: SortOrderInput | SortOrder
+    profileImage?: SortOrderInput | SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
     _count?: UserCountOrderByAggregateInput
@@ -4280,8 +7964,149 @@ export namespace Prisma {
     email?: StringWithAggregatesFilter<"User"> | string
     name?: StringWithAggregatesFilter<"User"> | string
     handicap?: FloatNullableWithAggregatesFilter<"User"> | number | null
+    phoneNumber?: StringNullableWithAggregatesFilter<"User"> | string | null
+    profileImage?: StringNullableWithAggregatesFilter<"User"> | string | null
     createdAt?: DateTimeWithAggregatesFilter<"User"> | Date | string
     updatedAt?: DateTimeWithAggregatesFilter<"User"> | Date | string
+  }
+
+  export type CourseWhereInput = {
+    AND?: CourseWhereInput | CourseWhereInput[]
+    OR?: CourseWhereInput[]
+    NOT?: CourseWhereInput | CourseWhereInput[]
+    id?: StringFilter<"Course"> | string
+    name?: StringFilter<"Course"> | string
+    address?: StringFilter<"Course"> | string
+    phoneNumber?: StringNullableFilter<"Course"> | string | null
+    website?: StringNullableFilter<"Course"> | string | null
+    createdAt?: DateTimeFilter<"Course"> | Date | string
+    updatedAt?: DateTimeFilter<"Course"> | Date | string
+    events?: EventListRelationFilter
+    holes?: HoleListRelationFilter
+  }
+
+  export type CourseOrderByWithRelationInput = {
+    id?: SortOrder
+    name?: SortOrder
+    address?: SortOrder
+    phoneNumber?: SortOrderInput | SortOrder
+    website?: SortOrderInput | SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+    events?: EventOrderByRelationAggregateInput
+    holes?: HoleOrderByRelationAggregateInput
+  }
+
+  export type CourseWhereUniqueInput = Prisma.AtLeast<{
+    id?: string
+    AND?: CourseWhereInput | CourseWhereInput[]
+    OR?: CourseWhereInput[]
+    NOT?: CourseWhereInput | CourseWhereInput[]
+    name?: StringFilter<"Course"> | string
+    address?: StringFilter<"Course"> | string
+    phoneNumber?: StringNullableFilter<"Course"> | string | null
+    website?: StringNullableFilter<"Course"> | string | null
+    createdAt?: DateTimeFilter<"Course"> | Date | string
+    updatedAt?: DateTimeFilter<"Course"> | Date | string
+    events?: EventListRelationFilter
+    holes?: HoleListRelationFilter
+  }, "id">
+
+  export type CourseOrderByWithAggregationInput = {
+    id?: SortOrder
+    name?: SortOrder
+    address?: SortOrder
+    phoneNumber?: SortOrderInput | SortOrder
+    website?: SortOrderInput | SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+    _count?: CourseCountOrderByAggregateInput
+    _max?: CourseMaxOrderByAggregateInput
+    _min?: CourseMinOrderByAggregateInput
+  }
+
+  export type CourseScalarWhereWithAggregatesInput = {
+    AND?: CourseScalarWhereWithAggregatesInput | CourseScalarWhereWithAggregatesInput[]
+    OR?: CourseScalarWhereWithAggregatesInput[]
+    NOT?: CourseScalarWhereWithAggregatesInput | CourseScalarWhereWithAggregatesInput[]
+    id?: StringWithAggregatesFilter<"Course"> | string
+    name?: StringWithAggregatesFilter<"Course"> | string
+    address?: StringWithAggregatesFilter<"Course"> | string
+    phoneNumber?: StringNullableWithAggregatesFilter<"Course"> | string | null
+    website?: StringNullableWithAggregatesFilter<"Course"> | string | null
+    createdAt?: DateTimeWithAggregatesFilter<"Course"> | Date | string
+    updatedAt?: DateTimeWithAggregatesFilter<"Course"> | Date | string
+  }
+
+  export type HoleWhereInput = {
+    AND?: HoleWhereInput | HoleWhereInput[]
+    OR?: HoleWhereInput[]
+    NOT?: HoleWhereInput | HoleWhereInput[]
+    id?: StringFilter<"Hole"> | string
+    courseId?: StringFilter<"Hole"> | string
+    holeNumber?: IntFilter<"Hole"> | number
+    par?: IntFilter<"Hole"> | number
+    handicap?: IntFilter<"Hole"> | number
+    createdAt?: DateTimeFilter<"Hole"> | Date | string
+    updatedAt?: DateTimeFilter<"Hole"> | Date | string
+    course?: XOR<CourseRelationFilter, CourseWhereInput>
+    scores?: ScoreListRelationFilter
+  }
+
+  export type HoleOrderByWithRelationInput = {
+    id?: SortOrder
+    courseId?: SortOrder
+    holeNumber?: SortOrder
+    par?: SortOrder
+    handicap?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+    course?: CourseOrderByWithRelationInput
+    scores?: ScoreOrderByRelationAggregateInput
+  }
+
+  export type HoleWhereUniqueInput = Prisma.AtLeast<{
+    id?: string
+    courseId_holeNumber?: HoleCourseIdHoleNumberCompoundUniqueInput
+    AND?: HoleWhereInput | HoleWhereInput[]
+    OR?: HoleWhereInput[]
+    NOT?: HoleWhereInput | HoleWhereInput[]
+    courseId?: StringFilter<"Hole"> | string
+    holeNumber?: IntFilter<"Hole"> | number
+    par?: IntFilter<"Hole"> | number
+    handicap?: IntFilter<"Hole"> | number
+    createdAt?: DateTimeFilter<"Hole"> | Date | string
+    updatedAt?: DateTimeFilter<"Hole"> | Date | string
+    course?: XOR<CourseRelationFilter, CourseWhereInput>
+    scores?: ScoreListRelationFilter
+  }, "id" | "courseId_holeNumber">
+
+  export type HoleOrderByWithAggregationInput = {
+    id?: SortOrder
+    courseId?: SortOrder
+    holeNumber?: SortOrder
+    par?: SortOrder
+    handicap?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+    _count?: HoleCountOrderByAggregateInput
+    _avg?: HoleAvgOrderByAggregateInput
+    _max?: HoleMaxOrderByAggregateInput
+    _min?: HoleMinOrderByAggregateInput
+    _sum?: HoleSumOrderByAggregateInput
+  }
+
+  export type HoleScalarWhereWithAggregatesInput = {
+    AND?: HoleScalarWhereWithAggregatesInput | HoleScalarWhereWithAggregatesInput[]
+    OR?: HoleScalarWhereWithAggregatesInput[]
+    NOT?: HoleScalarWhereWithAggregatesInput | HoleScalarWhereWithAggregatesInput[]
+    id?: StringWithAggregatesFilter<"Hole"> | string
+    courseId?: StringWithAggregatesFilter<"Hole"> | string
+    holeNumber?: IntWithAggregatesFilter<"Hole"> | number
+    par?: IntWithAggregatesFilter<"Hole"> | number
+    handicap?: IntWithAggregatesFilter<"Hole"> | number
+    createdAt?: DateTimeWithAggregatesFilter<"Hole"> | Date | string
+    updatedAt?: DateTimeWithAggregatesFilter<"Hole"> | Date | string
   }
 
   export type EventWhereInput = {
@@ -4291,10 +8116,16 @@ export namespace Prisma {
     id?: StringFilter<"Event"> | string
     name?: StringFilter<"Event"> | string
     date?: DateTimeFilter<"Event"> | Date | string
-    location?: StringFilter<"Event"> | string
+    courseId?: StringFilter<"Event"> | string
+    description?: StringNullableFilter<"Event"> | string | null
+    maxPlayers?: IntNullableFilter<"Event"> | number | null
+    entryFee?: FloatNullableFilter<"Event"> | number | null
+    status?: StringFilter<"Event"> | string
     createdAt?: DateTimeFilter<"Event"> | Date | string
     updatedAt?: DateTimeFilter<"Event"> | Date | string
+    course?: XOR<CourseRelationFilter, CourseWhereInput>
     participants?: UserListRelationFilter
+    groups?: GroupListRelationFilter
     scores?: ScoreListRelationFilter
   }
 
@@ -4302,10 +8133,16 @@ export namespace Prisma {
     id?: SortOrder
     name?: SortOrder
     date?: SortOrder
-    location?: SortOrder
+    courseId?: SortOrder
+    description?: SortOrderInput | SortOrder
+    maxPlayers?: SortOrderInput | SortOrder
+    entryFee?: SortOrderInput | SortOrder
+    status?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
+    course?: CourseOrderByWithRelationInput
     participants?: UserOrderByRelationAggregateInput
+    groups?: GroupOrderByRelationAggregateInput
     scores?: ScoreOrderByRelationAggregateInput
   }
 
@@ -4316,10 +8153,16 @@ export namespace Prisma {
     NOT?: EventWhereInput | EventWhereInput[]
     name?: StringFilter<"Event"> | string
     date?: DateTimeFilter<"Event"> | Date | string
-    location?: StringFilter<"Event"> | string
+    courseId?: StringFilter<"Event"> | string
+    description?: StringNullableFilter<"Event"> | string | null
+    maxPlayers?: IntNullableFilter<"Event"> | number | null
+    entryFee?: FloatNullableFilter<"Event"> | number | null
+    status?: StringFilter<"Event"> | string
     createdAt?: DateTimeFilter<"Event"> | Date | string
     updatedAt?: DateTimeFilter<"Event"> | Date | string
+    course?: XOR<CourseRelationFilter, CourseWhereInput>
     participants?: UserListRelationFilter
+    groups?: GroupListRelationFilter
     scores?: ScoreListRelationFilter
   }, "id">
 
@@ -4327,12 +8170,18 @@ export namespace Prisma {
     id?: SortOrder
     name?: SortOrder
     date?: SortOrder
-    location?: SortOrder
+    courseId?: SortOrder
+    description?: SortOrderInput | SortOrder
+    maxPlayers?: SortOrderInput | SortOrder
+    entryFee?: SortOrderInput | SortOrder
+    status?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
     _count?: EventCountOrderByAggregateInput
+    _avg?: EventAvgOrderByAggregateInput
     _max?: EventMaxOrderByAggregateInput
     _min?: EventMinOrderByAggregateInput
+    _sum?: EventSumOrderByAggregateInput
   }
 
   export type EventScalarWhereWithAggregatesInput = {
@@ -4342,9 +8191,79 @@ export namespace Prisma {
     id?: StringWithAggregatesFilter<"Event"> | string
     name?: StringWithAggregatesFilter<"Event"> | string
     date?: DateTimeWithAggregatesFilter<"Event"> | Date | string
-    location?: StringWithAggregatesFilter<"Event"> | string
+    courseId?: StringWithAggregatesFilter<"Event"> | string
+    description?: StringNullableWithAggregatesFilter<"Event"> | string | null
+    maxPlayers?: IntNullableWithAggregatesFilter<"Event"> | number | null
+    entryFee?: FloatNullableWithAggregatesFilter<"Event"> | number | null
+    status?: StringWithAggregatesFilter<"Event"> | string
     createdAt?: DateTimeWithAggregatesFilter<"Event"> | Date | string
     updatedAt?: DateTimeWithAggregatesFilter<"Event"> | Date | string
+  }
+
+  export type GroupWhereInput = {
+    AND?: GroupWhereInput | GroupWhereInput[]
+    OR?: GroupWhereInput[]
+    NOT?: GroupWhereInput | GroupWhereInput[]
+    id?: StringFilter<"Group"> | string
+    eventId?: StringFilter<"Group"> | string
+    groupNumber?: IntFilter<"Group"> | number
+    teeTime?: DateTimeNullableFilter<"Group"> | Date | string | null
+    createdAt?: DateTimeFilter<"Group"> | Date | string
+    updatedAt?: DateTimeFilter<"Group"> | Date | string
+    event?: XOR<EventRelationFilter, EventWhereInput>
+    members?: UserListRelationFilter
+  }
+
+  export type GroupOrderByWithRelationInput = {
+    id?: SortOrder
+    eventId?: SortOrder
+    groupNumber?: SortOrder
+    teeTime?: SortOrderInput | SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+    event?: EventOrderByWithRelationInput
+    members?: UserOrderByRelationAggregateInput
+  }
+
+  export type GroupWhereUniqueInput = Prisma.AtLeast<{
+    id?: string
+    eventId_groupNumber?: GroupEventIdGroupNumberCompoundUniqueInput
+    AND?: GroupWhereInput | GroupWhereInput[]
+    OR?: GroupWhereInput[]
+    NOT?: GroupWhereInput | GroupWhereInput[]
+    eventId?: StringFilter<"Group"> | string
+    groupNumber?: IntFilter<"Group"> | number
+    teeTime?: DateTimeNullableFilter<"Group"> | Date | string | null
+    createdAt?: DateTimeFilter<"Group"> | Date | string
+    updatedAt?: DateTimeFilter<"Group"> | Date | string
+    event?: XOR<EventRelationFilter, EventWhereInput>
+    members?: UserListRelationFilter
+  }, "id" | "eventId_groupNumber">
+
+  export type GroupOrderByWithAggregationInput = {
+    id?: SortOrder
+    eventId?: SortOrder
+    groupNumber?: SortOrder
+    teeTime?: SortOrderInput | SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+    _count?: GroupCountOrderByAggregateInput
+    _avg?: GroupAvgOrderByAggregateInput
+    _max?: GroupMaxOrderByAggregateInput
+    _min?: GroupMinOrderByAggregateInput
+    _sum?: GroupSumOrderByAggregateInput
+  }
+
+  export type GroupScalarWhereWithAggregatesInput = {
+    AND?: GroupScalarWhereWithAggregatesInput | GroupScalarWhereWithAggregatesInput[]
+    OR?: GroupScalarWhereWithAggregatesInput[]
+    NOT?: GroupScalarWhereWithAggregatesInput | GroupScalarWhereWithAggregatesInput[]
+    id?: StringWithAggregatesFilter<"Group"> | string
+    eventId?: StringWithAggregatesFilter<"Group"> | string
+    groupNumber?: IntWithAggregatesFilter<"Group"> | number
+    teeTime?: DateTimeNullableWithAggregatesFilter<"Group"> | Date | string | null
+    createdAt?: DateTimeWithAggregatesFilter<"Group"> | Date | string
+    updatedAt?: DateTimeWithAggregatesFilter<"Group"> | Date | string
   }
 
   export type ScoreWhereInput = {
@@ -4354,44 +8273,59 @@ export namespace Prisma {
     id?: StringFilter<"Score"> | string
     eventId?: StringFilter<"Score"> | string
     userId?: StringFilter<"Score"> | string
-    score?: IntFilter<"Score"> | number
+    holeId?: StringFilter<"Score"> | string
+    grossScore?: IntFilter<"Score"> | number
+    netScore?: IntNullableFilter<"Score"> | number | null
+    skinWon?: BoolFilter<"Score"> | boolean
     createdAt?: DateTimeFilter<"Score"> | Date | string
     updatedAt?: DateTimeFilter<"Score"> | Date | string
     event?: XOR<EventRelationFilter, EventWhereInput>
     user?: XOR<UserRelationFilter, UserWhereInput>
+    hole?: XOR<HoleRelationFilter, HoleWhereInput>
   }
 
   export type ScoreOrderByWithRelationInput = {
     id?: SortOrder
     eventId?: SortOrder
     userId?: SortOrder
-    score?: SortOrder
+    holeId?: SortOrder
+    grossScore?: SortOrder
+    netScore?: SortOrderInput | SortOrder
+    skinWon?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
     event?: EventOrderByWithRelationInput
     user?: UserOrderByWithRelationInput
+    hole?: HoleOrderByWithRelationInput
   }
 
   export type ScoreWhereUniqueInput = Prisma.AtLeast<{
     id?: string
-    eventId_userId?: ScoreEventIdUserIdCompoundUniqueInput
+    eventId_userId_holeId?: ScoreEventIdUserIdHoleIdCompoundUniqueInput
     AND?: ScoreWhereInput | ScoreWhereInput[]
     OR?: ScoreWhereInput[]
     NOT?: ScoreWhereInput | ScoreWhereInput[]
     eventId?: StringFilter<"Score"> | string
     userId?: StringFilter<"Score"> | string
-    score?: IntFilter<"Score"> | number
+    holeId?: StringFilter<"Score"> | string
+    grossScore?: IntFilter<"Score"> | number
+    netScore?: IntNullableFilter<"Score"> | number | null
+    skinWon?: BoolFilter<"Score"> | boolean
     createdAt?: DateTimeFilter<"Score"> | Date | string
     updatedAt?: DateTimeFilter<"Score"> | Date | string
     event?: XOR<EventRelationFilter, EventWhereInput>
     user?: XOR<UserRelationFilter, UserWhereInput>
-  }, "id" | "eventId_userId">
+    hole?: XOR<HoleRelationFilter, HoleWhereInput>
+  }, "id" | "eventId_userId_holeId">
 
   export type ScoreOrderByWithAggregationInput = {
     id?: SortOrder
     eventId?: SortOrder
     userId?: SortOrder
-    score?: SortOrder
+    holeId?: SortOrder
+    grossScore?: SortOrder
+    netScore?: SortOrderInput | SortOrder
+    skinWon?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
     _count?: ScoreCountOrderByAggregateInput
@@ -4408,7 +8342,10 @@ export namespace Prisma {
     id?: StringWithAggregatesFilter<"Score"> | string
     eventId?: StringWithAggregatesFilter<"Score"> | string
     userId?: StringWithAggregatesFilter<"Score"> | string
-    score?: IntWithAggregatesFilter<"Score"> | number
+    holeId?: StringWithAggregatesFilter<"Score"> | string
+    grossScore?: IntWithAggregatesFilter<"Score"> | number
+    netScore?: IntNullableWithAggregatesFilter<"Score"> | number | null
+    skinWon?: BoolWithAggregatesFilter<"Score"> | boolean
     createdAt?: DateTimeWithAggregatesFilter<"Score"> | Date | string
     updatedAt?: DateTimeWithAggregatesFilter<"Score"> | Date | string
   }
@@ -4418,10 +8355,13 @@ export namespace Prisma {
     email: string
     name: string
     handicap?: number | null
+    phoneNumber?: string | null
+    profileImage?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
     events?: EventCreateNestedManyWithoutParticipantsInput
     scores?: ScoreCreateNestedManyWithoutUserInput
+    groups?: GroupCreateNestedManyWithoutMembersInput
   }
 
   export type UserUncheckedCreateInput = {
@@ -4429,10 +8369,13 @@ export namespace Prisma {
     email: string
     name: string
     handicap?: number | null
+    phoneNumber?: string | null
+    profileImage?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
     events?: EventUncheckedCreateNestedManyWithoutParticipantsInput
     scores?: ScoreUncheckedCreateNestedManyWithoutUserInput
+    groups?: GroupUncheckedCreateNestedManyWithoutMembersInput
   }
 
   export type UserUpdateInput = {
@@ -4440,10 +8383,13 @@ export namespace Prisma {
     email?: StringFieldUpdateOperationsInput | string
     name?: StringFieldUpdateOperationsInput | string
     handicap?: NullableFloatFieldUpdateOperationsInput | number | null
+    phoneNumber?: NullableStringFieldUpdateOperationsInput | string | null
+    profileImage?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     events?: EventUpdateManyWithoutParticipantsNestedInput
     scores?: ScoreUpdateManyWithoutUserNestedInput
+    groups?: GroupUpdateManyWithoutMembersNestedInput
   }
 
   export type UserUncheckedUpdateInput = {
@@ -4451,10 +8397,13 @@ export namespace Prisma {
     email?: StringFieldUpdateOperationsInput | string
     name?: StringFieldUpdateOperationsInput | string
     handicap?: NullableFloatFieldUpdateOperationsInput | number | null
+    phoneNumber?: NullableStringFieldUpdateOperationsInput | string | null
+    profileImage?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     events?: EventUncheckedUpdateManyWithoutParticipantsNestedInput
     scores?: ScoreUncheckedUpdateManyWithoutUserNestedInput
+    groups?: GroupUncheckedUpdateManyWithoutMembersNestedInput
   }
 
   export type UserCreateManyInput = {
@@ -4462,6 +8411,8 @@ export namespace Prisma {
     email: string
     name: string
     handicap?: number | null
+    phoneNumber?: string | null
+    profileImage?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
   }
@@ -4471,6 +8422,8 @@ export namespace Prisma {
     email?: StringFieldUpdateOperationsInput | string
     name?: StringFieldUpdateOperationsInput | string
     handicap?: NullableFloatFieldUpdateOperationsInput | number | null
+    phoneNumber?: NullableStringFieldUpdateOperationsInput | string | null
+    profileImage?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
@@ -4480,6 +8433,159 @@ export namespace Prisma {
     email?: StringFieldUpdateOperationsInput | string
     name?: StringFieldUpdateOperationsInput | string
     handicap?: NullableFloatFieldUpdateOperationsInput | number | null
+    phoneNumber?: NullableStringFieldUpdateOperationsInput | string | null
+    profileImage?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type CourseCreateInput = {
+    id?: string
+    name: string
+    address: string
+    phoneNumber?: string | null
+    website?: string | null
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    events?: EventCreateNestedManyWithoutCourseInput
+    holes?: HoleCreateNestedManyWithoutCourseInput
+  }
+
+  export type CourseUncheckedCreateInput = {
+    id?: string
+    name: string
+    address: string
+    phoneNumber?: string | null
+    website?: string | null
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    events?: EventUncheckedCreateNestedManyWithoutCourseInput
+    holes?: HoleUncheckedCreateNestedManyWithoutCourseInput
+  }
+
+  export type CourseUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    address?: StringFieldUpdateOperationsInput | string
+    phoneNumber?: NullableStringFieldUpdateOperationsInput | string | null
+    website?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    events?: EventUpdateManyWithoutCourseNestedInput
+    holes?: HoleUpdateManyWithoutCourseNestedInput
+  }
+
+  export type CourseUncheckedUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    address?: StringFieldUpdateOperationsInput | string
+    phoneNumber?: NullableStringFieldUpdateOperationsInput | string | null
+    website?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    events?: EventUncheckedUpdateManyWithoutCourseNestedInput
+    holes?: HoleUncheckedUpdateManyWithoutCourseNestedInput
+  }
+
+  export type CourseCreateManyInput = {
+    id?: string
+    name: string
+    address: string
+    phoneNumber?: string | null
+    website?: string | null
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type CourseUpdateManyMutationInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    address?: StringFieldUpdateOperationsInput | string
+    phoneNumber?: NullableStringFieldUpdateOperationsInput | string | null
+    website?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type CourseUncheckedUpdateManyInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    address?: StringFieldUpdateOperationsInput | string
+    phoneNumber?: NullableStringFieldUpdateOperationsInput | string | null
+    website?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type HoleCreateInput = {
+    id?: string
+    holeNumber: number
+    par: number
+    handicap: number
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    course: CourseCreateNestedOneWithoutHolesInput
+    scores?: ScoreCreateNestedManyWithoutHoleInput
+  }
+
+  export type HoleUncheckedCreateInput = {
+    id?: string
+    courseId: string
+    holeNumber: number
+    par: number
+    handicap: number
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    scores?: ScoreUncheckedCreateNestedManyWithoutHoleInput
+  }
+
+  export type HoleUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    holeNumber?: IntFieldUpdateOperationsInput | number
+    par?: IntFieldUpdateOperationsInput | number
+    handicap?: IntFieldUpdateOperationsInput | number
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    course?: CourseUpdateOneRequiredWithoutHolesNestedInput
+    scores?: ScoreUpdateManyWithoutHoleNestedInput
+  }
+
+  export type HoleUncheckedUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    courseId?: StringFieldUpdateOperationsInput | string
+    holeNumber?: IntFieldUpdateOperationsInput | number
+    par?: IntFieldUpdateOperationsInput | number
+    handicap?: IntFieldUpdateOperationsInput | number
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    scores?: ScoreUncheckedUpdateManyWithoutHoleNestedInput
+  }
+
+  export type HoleCreateManyInput = {
+    id?: string
+    courseId: string
+    holeNumber: number
+    par: number
+    handicap: number
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type HoleUpdateManyMutationInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    holeNumber?: IntFieldUpdateOperationsInput | number
+    par?: IntFieldUpdateOperationsInput | number
+    handicap?: IntFieldUpdateOperationsInput | number
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type HoleUncheckedUpdateManyInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    courseId?: StringFieldUpdateOperationsInput | string
+    holeNumber?: IntFieldUpdateOperationsInput | number
+    par?: IntFieldUpdateOperationsInput | number
+    handicap?: IntFieldUpdateOperationsInput | number
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
@@ -4488,10 +8594,15 @@ export namespace Prisma {
     id?: string
     name: string
     date: Date | string
-    location: string
+    description?: string | null
+    maxPlayers?: number | null
+    entryFee?: number | null
+    status?: string
     createdAt?: Date | string
     updatedAt?: Date | string
+    course: CourseCreateNestedOneWithoutEventsInput
     participants?: UserCreateNestedManyWithoutEventsInput
+    groups?: GroupCreateNestedManyWithoutEventInput
     scores?: ScoreCreateNestedManyWithoutEventInput
   }
 
@@ -4499,10 +8610,15 @@ export namespace Prisma {
     id?: string
     name: string
     date: Date | string
-    location: string
+    courseId: string
+    description?: string | null
+    maxPlayers?: number | null
+    entryFee?: number | null
+    status?: string
     createdAt?: Date | string
     updatedAt?: Date | string
     participants?: UserUncheckedCreateNestedManyWithoutEventsInput
+    groups?: GroupUncheckedCreateNestedManyWithoutEventInput
     scores?: ScoreUncheckedCreateNestedManyWithoutEventInput
   }
 
@@ -4510,10 +8626,15 @@ export namespace Prisma {
     id?: StringFieldUpdateOperationsInput | string
     name?: StringFieldUpdateOperationsInput | string
     date?: DateTimeFieldUpdateOperationsInput | Date | string
-    location?: StringFieldUpdateOperationsInput | string
+    description?: NullableStringFieldUpdateOperationsInput | string | null
+    maxPlayers?: NullableIntFieldUpdateOperationsInput | number | null
+    entryFee?: NullableFloatFieldUpdateOperationsInput | number | null
+    status?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    course?: CourseUpdateOneRequiredWithoutEventsNestedInput
     participants?: UserUpdateManyWithoutEventsNestedInput
+    groups?: GroupUpdateManyWithoutEventNestedInput
     scores?: ScoreUpdateManyWithoutEventNestedInput
   }
 
@@ -4521,10 +8642,15 @@ export namespace Prisma {
     id?: StringFieldUpdateOperationsInput | string
     name?: StringFieldUpdateOperationsInput | string
     date?: DateTimeFieldUpdateOperationsInput | Date | string
-    location?: StringFieldUpdateOperationsInput | string
+    courseId?: StringFieldUpdateOperationsInput | string
+    description?: NullableStringFieldUpdateOperationsInput | string | null
+    maxPlayers?: NullableIntFieldUpdateOperationsInput | number | null
+    entryFee?: NullableFloatFieldUpdateOperationsInput | number | null
+    status?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     participants?: UserUncheckedUpdateManyWithoutEventsNestedInput
+    groups?: GroupUncheckedUpdateManyWithoutEventNestedInput
     scores?: ScoreUncheckedUpdateManyWithoutEventNestedInput
   }
 
@@ -4532,7 +8658,11 @@ export namespace Prisma {
     id?: string
     name: string
     date: Date | string
-    location: string
+    courseId: string
+    description?: string | null
+    maxPlayers?: number | null
+    entryFee?: number | null
+    status?: string
     createdAt?: Date | string
     updatedAt?: Date | string
   }
@@ -4541,7 +8671,10 @@ export namespace Prisma {
     id?: StringFieldUpdateOperationsInput | string
     name?: StringFieldUpdateOperationsInput | string
     date?: DateTimeFieldUpdateOperationsInput | Date | string
-    location?: StringFieldUpdateOperationsInput | string
+    description?: NullableStringFieldUpdateOperationsInput | string | null
+    maxPlayers?: NullableIntFieldUpdateOperationsInput | number | null
+    entryFee?: NullableFloatFieldUpdateOperationsInput | number | null
+    status?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
@@ -4550,43 +8683,125 @@ export namespace Prisma {
     id?: StringFieldUpdateOperationsInput | string
     name?: StringFieldUpdateOperationsInput | string
     date?: DateTimeFieldUpdateOperationsInput | Date | string
-    location?: StringFieldUpdateOperationsInput | string
+    courseId?: StringFieldUpdateOperationsInput | string
+    description?: NullableStringFieldUpdateOperationsInput | string | null
+    maxPlayers?: NullableIntFieldUpdateOperationsInput | number | null
+    entryFee?: NullableFloatFieldUpdateOperationsInput | number | null
+    status?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type GroupCreateInput = {
+    id?: string
+    groupNumber: number
+    teeTime?: Date | string | null
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    event: EventCreateNestedOneWithoutGroupsInput
+    members?: UserCreateNestedManyWithoutGroupsInput
+  }
+
+  export type GroupUncheckedCreateInput = {
+    id?: string
+    eventId: string
+    groupNumber: number
+    teeTime?: Date | string | null
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    members?: UserUncheckedCreateNestedManyWithoutGroupsInput
+  }
+
+  export type GroupUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    groupNumber?: IntFieldUpdateOperationsInput | number
+    teeTime?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    event?: EventUpdateOneRequiredWithoutGroupsNestedInput
+    members?: UserUpdateManyWithoutGroupsNestedInput
+  }
+
+  export type GroupUncheckedUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    eventId?: StringFieldUpdateOperationsInput | string
+    groupNumber?: IntFieldUpdateOperationsInput | number
+    teeTime?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    members?: UserUncheckedUpdateManyWithoutGroupsNestedInput
+  }
+
+  export type GroupCreateManyInput = {
+    id?: string
+    eventId: string
+    groupNumber: number
+    teeTime?: Date | string | null
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type GroupUpdateManyMutationInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    groupNumber?: IntFieldUpdateOperationsInput | number
+    teeTime?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type GroupUncheckedUpdateManyInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    eventId?: StringFieldUpdateOperationsInput | string
+    groupNumber?: IntFieldUpdateOperationsInput | number
+    teeTime?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
   export type ScoreCreateInput = {
     id?: string
-    score: number
+    grossScore: number
+    netScore?: number | null
+    skinWon?: boolean
     createdAt?: Date | string
     updatedAt?: Date | string
     event: EventCreateNestedOneWithoutScoresInput
     user: UserCreateNestedOneWithoutScoresInput
+    hole: HoleCreateNestedOneWithoutScoresInput
   }
 
   export type ScoreUncheckedCreateInput = {
     id?: string
     eventId: string
     userId: string
-    score: number
+    holeId: string
+    grossScore: number
+    netScore?: number | null
+    skinWon?: boolean
     createdAt?: Date | string
     updatedAt?: Date | string
   }
 
   export type ScoreUpdateInput = {
     id?: StringFieldUpdateOperationsInput | string
-    score?: IntFieldUpdateOperationsInput | number
+    grossScore?: IntFieldUpdateOperationsInput | number
+    netScore?: NullableIntFieldUpdateOperationsInput | number | null
+    skinWon?: BoolFieldUpdateOperationsInput | boolean
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     event?: EventUpdateOneRequiredWithoutScoresNestedInput
     user?: UserUpdateOneRequiredWithoutScoresNestedInput
+    hole?: HoleUpdateOneRequiredWithoutScoresNestedInput
   }
 
   export type ScoreUncheckedUpdateInput = {
     id?: StringFieldUpdateOperationsInput | string
     eventId?: StringFieldUpdateOperationsInput | string
     userId?: StringFieldUpdateOperationsInput | string
-    score?: IntFieldUpdateOperationsInput | number
+    holeId?: StringFieldUpdateOperationsInput | string
+    grossScore?: IntFieldUpdateOperationsInput | number
+    netScore?: NullableIntFieldUpdateOperationsInput | number | null
+    skinWon?: BoolFieldUpdateOperationsInput | boolean
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
@@ -4595,14 +8810,19 @@ export namespace Prisma {
     id?: string
     eventId: string
     userId: string
-    score: number
+    holeId: string
+    grossScore: number
+    netScore?: number | null
+    skinWon?: boolean
     createdAt?: Date | string
     updatedAt?: Date | string
   }
 
   export type ScoreUpdateManyMutationInput = {
     id?: StringFieldUpdateOperationsInput | string
-    score?: IntFieldUpdateOperationsInput | number
+    grossScore?: IntFieldUpdateOperationsInput | number
+    netScore?: NullableIntFieldUpdateOperationsInput | number | null
+    skinWon?: BoolFieldUpdateOperationsInput | boolean
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
@@ -4611,7 +8831,10 @@ export namespace Prisma {
     id?: StringFieldUpdateOperationsInput | string
     eventId?: StringFieldUpdateOperationsInput | string
     userId?: StringFieldUpdateOperationsInput | string
-    score?: IntFieldUpdateOperationsInput | number
+    holeId?: StringFieldUpdateOperationsInput | string
+    grossScore?: IntFieldUpdateOperationsInput | number
+    netScore?: NullableIntFieldUpdateOperationsInput | number | null
+    skinWon?: BoolFieldUpdateOperationsInput | boolean
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
@@ -4642,6 +8865,21 @@ export namespace Prisma {
     not?: NestedFloatNullableFilter<$PrismaModel> | number | null
   }
 
+  export type StringNullableFilter<$PrismaModel = never> = {
+    equals?: string | StringFieldRefInput<$PrismaModel> | null
+    in?: string[] | ListStringFieldRefInput<$PrismaModel> | null
+    notIn?: string[] | ListStringFieldRefInput<$PrismaModel> | null
+    lt?: string | StringFieldRefInput<$PrismaModel>
+    lte?: string | StringFieldRefInput<$PrismaModel>
+    gt?: string | StringFieldRefInput<$PrismaModel>
+    gte?: string | StringFieldRefInput<$PrismaModel>
+    contains?: string | StringFieldRefInput<$PrismaModel>
+    startsWith?: string | StringFieldRefInput<$PrismaModel>
+    endsWith?: string | StringFieldRefInput<$PrismaModel>
+    mode?: QueryMode
+    not?: NestedStringNullableFilter<$PrismaModel> | string | null
+  }
+
   export type DateTimeFilter<$PrismaModel = never> = {
     equals?: Date | string | DateTimeFieldRefInput<$PrismaModel>
     in?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel>
@@ -4665,6 +8903,12 @@ export namespace Prisma {
     none?: ScoreWhereInput
   }
 
+  export type GroupListRelationFilter = {
+    every?: GroupWhereInput
+    some?: GroupWhereInput
+    none?: GroupWhereInput
+  }
+
   export type SortOrderInput = {
     sort: SortOrder
     nulls?: NullsOrder
@@ -4678,11 +8922,17 @@ export namespace Prisma {
     _count?: SortOrder
   }
 
+  export type GroupOrderByRelationAggregateInput = {
+    _count?: SortOrder
+  }
+
   export type UserCountOrderByAggregateInput = {
     id?: SortOrder
     email?: SortOrder
     name?: SortOrder
     handicap?: SortOrder
+    phoneNumber?: SortOrder
+    profileImage?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
   }
@@ -4696,6 +8946,8 @@ export namespace Prisma {
     email?: SortOrder
     name?: SortOrder
     handicap?: SortOrder
+    phoneNumber?: SortOrder
+    profileImage?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
   }
@@ -4705,6 +8957,8 @@ export namespace Prisma {
     email?: SortOrder
     name?: SortOrder
     handicap?: SortOrder
+    phoneNumber?: SortOrder
+    profileImage?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
   }
@@ -4747,6 +9001,24 @@ export namespace Prisma {
     _max?: NestedFloatNullableFilter<$PrismaModel>
   }
 
+  export type StringNullableWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: string | StringFieldRefInput<$PrismaModel> | null
+    in?: string[] | ListStringFieldRefInput<$PrismaModel> | null
+    notIn?: string[] | ListStringFieldRefInput<$PrismaModel> | null
+    lt?: string | StringFieldRefInput<$PrismaModel>
+    lte?: string | StringFieldRefInput<$PrismaModel>
+    gt?: string | StringFieldRefInput<$PrismaModel>
+    gte?: string | StringFieldRefInput<$PrismaModel>
+    contains?: string | StringFieldRefInput<$PrismaModel>
+    startsWith?: string | StringFieldRefInput<$PrismaModel>
+    endsWith?: string | StringFieldRefInput<$PrismaModel>
+    mode?: QueryMode
+    not?: NestedStringNullableWithAggregatesFilter<$PrismaModel> | string | null
+    _count?: NestedIntNullableFilter<$PrismaModel>
+    _min?: NestedStringNullableFilter<$PrismaModel>
+    _max?: NestedStringNullableFilter<$PrismaModel>
+  }
+
   export type DateTimeWithAggregatesFilter<$PrismaModel = never> = {
     equals?: Date | string | DateTimeFieldRefInput<$PrismaModel>
     in?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel>
@@ -4761,39 +9033,42 @@ export namespace Prisma {
     _max?: NestedDateTimeFilter<$PrismaModel>
   }
 
-  export type UserListRelationFilter = {
-    every?: UserWhereInput
-    some?: UserWhereInput
-    none?: UserWhereInput
+  export type HoleListRelationFilter = {
+    every?: HoleWhereInput
+    some?: HoleWhereInput
+    none?: HoleWhereInput
   }
 
-  export type UserOrderByRelationAggregateInput = {
+  export type HoleOrderByRelationAggregateInput = {
     _count?: SortOrder
   }
 
-  export type EventCountOrderByAggregateInput = {
+  export type CourseCountOrderByAggregateInput = {
     id?: SortOrder
     name?: SortOrder
-    date?: SortOrder
-    location?: SortOrder
+    address?: SortOrder
+    phoneNumber?: SortOrder
+    website?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
   }
 
-  export type EventMaxOrderByAggregateInput = {
+  export type CourseMaxOrderByAggregateInput = {
     id?: SortOrder
     name?: SortOrder
-    date?: SortOrder
-    location?: SortOrder
+    address?: SortOrder
+    phoneNumber?: SortOrder
+    website?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
   }
 
-  export type EventMinOrderByAggregateInput = {
+  export type CourseMinOrderByAggregateInput = {
     id?: SortOrder
     name?: SortOrder
-    date?: SortOrder
-    location?: SortOrder
+    address?: SortOrder
+    phoneNumber?: SortOrder
+    website?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
   }
@@ -4809,54 +9084,56 @@ export namespace Prisma {
     not?: NestedIntFilter<$PrismaModel> | number
   }
 
-  export type EventRelationFilter = {
-    is?: EventWhereInput
-    isNot?: EventWhereInput
+  export type CourseRelationFilter = {
+    is?: CourseWhereInput
+    isNot?: CourseWhereInput
   }
 
-  export type UserRelationFilter = {
-    is?: UserWhereInput
-    isNot?: UserWhereInput
+  export type HoleCourseIdHoleNumberCompoundUniqueInput = {
+    courseId: string
+    holeNumber: number
   }
 
-  export type ScoreEventIdUserIdCompoundUniqueInput = {
-    eventId: string
-    userId: string
-  }
-
-  export type ScoreCountOrderByAggregateInput = {
+  export type HoleCountOrderByAggregateInput = {
     id?: SortOrder
-    eventId?: SortOrder
-    userId?: SortOrder
-    score?: SortOrder
+    courseId?: SortOrder
+    holeNumber?: SortOrder
+    par?: SortOrder
+    handicap?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
   }
 
-  export type ScoreAvgOrderByAggregateInput = {
-    score?: SortOrder
+  export type HoleAvgOrderByAggregateInput = {
+    holeNumber?: SortOrder
+    par?: SortOrder
+    handicap?: SortOrder
   }
 
-  export type ScoreMaxOrderByAggregateInput = {
+  export type HoleMaxOrderByAggregateInput = {
     id?: SortOrder
-    eventId?: SortOrder
-    userId?: SortOrder
-    score?: SortOrder
+    courseId?: SortOrder
+    holeNumber?: SortOrder
+    par?: SortOrder
+    handicap?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
   }
 
-  export type ScoreMinOrderByAggregateInput = {
+  export type HoleMinOrderByAggregateInput = {
     id?: SortOrder
-    eventId?: SortOrder
-    userId?: SortOrder
-    score?: SortOrder
+    courseId?: SortOrder
+    holeNumber?: SortOrder
+    par?: SortOrder
+    handicap?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
   }
 
-  export type ScoreSumOrderByAggregateInput = {
-    score?: SortOrder
+  export type HoleSumOrderByAggregateInput = {
+    holeNumber?: SortOrder
+    par?: SortOrder
+    handicap?: SortOrder
   }
 
   export type IntWithAggregatesFilter<$PrismaModel = never> = {
@@ -4875,6 +9152,237 @@ export namespace Prisma {
     _max?: NestedIntFilter<$PrismaModel>
   }
 
+  export type IntNullableFilter<$PrismaModel = never> = {
+    equals?: number | IntFieldRefInput<$PrismaModel> | null
+    in?: number[] | ListIntFieldRefInput<$PrismaModel> | null
+    notIn?: number[] | ListIntFieldRefInput<$PrismaModel> | null
+    lt?: number | IntFieldRefInput<$PrismaModel>
+    lte?: number | IntFieldRefInput<$PrismaModel>
+    gt?: number | IntFieldRefInput<$PrismaModel>
+    gte?: number | IntFieldRefInput<$PrismaModel>
+    not?: NestedIntNullableFilter<$PrismaModel> | number | null
+  }
+
+  export type UserListRelationFilter = {
+    every?: UserWhereInput
+    some?: UserWhereInput
+    none?: UserWhereInput
+  }
+
+  export type UserOrderByRelationAggregateInput = {
+    _count?: SortOrder
+  }
+
+  export type EventCountOrderByAggregateInput = {
+    id?: SortOrder
+    name?: SortOrder
+    date?: SortOrder
+    courseId?: SortOrder
+    description?: SortOrder
+    maxPlayers?: SortOrder
+    entryFee?: SortOrder
+    status?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+  }
+
+  export type EventAvgOrderByAggregateInput = {
+    maxPlayers?: SortOrder
+    entryFee?: SortOrder
+  }
+
+  export type EventMaxOrderByAggregateInput = {
+    id?: SortOrder
+    name?: SortOrder
+    date?: SortOrder
+    courseId?: SortOrder
+    description?: SortOrder
+    maxPlayers?: SortOrder
+    entryFee?: SortOrder
+    status?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+  }
+
+  export type EventMinOrderByAggregateInput = {
+    id?: SortOrder
+    name?: SortOrder
+    date?: SortOrder
+    courseId?: SortOrder
+    description?: SortOrder
+    maxPlayers?: SortOrder
+    entryFee?: SortOrder
+    status?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+  }
+
+  export type EventSumOrderByAggregateInput = {
+    maxPlayers?: SortOrder
+    entryFee?: SortOrder
+  }
+
+  export type IntNullableWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: number | IntFieldRefInput<$PrismaModel> | null
+    in?: number[] | ListIntFieldRefInput<$PrismaModel> | null
+    notIn?: number[] | ListIntFieldRefInput<$PrismaModel> | null
+    lt?: number | IntFieldRefInput<$PrismaModel>
+    lte?: number | IntFieldRefInput<$PrismaModel>
+    gt?: number | IntFieldRefInput<$PrismaModel>
+    gte?: number | IntFieldRefInput<$PrismaModel>
+    not?: NestedIntNullableWithAggregatesFilter<$PrismaModel> | number | null
+    _count?: NestedIntNullableFilter<$PrismaModel>
+    _avg?: NestedFloatNullableFilter<$PrismaModel>
+    _sum?: NestedIntNullableFilter<$PrismaModel>
+    _min?: NestedIntNullableFilter<$PrismaModel>
+    _max?: NestedIntNullableFilter<$PrismaModel>
+  }
+
+  export type DateTimeNullableFilter<$PrismaModel = never> = {
+    equals?: Date | string | DateTimeFieldRefInput<$PrismaModel> | null
+    in?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel> | null
+    notIn?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel> | null
+    lt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    lte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    gt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    gte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    not?: NestedDateTimeNullableFilter<$PrismaModel> | Date | string | null
+  }
+
+  export type EventRelationFilter = {
+    is?: EventWhereInput
+    isNot?: EventWhereInput
+  }
+
+  export type GroupEventIdGroupNumberCompoundUniqueInput = {
+    eventId: string
+    groupNumber: number
+  }
+
+  export type GroupCountOrderByAggregateInput = {
+    id?: SortOrder
+    eventId?: SortOrder
+    groupNumber?: SortOrder
+    teeTime?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+  }
+
+  export type GroupAvgOrderByAggregateInput = {
+    groupNumber?: SortOrder
+  }
+
+  export type GroupMaxOrderByAggregateInput = {
+    id?: SortOrder
+    eventId?: SortOrder
+    groupNumber?: SortOrder
+    teeTime?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+  }
+
+  export type GroupMinOrderByAggregateInput = {
+    id?: SortOrder
+    eventId?: SortOrder
+    groupNumber?: SortOrder
+    teeTime?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+  }
+
+  export type GroupSumOrderByAggregateInput = {
+    groupNumber?: SortOrder
+  }
+
+  export type DateTimeNullableWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: Date | string | DateTimeFieldRefInput<$PrismaModel> | null
+    in?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel> | null
+    notIn?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel> | null
+    lt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    lte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    gt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    gte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    not?: NestedDateTimeNullableWithAggregatesFilter<$PrismaModel> | Date | string | null
+    _count?: NestedIntNullableFilter<$PrismaModel>
+    _min?: NestedDateTimeNullableFilter<$PrismaModel>
+    _max?: NestedDateTimeNullableFilter<$PrismaModel>
+  }
+
+  export type BoolFilter<$PrismaModel = never> = {
+    equals?: boolean | BooleanFieldRefInput<$PrismaModel>
+    not?: NestedBoolFilter<$PrismaModel> | boolean
+  }
+
+  export type UserRelationFilter = {
+    is?: UserWhereInput
+    isNot?: UserWhereInput
+  }
+
+  export type HoleRelationFilter = {
+    is?: HoleWhereInput
+    isNot?: HoleWhereInput
+  }
+
+  export type ScoreEventIdUserIdHoleIdCompoundUniqueInput = {
+    eventId: string
+    userId: string
+    holeId: string
+  }
+
+  export type ScoreCountOrderByAggregateInput = {
+    id?: SortOrder
+    eventId?: SortOrder
+    userId?: SortOrder
+    holeId?: SortOrder
+    grossScore?: SortOrder
+    netScore?: SortOrder
+    skinWon?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+  }
+
+  export type ScoreAvgOrderByAggregateInput = {
+    grossScore?: SortOrder
+    netScore?: SortOrder
+  }
+
+  export type ScoreMaxOrderByAggregateInput = {
+    id?: SortOrder
+    eventId?: SortOrder
+    userId?: SortOrder
+    holeId?: SortOrder
+    grossScore?: SortOrder
+    netScore?: SortOrder
+    skinWon?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+  }
+
+  export type ScoreMinOrderByAggregateInput = {
+    id?: SortOrder
+    eventId?: SortOrder
+    userId?: SortOrder
+    holeId?: SortOrder
+    grossScore?: SortOrder
+    netScore?: SortOrder
+    skinWon?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+  }
+
+  export type ScoreSumOrderByAggregateInput = {
+    grossScore?: SortOrder
+    netScore?: SortOrder
+  }
+
+  export type BoolWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: boolean | BooleanFieldRefInput<$PrismaModel>
+    not?: NestedBoolWithAggregatesFilter<$PrismaModel> | boolean
+    _count?: NestedIntFilter<$PrismaModel>
+    _min?: NestedBoolFilter<$PrismaModel>
+    _max?: NestedBoolFilter<$PrismaModel>
+  }
+
   export type EventCreateNestedManyWithoutParticipantsInput = {
     create?: XOR<EventCreateWithoutParticipantsInput, EventUncheckedCreateWithoutParticipantsInput> | EventCreateWithoutParticipantsInput[] | EventUncheckedCreateWithoutParticipantsInput[]
     connectOrCreate?: EventCreateOrConnectWithoutParticipantsInput | EventCreateOrConnectWithoutParticipantsInput[]
@@ -4886,6 +9394,12 @@ export namespace Prisma {
     connectOrCreate?: ScoreCreateOrConnectWithoutUserInput | ScoreCreateOrConnectWithoutUserInput[]
     createMany?: ScoreCreateManyUserInputEnvelope
     connect?: ScoreWhereUniqueInput | ScoreWhereUniqueInput[]
+  }
+
+  export type GroupCreateNestedManyWithoutMembersInput = {
+    create?: XOR<GroupCreateWithoutMembersInput, GroupUncheckedCreateWithoutMembersInput> | GroupCreateWithoutMembersInput[] | GroupUncheckedCreateWithoutMembersInput[]
+    connectOrCreate?: GroupCreateOrConnectWithoutMembersInput | GroupCreateOrConnectWithoutMembersInput[]
+    connect?: GroupWhereUniqueInput | GroupWhereUniqueInput[]
   }
 
   export type EventUncheckedCreateNestedManyWithoutParticipantsInput = {
@@ -4901,6 +9415,12 @@ export namespace Prisma {
     connect?: ScoreWhereUniqueInput | ScoreWhereUniqueInput[]
   }
 
+  export type GroupUncheckedCreateNestedManyWithoutMembersInput = {
+    create?: XOR<GroupCreateWithoutMembersInput, GroupUncheckedCreateWithoutMembersInput> | GroupCreateWithoutMembersInput[] | GroupUncheckedCreateWithoutMembersInput[]
+    connectOrCreate?: GroupCreateOrConnectWithoutMembersInput | GroupCreateOrConnectWithoutMembersInput[]
+    connect?: GroupWhereUniqueInput | GroupWhereUniqueInput[]
+  }
+
   export type StringFieldUpdateOperationsInput = {
     set?: string
   }
@@ -4911,6 +9431,10 @@ export namespace Prisma {
     decrement?: number
     multiply?: number
     divide?: number
+  }
+
+  export type NullableStringFieldUpdateOperationsInput = {
+    set?: string | null
   }
 
   export type DateTimeFieldUpdateOperationsInput = {
@@ -4944,6 +9468,19 @@ export namespace Prisma {
     deleteMany?: ScoreScalarWhereInput | ScoreScalarWhereInput[]
   }
 
+  export type GroupUpdateManyWithoutMembersNestedInput = {
+    create?: XOR<GroupCreateWithoutMembersInput, GroupUncheckedCreateWithoutMembersInput> | GroupCreateWithoutMembersInput[] | GroupUncheckedCreateWithoutMembersInput[]
+    connectOrCreate?: GroupCreateOrConnectWithoutMembersInput | GroupCreateOrConnectWithoutMembersInput[]
+    upsert?: GroupUpsertWithWhereUniqueWithoutMembersInput | GroupUpsertWithWhereUniqueWithoutMembersInput[]
+    set?: GroupWhereUniqueInput | GroupWhereUniqueInput[]
+    disconnect?: GroupWhereUniqueInput | GroupWhereUniqueInput[]
+    delete?: GroupWhereUniqueInput | GroupWhereUniqueInput[]
+    connect?: GroupWhereUniqueInput | GroupWhereUniqueInput[]
+    update?: GroupUpdateWithWhereUniqueWithoutMembersInput | GroupUpdateWithWhereUniqueWithoutMembersInput[]
+    updateMany?: GroupUpdateManyWithWhereWithoutMembersInput | GroupUpdateManyWithWhereWithoutMembersInput[]
+    deleteMany?: GroupScalarWhereInput | GroupScalarWhereInput[]
+  }
+
   export type EventUncheckedUpdateManyWithoutParticipantsNestedInput = {
     create?: XOR<EventCreateWithoutParticipantsInput, EventUncheckedCreateWithoutParticipantsInput> | EventCreateWithoutParticipantsInput[] | EventUncheckedCreateWithoutParticipantsInput[]
     connectOrCreate?: EventCreateOrConnectWithoutParticipantsInput | EventCreateOrConnectWithoutParticipantsInput[]
@@ -4971,10 +9508,184 @@ export namespace Prisma {
     deleteMany?: ScoreScalarWhereInput | ScoreScalarWhereInput[]
   }
 
+  export type GroupUncheckedUpdateManyWithoutMembersNestedInput = {
+    create?: XOR<GroupCreateWithoutMembersInput, GroupUncheckedCreateWithoutMembersInput> | GroupCreateWithoutMembersInput[] | GroupUncheckedCreateWithoutMembersInput[]
+    connectOrCreate?: GroupCreateOrConnectWithoutMembersInput | GroupCreateOrConnectWithoutMembersInput[]
+    upsert?: GroupUpsertWithWhereUniqueWithoutMembersInput | GroupUpsertWithWhereUniqueWithoutMembersInput[]
+    set?: GroupWhereUniqueInput | GroupWhereUniqueInput[]
+    disconnect?: GroupWhereUniqueInput | GroupWhereUniqueInput[]
+    delete?: GroupWhereUniqueInput | GroupWhereUniqueInput[]
+    connect?: GroupWhereUniqueInput | GroupWhereUniqueInput[]
+    update?: GroupUpdateWithWhereUniqueWithoutMembersInput | GroupUpdateWithWhereUniqueWithoutMembersInput[]
+    updateMany?: GroupUpdateManyWithWhereWithoutMembersInput | GroupUpdateManyWithWhereWithoutMembersInput[]
+    deleteMany?: GroupScalarWhereInput | GroupScalarWhereInput[]
+  }
+
+  export type EventCreateNestedManyWithoutCourseInput = {
+    create?: XOR<EventCreateWithoutCourseInput, EventUncheckedCreateWithoutCourseInput> | EventCreateWithoutCourseInput[] | EventUncheckedCreateWithoutCourseInput[]
+    connectOrCreate?: EventCreateOrConnectWithoutCourseInput | EventCreateOrConnectWithoutCourseInput[]
+    createMany?: EventCreateManyCourseInputEnvelope
+    connect?: EventWhereUniqueInput | EventWhereUniqueInput[]
+  }
+
+  export type HoleCreateNestedManyWithoutCourseInput = {
+    create?: XOR<HoleCreateWithoutCourseInput, HoleUncheckedCreateWithoutCourseInput> | HoleCreateWithoutCourseInput[] | HoleUncheckedCreateWithoutCourseInput[]
+    connectOrCreate?: HoleCreateOrConnectWithoutCourseInput | HoleCreateOrConnectWithoutCourseInput[]
+    createMany?: HoleCreateManyCourseInputEnvelope
+    connect?: HoleWhereUniqueInput | HoleWhereUniqueInput[]
+  }
+
+  export type EventUncheckedCreateNestedManyWithoutCourseInput = {
+    create?: XOR<EventCreateWithoutCourseInput, EventUncheckedCreateWithoutCourseInput> | EventCreateWithoutCourseInput[] | EventUncheckedCreateWithoutCourseInput[]
+    connectOrCreate?: EventCreateOrConnectWithoutCourseInput | EventCreateOrConnectWithoutCourseInput[]
+    createMany?: EventCreateManyCourseInputEnvelope
+    connect?: EventWhereUniqueInput | EventWhereUniqueInput[]
+  }
+
+  export type HoleUncheckedCreateNestedManyWithoutCourseInput = {
+    create?: XOR<HoleCreateWithoutCourseInput, HoleUncheckedCreateWithoutCourseInput> | HoleCreateWithoutCourseInput[] | HoleUncheckedCreateWithoutCourseInput[]
+    connectOrCreate?: HoleCreateOrConnectWithoutCourseInput | HoleCreateOrConnectWithoutCourseInput[]
+    createMany?: HoleCreateManyCourseInputEnvelope
+    connect?: HoleWhereUniqueInput | HoleWhereUniqueInput[]
+  }
+
+  export type EventUpdateManyWithoutCourseNestedInput = {
+    create?: XOR<EventCreateWithoutCourseInput, EventUncheckedCreateWithoutCourseInput> | EventCreateWithoutCourseInput[] | EventUncheckedCreateWithoutCourseInput[]
+    connectOrCreate?: EventCreateOrConnectWithoutCourseInput | EventCreateOrConnectWithoutCourseInput[]
+    upsert?: EventUpsertWithWhereUniqueWithoutCourseInput | EventUpsertWithWhereUniqueWithoutCourseInput[]
+    createMany?: EventCreateManyCourseInputEnvelope
+    set?: EventWhereUniqueInput | EventWhereUniqueInput[]
+    disconnect?: EventWhereUniqueInput | EventWhereUniqueInput[]
+    delete?: EventWhereUniqueInput | EventWhereUniqueInput[]
+    connect?: EventWhereUniqueInput | EventWhereUniqueInput[]
+    update?: EventUpdateWithWhereUniqueWithoutCourseInput | EventUpdateWithWhereUniqueWithoutCourseInput[]
+    updateMany?: EventUpdateManyWithWhereWithoutCourseInput | EventUpdateManyWithWhereWithoutCourseInput[]
+    deleteMany?: EventScalarWhereInput | EventScalarWhereInput[]
+  }
+
+  export type HoleUpdateManyWithoutCourseNestedInput = {
+    create?: XOR<HoleCreateWithoutCourseInput, HoleUncheckedCreateWithoutCourseInput> | HoleCreateWithoutCourseInput[] | HoleUncheckedCreateWithoutCourseInput[]
+    connectOrCreate?: HoleCreateOrConnectWithoutCourseInput | HoleCreateOrConnectWithoutCourseInput[]
+    upsert?: HoleUpsertWithWhereUniqueWithoutCourseInput | HoleUpsertWithWhereUniqueWithoutCourseInput[]
+    createMany?: HoleCreateManyCourseInputEnvelope
+    set?: HoleWhereUniqueInput | HoleWhereUniqueInput[]
+    disconnect?: HoleWhereUniqueInput | HoleWhereUniqueInput[]
+    delete?: HoleWhereUniqueInput | HoleWhereUniqueInput[]
+    connect?: HoleWhereUniqueInput | HoleWhereUniqueInput[]
+    update?: HoleUpdateWithWhereUniqueWithoutCourseInput | HoleUpdateWithWhereUniqueWithoutCourseInput[]
+    updateMany?: HoleUpdateManyWithWhereWithoutCourseInput | HoleUpdateManyWithWhereWithoutCourseInput[]
+    deleteMany?: HoleScalarWhereInput | HoleScalarWhereInput[]
+  }
+
+  export type EventUncheckedUpdateManyWithoutCourseNestedInput = {
+    create?: XOR<EventCreateWithoutCourseInput, EventUncheckedCreateWithoutCourseInput> | EventCreateWithoutCourseInput[] | EventUncheckedCreateWithoutCourseInput[]
+    connectOrCreate?: EventCreateOrConnectWithoutCourseInput | EventCreateOrConnectWithoutCourseInput[]
+    upsert?: EventUpsertWithWhereUniqueWithoutCourseInput | EventUpsertWithWhereUniqueWithoutCourseInput[]
+    createMany?: EventCreateManyCourseInputEnvelope
+    set?: EventWhereUniqueInput | EventWhereUniqueInput[]
+    disconnect?: EventWhereUniqueInput | EventWhereUniqueInput[]
+    delete?: EventWhereUniqueInput | EventWhereUniqueInput[]
+    connect?: EventWhereUniqueInput | EventWhereUniqueInput[]
+    update?: EventUpdateWithWhereUniqueWithoutCourseInput | EventUpdateWithWhereUniqueWithoutCourseInput[]
+    updateMany?: EventUpdateManyWithWhereWithoutCourseInput | EventUpdateManyWithWhereWithoutCourseInput[]
+    deleteMany?: EventScalarWhereInput | EventScalarWhereInput[]
+  }
+
+  export type HoleUncheckedUpdateManyWithoutCourseNestedInput = {
+    create?: XOR<HoleCreateWithoutCourseInput, HoleUncheckedCreateWithoutCourseInput> | HoleCreateWithoutCourseInput[] | HoleUncheckedCreateWithoutCourseInput[]
+    connectOrCreate?: HoleCreateOrConnectWithoutCourseInput | HoleCreateOrConnectWithoutCourseInput[]
+    upsert?: HoleUpsertWithWhereUniqueWithoutCourseInput | HoleUpsertWithWhereUniqueWithoutCourseInput[]
+    createMany?: HoleCreateManyCourseInputEnvelope
+    set?: HoleWhereUniqueInput | HoleWhereUniqueInput[]
+    disconnect?: HoleWhereUniqueInput | HoleWhereUniqueInput[]
+    delete?: HoleWhereUniqueInput | HoleWhereUniqueInput[]
+    connect?: HoleWhereUniqueInput | HoleWhereUniqueInput[]
+    update?: HoleUpdateWithWhereUniqueWithoutCourseInput | HoleUpdateWithWhereUniqueWithoutCourseInput[]
+    updateMany?: HoleUpdateManyWithWhereWithoutCourseInput | HoleUpdateManyWithWhereWithoutCourseInput[]
+    deleteMany?: HoleScalarWhereInput | HoleScalarWhereInput[]
+  }
+
+  export type CourseCreateNestedOneWithoutHolesInput = {
+    create?: XOR<CourseCreateWithoutHolesInput, CourseUncheckedCreateWithoutHolesInput>
+    connectOrCreate?: CourseCreateOrConnectWithoutHolesInput
+    connect?: CourseWhereUniqueInput
+  }
+
+  export type ScoreCreateNestedManyWithoutHoleInput = {
+    create?: XOR<ScoreCreateWithoutHoleInput, ScoreUncheckedCreateWithoutHoleInput> | ScoreCreateWithoutHoleInput[] | ScoreUncheckedCreateWithoutHoleInput[]
+    connectOrCreate?: ScoreCreateOrConnectWithoutHoleInput | ScoreCreateOrConnectWithoutHoleInput[]
+    createMany?: ScoreCreateManyHoleInputEnvelope
+    connect?: ScoreWhereUniqueInput | ScoreWhereUniqueInput[]
+  }
+
+  export type ScoreUncheckedCreateNestedManyWithoutHoleInput = {
+    create?: XOR<ScoreCreateWithoutHoleInput, ScoreUncheckedCreateWithoutHoleInput> | ScoreCreateWithoutHoleInput[] | ScoreUncheckedCreateWithoutHoleInput[]
+    connectOrCreate?: ScoreCreateOrConnectWithoutHoleInput | ScoreCreateOrConnectWithoutHoleInput[]
+    createMany?: ScoreCreateManyHoleInputEnvelope
+    connect?: ScoreWhereUniqueInput | ScoreWhereUniqueInput[]
+  }
+
+  export type IntFieldUpdateOperationsInput = {
+    set?: number
+    increment?: number
+    decrement?: number
+    multiply?: number
+    divide?: number
+  }
+
+  export type CourseUpdateOneRequiredWithoutHolesNestedInput = {
+    create?: XOR<CourseCreateWithoutHolesInput, CourseUncheckedCreateWithoutHolesInput>
+    connectOrCreate?: CourseCreateOrConnectWithoutHolesInput
+    upsert?: CourseUpsertWithoutHolesInput
+    connect?: CourseWhereUniqueInput
+    update?: XOR<XOR<CourseUpdateToOneWithWhereWithoutHolesInput, CourseUpdateWithoutHolesInput>, CourseUncheckedUpdateWithoutHolesInput>
+  }
+
+  export type ScoreUpdateManyWithoutHoleNestedInput = {
+    create?: XOR<ScoreCreateWithoutHoleInput, ScoreUncheckedCreateWithoutHoleInput> | ScoreCreateWithoutHoleInput[] | ScoreUncheckedCreateWithoutHoleInput[]
+    connectOrCreate?: ScoreCreateOrConnectWithoutHoleInput | ScoreCreateOrConnectWithoutHoleInput[]
+    upsert?: ScoreUpsertWithWhereUniqueWithoutHoleInput | ScoreUpsertWithWhereUniqueWithoutHoleInput[]
+    createMany?: ScoreCreateManyHoleInputEnvelope
+    set?: ScoreWhereUniqueInput | ScoreWhereUniqueInput[]
+    disconnect?: ScoreWhereUniqueInput | ScoreWhereUniqueInput[]
+    delete?: ScoreWhereUniqueInput | ScoreWhereUniqueInput[]
+    connect?: ScoreWhereUniqueInput | ScoreWhereUniqueInput[]
+    update?: ScoreUpdateWithWhereUniqueWithoutHoleInput | ScoreUpdateWithWhereUniqueWithoutHoleInput[]
+    updateMany?: ScoreUpdateManyWithWhereWithoutHoleInput | ScoreUpdateManyWithWhereWithoutHoleInput[]
+    deleteMany?: ScoreScalarWhereInput | ScoreScalarWhereInput[]
+  }
+
+  export type ScoreUncheckedUpdateManyWithoutHoleNestedInput = {
+    create?: XOR<ScoreCreateWithoutHoleInput, ScoreUncheckedCreateWithoutHoleInput> | ScoreCreateWithoutHoleInput[] | ScoreUncheckedCreateWithoutHoleInput[]
+    connectOrCreate?: ScoreCreateOrConnectWithoutHoleInput | ScoreCreateOrConnectWithoutHoleInput[]
+    upsert?: ScoreUpsertWithWhereUniqueWithoutHoleInput | ScoreUpsertWithWhereUniqueWithoutHoleInput[]
+    createMany?: ScoreCreateManyHoleInputEnvelope
+    set?: ScoreWhereUniqueInput | ScoreWhereUniqueInput[]
+    disconnect?: ScoreWhereUniqueInput | ScoreWhereUniqueInput[]
+    delete?: ScoreWhereUniqueInput | ScoreWhereUniqueInput[]
+    connect?: ScoreWhereUniqueInput | ScoreWhereUniqueInput[]
+    update?: ScoreUpdateWithWhereUniqueWithoutHoleInput | ScoreUpdateWithWhereUniqueWithoutHoleInput[]
+    updateMany?: ScoreUpdateManyWithWhereWithoutHoleInput | ScoreUpdateManyWithWhereWithoutHoleInput[]
+    deleteMany?: ScoreScalarWhereInput | ScoreScalarWhereInput[]
+  }
+
+  export type CourseCreateNestedOneWithoutEventsInput = {
+    create?: XOR<CourseCreateWithoutEventsInput, CourseUncheckedCreateWithoutEventsInput>
+    connectOrCreate?: CourseCreateOrConnectWithoutEventsInput
+    connect?: CourseWhereUniqueInput
+  }
+
   export type UserCreateNestedManyWithoutEventsInput = {
     create?: XOR<UserCreateWithoutEventsInput, UserUncheckedCreateWithoutEventsInput> | UserCreateWithoutEventsInput[] | UserUncheckedCreateWithoutEventsInput[]
     connectOrCreate?: UserCreateOrConnectWithoutEventsInput | UserCreateOrConnectWithoutEventsInput[]
     connect?: UserWhereUniqueInput | UserWhereUniqueInput[]
+  }
+
+  export type GroupCreateNestedManyWithoutEventInput = {
+    create?: XOR<GroupCreateWithoutEventInput, GroupUncheckedCreateWithoutEventInput> | GroupCreateWithoutEventInput[] | GroupUncheckedCreateWithoutEventInput[]
+    connectOrCreate?: GroupCreateOrConnectWithoutEventInput | GroupCreateOrConnectWithoutEventInput[]
+    createMany?: GroupCreateManyEventInputEnvelope
+    connect?: GroupWhereUniqueInput | GroupWhereUniqueInput[]
   }
 
   export type ScoreCreateNestedManyWithoutEventInput = {
@@ -4990,11 +9701,34 @@ export namespace Prisma {
     connect?: UserWhereUniqueInput | UserWhereUniqueInput[]
   }
 
+  export type GroupUncheckedCreateNestedManyWithoutEventInput = {
+    create?: XOR<GroupCreateWithoutEventInput, GroupUncheckedCreateWithoutEventInput> | GroupCreateWithoutEventInput[] | GroupUncheckedCreateWithoutEventInput[]
+    connectOrCreate?: GroupCreateOrConnectWithoutEventInput | GroupCreateOrConnectWithoutEventInput[]
+    createMany?: GroupCreateManyEventInputEnvelope
+    connect?: GroupWhereUniqueInput | GroupWhereUniqueInput[]
+  }
+
   export type ScoreUncheckedCreateNestedManyWithoutEventInput = {
     create?: XOR<ScoreCreateWithoutEventInput, ScoreUncheckedCreateWithoutEventInput> | ScoreCreateWithoutEventInput[] | ScoreUncheckedCreateWithoutEventInput[]
     connectOrCreate?: ScoreCreateOrConnectWithoutEventInput | ScoreCreateOrConnectWithoutEventInput[]
     createMany?: ScoreCreateManyEventInputEnvelope
     connect?: ScoreWhereUniqueInput | ScoreWhereUniqueInput[]
+  }
+
+  export type NullableIntFieldUpdateOperationsInput = {
+    set?: number | null
+    increment?: number
+    decrement?: number
+    multiply?: number
+    divide?: number
+  }
+
+  export type CourseUpdateOneRequiredWithoutEventsNestedInput = {
+    create?: XOR<CourseCreateWithoutEventsInput, CourseUncheckedCreateWithoutEventsInput>
+    connectOrCreate?: CourseCreateOrConnectWithoutEventsInput
+    upsert?: CourseUpsertWithoutEventsInput
+    connect?: CourseWhereUniqueInput
+    update?: XOR<XOR<CourseUpdateToOneWithWhereWithoutEventsInput, CourseUpdateWithoutEventsInput>, CourseUncheckedUpdateWithoutEventsInput>
   }
 
   export type UserUpdateManyWithoutEventsNestedInput = {
@@ -5008,6 +9742,20 @@ export namespace Prisma {
     update?: UserUpdateWithWhereUniqueWithoutEventsInput | UserUpdateWithWhereUniqueWithoutEventsInput[]
     updateMany?: UserUpdateManyWithWhereWithoutEventsInput | UserUpdateManyWithWhereWithoutEventsInput[]
     deleteMany?: UserScalarWhereInput | UserScalarWhereInput[]
+  }
+
+  export type GroupUpdateManyWithoutEventNestedInput = {
+    create?: XOR<GroupCreateWithoutEventInput, GroupUncheckedCreateWithoutEventInput> | GroupCreateWithoutEventInput[] | GroupUncheckedCreateWithoutEventInput[]
+    connectOrCreate?: GroupCreateOrConnectWithoutEventInput | GroupCreateOrConnectWithoutEventInput[]
+    upsert?: GroupUpsertWithWhereUniqueWithoutEventInput | GroupUpsertWithWhereUniqueWithoutEventInput[]
+    createMany?: GroupCreateManyEventInputEnvelope
+    set?: GroupWhereUniqueInput | GroupWhereUniqueInput[]
+    disconnect?: GroupWhereUniqueInput | GroupWhereUniqueInput[]
+    delete?: GroupWhereUniqueInput | GroupWhereUniqueInput[]
+    connect?: GroupWhereUniqueInput | GroupWhereUniqueInput[]
+    update?: GroupUpdateWithWhereUniqueWithoutEventInput | GroupUpdateWithWhereUniqueWithoutEventInput[]
+    updateMany?: GroupUpdateManyWithWhereWithoutEventInput | GroupUpdateManyWithWhereWithoutEventInput[]
+    deleteMany?: GroupScalarWhereInput | GroupScalarWhereInput[]
   }
 
   export type ScoreUpdateManyWithoutEventNestedInput = {
@@ -5037,6 +9785,20 @@ export namespace Prisma {
     deleteMany?: UserScalarWhereInput | UserScalarWhereInput[]
   }
 
+  export type GroupUncheckedUpdateManyWithoutEventNestedInput = {
+    create?: XOR<GroupCreateWithoutEventInput, GroupUncheckedCreateWithoutEventInput> | GroupCreateWithoutEventInput[] | GroupUncheckedCreateWithoutEventInput[]
+    connectOrCreate?: GroupCreateOrConnectWithoutEventInput | GroupCreateOrConnectWithoutEventInput[]
+    upsert?: GroupUpsertWithWhereUniqueWithoutEventInput | GroupUpsertWithWhereUniqueWithoutEventInput[]
+    createMany?: GroupCreateManyEventInputEnvelope
+    set?: GroupWhereUniqueInput | GroupWhereUniqueInput[]
+    disconnect?: GroupWhereUniqueInput | GroupWhereUniqueInput[]
+    delete?: GroupWhereUniqueInput | GroupWhereUniqueInput[]
+    connect?: GroupWhereUniqueInput | GroupWhereUniqueInput[]
+    update?: GroupUpdateWithWhereUniqueWithoutEventInput | GroupUpdateWithWhereUniqueWithoutEventInput[]
+    updateMany?: GroupUpdateManyWithWhereWithoutEventInput | GroupUpdateManyWithWhereWithoutEventInput[]
+    deleteMany?: GroupScalarWhereInput | GroupScalarWhereInput[]
+  }
+
   export type ScoreUncheckedUpdateManyWithoutEventNestedInput = {
     create?: XOR<ScoreCreateWithoutEventInput, ScoreUncheckedCreateWithoutEventInput> | ScoreCreateWithoutEventInput[] | ScoreUncheckedCreateWithoutEventInput[]
     connectOrCreate?: ScoreCreateOrConnectWithoutEventInput | ScoreCreateOrConnectWithoutEventInput[]
@@ -5051,6 +9813,62 @@ export namespace Prisma {
     deleteMany?: ScoreScalarWhereInput | ScoreScalarWhereInput[]
   }
 
+  export type EventCreateNestedOneWithoutGroupsInput = {
+    create?: XOR<EventCreateWithoutGroupsInput, EventUncheckedCreateWithoutGroupsInput>
+    connectOrCreate?: EventCreateOrConnectWithoutGroupsInput
+    connect?: EventWhereUniqueInput
+  }
+
+  export type UserCreateNestedManyWithoutGroupsInput = {
+    create?: XOR<UserCreateWithoutGroupsInput, UserUncheckedCreateWithoutGroupsInput> | UserCreateWithoutGroupsInput[] | UserUncheckedCreateWithoutGroupsInput[]
+    connectOrCreate?: UserCreateOrConnectWithoutGroupsInput | UserCreateOrConnectWithoutGroupsInput[]
+    connect?: UserWhereUniqueInput | UserWhereUniqueInput[]
+  }
+
+  export type UserUncheckedCreateNestedManyWithoutGroupsInput = {
+    create?: XOR<UserCreateWithoutGroupsInput, UserUncheckedCreateWithoutGroupsInput> | UserCreateWithoutGroupsInput[] | UserUncheckedCreateWithoutGroupsInput[]
+    connectOrCreate?: UserCreateOrConnectWithoutGroupsInput | UserCreateOrConnectWithoutGroupsInput[]
+    connect?: UserWhereUniqueInput | UserWhereUniqueInput[]
+  }
+
+  export type NullableDateTimeFieldUpdateOperationsInput = {
+    set?: Date | string | null
+  }
+
+  export type EventUpdateOneRequiredWithoutGroupsNestedInput = {
+    create?: XOR<EventCreateWithoutGroupsInput, EventUncheckedCreateWithoutGroupsInput>
+    connectOrCreate?: EventCreateOrConnectWithoutGroupsInput
+    upsert?: EventUpsertWithoutGroupsInput
+    connect?: EventWhereUniqueInput
+    update?: XOR<XOR<EventUpdateToOneWithWhereWithoutGroupsInput, EventUpdateWithoutGroupsInput>, EventUncheckedUpdateWithoutGroupsInput>
+  }
+
+  export type UserUpdateManyWithoutGroupsNestedInput = {
+    create?: XOR<UserCreateWithoutGroupsInput, UserUncheckedCreateWithoutGroupsInput> | UserCreateWithoutGroupsInput[] | UserUncheckedCreateWithoutGroupsInput[]
+    connectOrCreate?: UserCreateOrConnectWithoutGroupsInput | UserCreateOrConnectWithoutGroupsInput[]
+    upsert?: UserUpsertWithWhereUniqueWithoutGroupsInput | UserUpsertWithWhereUniqueWithoutGroupsInput[]
+    set?: UserWhereUniqueInput | UserWhereUniqueInput[]
+    disconnect?: UserWhereUniqueInput | UserWhereUniqueInput[]
+    delete?: UserWhereUniqueInput | UserWhereUniqueInput[]
+    connect?: UserWhereUniqueInput | UserWhereUniqueInput[]
+    update?: UserUpdateWithWhereUniqueWithoutGroupsInput | UserUpdateWithWhereUniqueWithoutGroupsInput[]
+    updateMany?: UserUpdateManyWithWhereWithoutGroupsInput | UserUpdateManyWithWhereWithoutGroupsInput[]
+    deleteMany?: UserScalarWhereInput | UserScalarWhereInput[]
+  }
+
+  export type UserUncheckedUpdateManyWithoutGroupsNestedInput = {
+    create?: XOR<UserCreateWithoutGroupsInput, UserUncheckedCreateWithoutGroupsInput> | UserCreateWithoutGroupsInput[] | UserUncheckedCreateWithoutGroupsInput[]
+    connectOrCreate?: UserCreateOrConnectWithoutGroupsInput | UserCreateOrConnectWithoutGroupsInput[]
+    upsert?: UserUpsertWithWhereUniqueWithoutGroupsInput | UserUpsertWithWhereUniqueWithoutGroupsInput[]
+    set?: UserWhereUniqueInput | UserWhereUniqueInput[]
+    disconnect?: UserWhereUniqueInput | UserWhereUniqueInput[]
+    delete?: UserWhereUniqueInput | UserWhereUniqueInput[]
+    connect?: UserWhereUniqueInput | UserWhereUniqueInput[]
+    update?: UserUpdateWithWhereUniqueWithoutGroupsInput | UserUpdateWithWhereUniqueWithoutGroupsInput[]
+    updateMany?: UserUpdateManyWithWhereWithoutGroupsInput | UserUpdateManyWithWhereWithoutGroupsInput[]
+    deleteMany?: UserScalarWhereInput | UserScalarWhereInput[]
+  }
+
   export type EventCreateNestedOneWithoutScoresInput = {
     create?: XOR<EventCreateWithoutScoresInput, EventUncheckedCreateWithoutScoresInput>
     connectOrCreate?: EventCreateOrConnectWithoutScoresInput
@@ -5063,12 +9881,14 @@ export namespace Prisma {
     connect?: UserWhereUniqueInput
   }
 
-  export type IntFieldUpdateOperationsInput = {
-    set?: number
-    increment?: number
-    decrement?: number
-    multiply?: number
-    divide?: number
+  export type HoleCreateNestedOneWithoutScoresInput = {
+    create?: XOR<HoleCreateWithoutScoresInput, HoleUncheckedCreateWithoutScoresInput>
+    connectOrCreate?: HoleCreateOrConnectWithoutScoresInput
+    connect?: HoleWhereUniqueInput
+  }
+
+  export type BoolFieldUpdateOperationsInput = {
+    set?: boolean
   }
 
   export type EventUpdateOneRequiredWithoutScoresNestedInput = {
@@ -5085,6 +9905,14 @@ export namespace Prisma {
     upsert?: UserUpsertWithoutScoresInput
     connect?: UserWhereUniqueInput
     update?: XOR<XOR<UserUpdateToOneWithWhereWithoutScoresInput, UserUpdateWithoutScoresInput>, UserUncheckedUpdateWithoutScoresInput>
+  }
+
+  export type HoleUpdateOneRequiredWithoutScoresNestedInput = {
+    create?: XOR<HoleCreateWithoutScoresInput, HoleUncheckedCreateWithoutScoresInput>
+    connectOrCreate?: HoleCreateOrConnectWithoutScoresInput
+    upsert?: HoleUpsertWithoutScoresInput
+    connect?: HoleWhereUniqueInput
+    update?: XOR<XOR<HoleUpdateToOneWithWhereWithoutScoresInput, HoleUpdateWithoutScoresInput>, HoleUncheckedUpdateWithoutScoresInput>
   }
 
   export type NestedStringFilter<$PrismaModel = never> = {
@@ -5110,6 +9938,20 @@ export namespace Prisma {
     gt?: number | FloatFieldRefInput<$PrismaModel>
     gte?: number | FloatFieldRefInput<$PrismaModel>
     not?: NestedFloatNullableFilter<$PrismaModel> | number | null
+  }
+
+  export type NestedStringNullableFilter<$PrismaModel = never> = {
+    equals?: string | StringFieldRefInput<$PrismaModel> | null
+    in?: string[] | ListStringFieldRefInput<$PrismaModel> | null
+    notIn?: string[] | ListStringFieldRefInput<$PrismaModel> | null
+    lt?: string | StringFieldRefInput<$PrismaModel>
+    lte?: string | StringFieldRefInput<$PrismaModel>
+    gt?: string | StringFieldRefInput<$PrismaModel>
+    gte?: string | StringFieldRefInput<$PrismaModel>
+    contains?: string | StringFieldRefInput<$PrismaModel>
+    startsWith?: string | StringFieldRefInput<$PrismaModel>
+    endsWith?: string | StringFieldRefInput<$PrismaModel>
+    not?: NestedStringNullableFilter<$PrismaModel> | string | null
   }
 
   export type NestedDateTimeFilter<$PrismaModel = never> = {
@@ -5178,6 +10020,23 @@ export namespace Prisma {
     not?: NestedIntNullableFilter<$PrismaModel> | number | null
   }
 
+  export type NestedStringNullableWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: string | StringFieldRefInput<$PrismaModel> | null
+    in?: string[] | ListStringFieldRefInput<$PrismaModel> | null
+    notIn?: string[] | ListStringFieldRefInput<$PrismaModel> | null
+    lt?: string | StringFieldRefInput<$PrismaModel>
+    lte?: string | StringFieldRefInput<$PrismaModel>
+    gt?: string | StringFieldRefInput<$PrismaModel>
+    gte?: string | StringFieldRefInput<$PrismaModel>
+    contains?: string | StringFieldRefInput<$PrismaModel>
+    startsWith?: string | StringFieldRefInput<$PrismaModel>
+    endsWith?: string | StringFieldRefInput<$PrismaModel>
+    not?: NestedStringNullableWithAggregatesFilter<$PrismaModel> | string | null
+    _count?: NestedIntNullableFilter<$PrismaModel>
+    _min?: NestedStringNullableFilter<$PrismaModel>
+    _max?: NestedStringNullableFilter<$PrismaModel>
+  }
+
   export type NestedDateTimeWithAggregatesFilter<$PrismaModel = never> = {
     equals?: Date | string | DateTimeFieldRefInput<$PrismaModel>
     in?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel>
@@ -5219,13 +10078,72 @@ export namespace Prisma {
     not?: NestedFloatFilter<$PrismaModel> | number
   }
 
+  export type NestedIntNullableWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: number | IntFieldRefInput<$PrismaModel> | null
+    in?: number[] | ListIntFieldRefInput<$PrismaModel> | null
+    notIn?: number[] | ListIntFieldRefInput<$PrismaModel> | null
+    lt?: number | IntFieldRefInput<$PrismaModel>
+    lte?: number | IntFieldRefInput<$PrismaModel>
+    gt?: number | IntFieldRefInput<$PrismaModel>
+    gte?: number | IntFieldRefInput<$PrismaModel>
+    not?: NestedIntNullableWithAggregatesFilter<$PrismaModel> | number | null
+    _count?: NestedIntNullableFilter<$PrismaModel>
+    _avg?: NestedFloatNullableFilter<$PrismaModel>
+    _sum?: NestedIntNullableFilter<$PrismaModel>
+    _min?: NestedIntNullableFilter<$PrismaModel>
+    _max?: NestedIntNullableFilter<$PrismaModel>
+  }
+
+  export type NestedDateTimeNullableFilter<$PrismaModel = never> = {
+    equals?: Date | string | DateTimeFieldRefInput<$PrismaModel> | null
+    in?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel> | null
+    notIn?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel> | null
+    lt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    lte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    gt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    gte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    not?: NestedDateTimeNullableFilter<$PrismaModel> | Date | string | null
+  }
+
+  export type NestedDateTimeNullableWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: Date | string | DateTimeFieldRefInput<$PrismaModel> | null
+    in?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel> | null
+    notIn?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel> | null
+    lt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    lte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    gt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    gte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    not?: NestedDateTimeNullableWithAggregatesFilter<$PrismaModel> | Date | string | null
+    _count?: NestedIntNullableFilter<$PrismaModel>
+    _min?: NestedDateTimeNullableFilter<$PrismaModel>
+    _max?: NestedDateTimeNullableFilter<$PrismaModel>
+  }
+
+  export type NestedBoolFilter<$PrismaModel = never> = {
+    equals?: boolean | BooleanFieldRefInput<$PrismaModel>
+    not?: NestedBoolFilter<$PrismaModel> | boolean
+  }
+
+  export type NestedBoolWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: boolean | BooleanFieldRefInput<$PrismaModel>
+    not?: NestedBoolWithAggregatesFilter<$PrismaModel> | boolean
+    _count?: NestedIntFilter<$PrismaModel>
+    _min?: NestedBoolFilter<$PrismaModel>
+    _max?: NestedBoolFilter<$PrismaModel>
+  }
+
   export type EventCreateWithoutParticipantsInput = {
     id?: string
     name: string
     date: Date | string
-    location: string
+    description?: string | null
+    maxPlayers?: number | null
+    entryFee?: number | null
+    status?: string
     createdAt?: Date | string
     updatedAt?: Date | string
+    course: CourseCreateNestedOneWithoutEventsInput
+    groups?: GroupCreateNestedManyWithoutEventInput
     scores?: ScoreCreateNestedManyWithoutEventInput
   }
 
@@ -5233,9 +10151,14 @@ export namespace Prisma {
     id?: string
     name: string
     date: Date | string
-    location: string
+    courseId: string
+    description?: string | null
+    maxPlayers?: number | null
+    entryFee?: number | null
+    status?: string
     createdAt?: Date | string
     updatedAt?: Date | string
+    groups?: GroupUncheckedCreateNestedManyWithoutEventInput
     scores?: ScoreUncheckedCreateNestedManyWithoutEventInput
   }
 
@@ -5246,16 +10169,22 @@ export namespace Prisma {
 
   export type ScoreCreateWithoutUserInput = {
     id?: string
-    score: number
+    grossScore: number
+    netScore?: number | null
+    skinWon?: boolean
     createdAt?: Date | string
     updatedAt?: Date | string
     event: EventCreateNestedOneWithoutScoresInput
+    hole: HoleCreateNestedOneWithoutScoresInput
   }
 
   export type ScoreUncheckedCreateWithoutUserInput = {
     id?: string
     eventId: string
-    score: number
+    holeId: string
+    grossScore: number
+    netScore?: number | null
+    skinWon?: boolean
     createdAt?: Date | string
     updatedAt?: Date | string
   }
@@ -5268,6 +10197,29 @@ export namespace Prisma {
   export type ScoreCreateManyUserInputEnvelope = {
     data: ScoreCreateManyUserInput | ScoreCreateManyUserInput[]
     skipDuplicates?: boolean
+  }
+
+  export type GroupCreateWithoutMembersInput = {
+    id?: string
+    groupNumber: number
+    teeTime?: Date | string | null
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    event: EventCreateNestedOneWithoutGroupsInput
+  }
+
+  export type GroupUncheckedCreateWithoutMembersInput = {
+    id?: string
+    eventId: string
+    groupNumber: number
+    teeTime?: Date | string | null
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type GroupCreateOrConnectWithoutMembersInput = {
+    where: GroupWhereUniqueInput
+    create: XOR<GroupCreateWithoutMembersInput, GroupUncheckedCreateWithoutMembersInput>
   }
 
   export type EventUpsertWithWhereUniqueWithoutParticipantsInput = {
@@ -5293,7 +10245,11 @@ export namespace Prisma {
     id?: StringFilter<"Event"> | string
     name?: StringFilter<"Event"> | string
     date?: DateTimeFilter<"Event"> | Date | string
-    location?: StringFilter<"Event"> | string
+    courseId?: StringFilter<"Event"> | string
+    description?: StringNullableFilter<"Event"> | string | null
+    maxPlayers?: IntNullableFilter<"Event"> | number | null
+    entryFee?: FloatNullableFilter<"Event"> | number | null
+    status?: StringFilter<"Event"> | string
     createdAt?: DateTimeFilter<"Event"> | Date | string
     updatedAt?: DateTimeFilter<"Event"> | Date | string
   }
@@ -5321,9 +10277,290 @@ export namespace Prisma {
     id?: StringFilter<"Score"> | string
     eventId?: StringFilter<"Score"> | string
     userId?: StringFilter<"Score"> | string
-    score?: IntFilter<"Score"> | number
+    holeId?: StringFilter<"Score"> | string
+    grossScore?: IntFilter<"Score"> | number
+    netScore?: IntNullableFilter<"Score"> | number | null
+    skinWon?: BoolFilter<"Score"> | boolean
     createdAt?: DateTimeFilter<"Score"> | Date | string
     updatedAt?: DateTimeFilter<"Score"> | Date | string
+  }
+
+  export type GroupUpsertWithWhereUniqueWithoutMembersInput = {
+    where: GroupWhereUniqueInput
+    update: XOR<GroupUpdateWithoutMembersInput, GroupUncheckedUpdateWithoutMembersInput>
+    create: XOR<GroupCreateWithoutMembersInput, GroupUncheckedCreateWithoutMembersInput>
+  }
+
+  export type GroupUpdateWithWhereUniqueWithoutMembersInput = {
+    where: GroupWhereUniqueInput
+    data: XOR<GroupUpdateWithoutMembersInput, GroupUncheckedUpdateWithoutMembersInput>
+  }
+
+  export type GroupUpdateManyWithWhereWithoutMembersInput = {
+    where: GroupScalarWhereInput
+    data: XOR<GroupUpdateManyMutationInput, GroupUncheckedUpdateManyWithoutMembersInput>
+  }
+
+  export type GroupScalarWhereInput = {
+    AND?: GroupScalarWhereInput | GroupScalarWhereInput[]
+    OR?: GroupScalarWhereInput[]
+    NOT?: GroupScalarWhereInput | GroupScalarWhereInput[]
+    id?: StringFilter<"Group"> | string
+    eventId?: StringFilter<"Group"> | string
+    groupNumber?: IntFilter<"Group"> | number
+    teeTime?: DateTimeNullableFilter<"Group"> | Date | string | null
+    createdAt?: DateTimeFilter<"Group"> | Date | string
+    updatedAt?: DateTimeFilter<"Group"> | Date | string
+  }
+
+  export type EventCreateWithoutCourseInput = {
+    id?: string
+    name: string
+    date: Date | string
+    description?: string | null
+    maxPlayers?: number | null
+    entryFee?: number | null
+    status?: string
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    participants?: UserCreateNestedManyWithoutEventsInput
+    groups?: GroupCreateNestedManyWithoutEventInput
+    scores?: ScoreCreateNestedManyWithoutEventInput
+  }
+
+  export type EventUncheckedCreateWithoutCourseInput = {
+    id?: string
+    name: string
+    date: Date | string
+    description?: string | null
+    maxPlayers?: number | null
+    entryFee?: number | null
+    status?: string
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    participants?: UserUncheckedCreateNestedManyWithoutEventsInput
+    groups?: GroupUncheckedCreateNestedManyWithoutEventInput
+    scores?: ScoreUncheckedCreateNestedManyWithoutEventInput
+  }
+
+  export type EventCreateOrConnectWithoutCourseInput = {
+    where: EventWhereUniqueInput
+    create: XOR<EventCreateWithoutCourseInput, EventUncheckedCreateWithoutCourseInput>
+  }
+
+  export type EventCreateManyCourseInputEnvelope = {
+    data: EventCreateManyCourseInput | EventCreateManyCourseInput[]
+    skipDuplicates?: boolean
+  }
+
+  export type HoleCreateWithoutCourseInput = {
+    id?: string
+    holeNumber: number
+    par: number
+    handicap: number
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    scores?: ScoreCreateNestedManyWithoutHoleInput
+  }
+
+  export type HoleUncheckedCreateWithoutCourseInput = {
+    id?: string
+    holeNumber: number
+    par: number
+    handicap: number
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    scores?: ScoreUncheckedCreateNestedManyWithoutHoleInput
+  }
+
+  export type HoleCreateOrConnectWithoutCourseInput = {
+    where: HoleWhereUniqueInput
+    create: XOR<HoleCreateWithoutCourseInput, HoleUncheckedCreateWithoutCourseInput>
+  }
+
+  export type HoleCreateManyCourseInputEnvelope = {
+    data: HoleCreateManyCourseInput | HoleCreateManyCourseInput[]
+    skipDuplicates?: boolean
+  }
+
+  export type EventUpsertWithWhereUniqueWithoutCourseInput = {
+    where: EventWhereUniqueInput
+    update: XOR<EventUpdateWithoutCourseInput, EventUncheckedUpdateWithoutCourseInput>
+    create: XOR<EventCreateWithoutCourseInput, EventUncheckedCreateWithoutCourseInput>
+  }
+
+  export type EventUpdateWithWhereUniqueWithoutCourseInput = {
+    where: EventWhereUniqueInput
+    data: XOR<EventUpdateWithoutCourseInput, EventUncheckedUpdateWithoutCourseInput>
+  }
+
+  export type EventUpdateManyWithWhereWithoutCourseInput = {
+    where: EventScalarWhereInput
+    data: XOR<EventUpdateManyMutationInput, EventUncheckedUpdateManyWithoutCourseInput>
+  }
+
+  export type HoleUpsertWithWhereUniqueWithoutCourseInput = {
+    where: HoleWhereUniqueInput
+    update: XOR<HoleUpdateWithoutCourseInput, HoleUncheckedUpdateWithoutCourseInput>
+    create: XOR<HoleCreateWithoutCourseInput, HoleUncheckedCreateWithoutCourseInput>
+  }
+
+  export type HoleUpdateWithWhereUniqueWithoutCourseInput = {
+    where: HoleWhereUniqueInput
+    data: XOR<HoleUpdateWithoutCourseInput, HoleUncheckedUpdateWithoutCourseInput>
+  }
+
+  export type HoleUpdateManyWithWhereWithoutCourseInput = {
+    where: HoleScalarWhereInput
+    data: XOR<HoleUpdateManyMutationInput, HoleUncheckedUpdateManyWithoutCourseInput>
+  }
+
+  export type HoleScalarWhereInput = {
+    AND?: HoleScalarWhereInput | HoleScalarWhereInput[]
+    OR?: HoleScalarWhereInput[]
+    NOT?: HoleScalarWhereInput | HoleScalarWhereInput[]
+    id?: StringFilter<"Hole"> | string
+    courseId?: StringFilter<"Hole"> | string
+    holeNumber?: IntFilter<"Hole"> | number
+    par?: IntFilter<"Hole"> | number
+    handicap?: IntFilter<"Hole"> | number
+    createdAt?: DateTimeFilter<"Hole"> | Date | string
+    updatedAt?: DateTimeFilter<"Hole"> | Date | string
+  }
+
+  export type CourseCreateWithoutHolesInput = {
+    id?: string
+    name: string
+    address: string
+    phoneNumber?: string | null
+    website?: string | null
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    events?: EventCreateNestedManyWithoutCourseInput
+  }
+
+  export type CourseUncheckedCreateWithoutHolesInput = {
+    id?: string
+    name: string
+    address: string
+    phoneNumber?: string | null
+    website?: string | null
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    events?: EventUncheckedCreateNestedManyWithoutCourseInput
+  }
+
+  export type CourseCreateOrConnectWithoutHolesInput = {
+    where: CourseWhereUniqueInput
+    create: XOR<CourseCreateWithoutHolesInput, CourseUncheckedCreateWithoutHolesInput>
+  }
+
+  export type ScoreCreateWithoutHoleInput = {
+    id?: string
+    grossScore: number
+    netScore?: number | null
+    skinWon?: boolean
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    event: EventCreateNestedOneWithoutScoresInput
+    user: UserCreateNestedOneWithoutScoresInput
+  }
+
+  export type ScoreUncheckedCreateWithoutHoleInput = {
+    id?: string
+    eventId: string
+    userId: string
+    grossScore: number
+    netScore?: number | null
+    skinWon?: boolean
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type ScoreCreateOrConnectWithoutHoleInput = {
+    where: ScoreWhereUniqueInput
+    create: XOR<ScoreCreateWithoutHoleInput, ScoreUncheckedCreateWithoutHoleInput>
+  }
+
+  export type ScoreCreateManyHoleInputEnvelope = {
+    data: ScoreCreateManyHoleInput | ScoreCreateManyHoleInput[]
+    skipDuplicates?: boolean
+  }
+
+  export type CourseUpsertWithoutHolesInput = {
+    update: XOR<CourseUpdateWithoutHolesInput, CourseUncheckedUpdateWithoutHolesInput>
+    create: XOR<CourseCreateWithoutHolesInput, CourseUncheckedCreateWithoutHolesInput>
+    where?: CourseWhereInput
+  }
+
+  export type CourseUpdateToOneWithWhereWithoutHolesInput = {
+    where?: CourseWhereInput
+    data: XOR<CourseUpdateWithoutHolesInput, CourseUncheckedUpdateWithoutHolesInput>
+  }
+
+  export type CourseUpdateWithoutHolesInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    address?: StringFieldUpdateOperationsInput | string
+    phoneNumber?: NullableStringFieldUpdateOperationsInput | string | null
+    website?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    events?: EventUpdateManyWithoutCourseNestedInput
+  }
+
+  export type CourseUncheckedUpdateWithoutHolesInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    address?: StringFieldUpdateOperationsInput | string
+    phoneNumber?: NullableStringFieldUpdateOperationsInput | string | null
+    website?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    events?: EventUncheckedUpdateManyWithoutCourseNestedInput
+  }
+
+  export type ScoreUpsertWithWhereUniqueWithoutHoleInput = {
+    where: ScoreWhereUniqueInput
+    update: XOR<ScoreUpdateWithoutHoleInput, ScoreUncheckedUpdateWithoutHoleInput>
+    create: XOR<ScoreCreateWithoutHoleInput, ScoreUncheckedCreateWithoutHoleInput>
+  }
+
+  export type ScoreUpdateWithWhereUniqueWithoutHoleInput = {
+    where: ScoreWhereUniqueInput
+    data: XOR<ScoreUpdateWithoutHoleInput, ScoreUncheckedUpdateWithoutHoleInput>
+  }
+
+  export type ScoreUpdateManyWithWhereWithoutHoleInput = {
+    where: ScoreScalarWhereInput
+    data: XOR<ScoreUpdateManyMutationInput, ScoreUncheckedUpdateManyWithoutHoleInput>
+  }
+
+  export type CourseCreateWithoutEventsInput = {
+    id?: string
+    name: string
+    address: string
+    phoneNumber?: string | null
+    website?: string | null
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    holes?: HoleCreateNestedManyWithoutCourseInput
+  }
+
+  export type CourseUncheckedCreateWithoutEventsInput = {
+    id?: string
+    name: string
+    address: string
+    phoneNumber?: string | null
+    website?: string | null
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    holes?: HoleUncheckedCreateNestedManyWithoutCourseInput
+  }
+
+  export type CourseCreateOrConnectWithoutEventsInput = {
+    where: CourseWhereUniqueInput
+    create: XOR<CourseCreateWithoutEventsInput, CourseUncheckedCreateWithoutEventsInput>
   }
 
   export type UserCreateWithoutEventsInput = {
@@ -5331,9 +10568,12 @@ export namespace Prisma {
     email: string
     name: string
     handicap?: number | null
+    phoneNumber?: string | null
+    profileImage?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
     scores?: ScoreCreateNestedManyWithoutUserInput
+    groups?: GroupCreateNestedManyWithoutMembersInput
   }
 
   export type UserUncheckedCreateWithoutEventsInput = {
@@ -5341,9 +10581,12 @@ export namespace Prisma {
     email: string
     name: string
     handicap?: number | null
+    phoneNumber?: string | null
+    profileImage?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
     scores?: ScoreUncheckedCreateNestedManyWithoutUserInput
+    groups?: GroupUncheckedCreateNestedManyWithoutMembersInput
   }
 
   export type UserCreateOrConnectWithoutEventsInput = {
@@ -5351,18 +10594,52 @@ export namespace Prisma {
     create: XOR<UserCreateWithoutEventsInput, UserUncheckedCreateWithoutEventsInput>
   }
 
+  export type GroupCreateWithoutEventInput = {
+    id?: string
+    groupNumber: number
+    teeTime?: Date | string | null
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    members?: UserCreateNestedManyWithoutGroupsInput
+  }
+
+  export type GroupUncheckedCreateWithoutEventInput = {
+    id?: string
+    groupNumber: number
+    teeTime?: Date | string | null
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    members?: UserUncheckedCreateNestedManyWithoutGroupsInput
+  }
+
+  export type GroupCreateOrConnectWithoutEventInput = {
+    where: GroupWhereUniqueInput
+    create: XOR<GroupCreateWithoutEventInput, GroupUncheckedCreateWithoutEventInput>
+  }
+
+  export type GroupCreateManyEventInputEnvelope = {
+    data: GroupCreateManyEventInput | GroupCreateManyEventInput[]
+    skipDuplicates?: boolean
+  }
+
   export type ScoreCreateWithoutEventInput = {
     id?: string
-    score: number
+    grossScore: number
+    netScore?: number | null
+    skinWon?: boolean
     createdAt?: Date | string
     updatedAt?: Date | string
     user: UserCreateNestedOneWithoutScoresInput
+    hole: HoleCreateNestedOneWithoutScoresInput
   }
 
   export type ScoreUncheckedCreateWithoutEventInput = {
     id?: string
     userId: string
-    score: number
+    holeId: string
+    grossScore: number
+    netScore?: number | null
+    skinWon?: boolean
     createdAt?: Date | string
     updatedAt?: Date | string
   }
@@ -5375,6 +10652,39 @@ export namespace Prisma {
   export type ScoreCreateManyEventInputEnvelope = {
     data: ScoreCreateManyEventInput | ScoreCreateManyEventInput[]
     skipDuplicates?: boolean
+  }
+
+  export type CourseUpsertWithoutEventsInput = {
+    update: XOR<CourseUpdateWithoutEventsInput, CourseUncheckedUpdateWithoutEventsInput>
+    create: XOR<CourseCreateWithoutEventsInput, CourseUncheckedCreateWithoutEventsInput>
+    where?: CourseWhereInput
+  }
+
+  export type CourseUpdateToOneWithWhereWithoutEventsInput = {
+    where?: CourseWhereInput
+    data: XOR<CourseUpdateWithoutEventsInput, CourseUncheckedUpdateWithoutEventsInput>
+  }
+
+  export type CourseUpdateWithoutEventsInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    address?: StringFieldUpdateOperationsInput | string
+    phoneNumber?: NullableStringFieldUpdateOperationsInput | string | null
+    website?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    holes?: HoleUpdateManyWithoutCourseNestedInput
+  }
+
+  export type CourseUncheckedUpdateWithoutEventsInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    address?: StringFieldUpdateOperationsInput | string
+    phoneNumber?: NullableStringFieldUpdateOperationsInput | string | null
+    website?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    holes?: HoleUncheckedUpdateManyWithoutCourseNestedInput
   }
 
   export type UserUpsertWithWhereUniqueWithoutEventsInput = {
@@ -5401,8 +10711,26 @@ export namespace Prisma {
     email?: StringFilter<"User"> | string
     name?: StringFilter<"User"> | string
     handicap?: FloatNullableFilter<"User"> | number | null
+    phoneNumber?: StringNullableFilter<"User"> | string | null
+    profileImage?: StringNullableFilter<"User"> | string | null
     createdAt?: DateTimeFilter<"User"> | Date | string
     updatedAt?: DateTimeFilter<"User"> | Date | string
+  }
+
+  export type GroupUpsertWithWhereUniqueWithoutEventInput = {
+    where: GroupWhereUniqueInput
+    update: XOR<GroupUpdateWithoutEventInput, GroupUncheckedUpdateWithoutEventInput>
+    create: XOR<GroupCreateWithoutEventInput, GroupUncheckedCreateWithoutEventInput>
+  }
+
+  export type GroupUpdateWithWhereUniqueWithoutEventInput = {
+    where: GroupWhereUniqueInput
+    data: XOR<GroupUpdateWithoutEventInput, GroupUncheckedUpdateWithoutEventInput>
+  }
+
+  export type GroupUpdateManyWithWhereWithoutEventInput = {
+    where: GroupScalarWhereInput
+    data: XOR<GroupUpdateManyMutationInput, GroupUncheckedUpdateManyWithoutEventInput>
   }
 
   export type ScoreUpsertWithWhereUniqueWithoutEventInput = {
@@ -5421,24 +10749,157 @@ export namespace Prisma {
     data: XOR<ScoreUpdateManyMutationInput, ScoreUncheckedUpdateManyWithoutEventInput>
   }
 
+  export type EventCreateWithoutGroupsInput = {
+    id?: string
+    name: string
+    date: Date | string
+    description?: string | null
+    maxPlayers?: number | null
+    entryFee?: number | null
+    status?: string
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    course: CourseCreateNestedOneWithoutEventsInput
+    participants?: UserCreateNestedManyWithoutEventsInput
+    scores?: ScoreCreateNestedManyWithoutEventInput
+  }
+
+  export type EventUncheckedCreateWithoutGroupsInput = {
+    id?: string
+    name: string
+    date: Date | string
+    courseId: string
+    description?: string | null
+    maxPlayers?: number | null
+    entryFee?: number | null
+    status?: string
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    participants?: UserUncheckedCreateNestedManyWithoutEventsInput
+    scores?: ScoreUncheckedCreateNestedManyWithoutEventInput
+  }
+
+  export type EventCreateOrConnectWithoutGroupsInput = {
+    where: EventWhereUniqueInput
+    create: XOR<EventCreateWithoutGroupsInput, EventUncheckedCreateWithoutGroupsInput>
+  }
+
+  export type UserCreateWithoutGroupsInput = {
+    id?: string
+    email: string
+    name: string
+    handicap?: number | null
+    phoneNumber?: string | null
+    profileImage?: string | null
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    events?: EventCreateNestedManyWithoutParticipantsInput
+    scores?: ScoreCreateNestedManyWithoutUserInput
+  }
+
+  export type UserUncheckedCreateWithoutGroupsInput = {
+    id?: string
+    email: string
+    name: string
+    handicap?: number | null
+    phoneNumber?: string | null
+    profileImage?: string | null
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    events?: EventUncheckedCreateNestedManyWithoutParticipantsInput
+    scores?: ScoreUncheckedCreateNestedManyWithoutUserInput
+  }
+
+  export type UserCreateOrConnectWithoutGroupsInput = {
+    where: UserWhereUniqueInput
+    create: XOR<UserCreateWithoutGroupsInput, UserUncheckedCreateWithoutGroupsInput>
+  }
+
+  export type EventUpsertWithoutGroupsInput = {
+    update: XOR<EventUpdateWithoutGroupsInput, EventUncheckedUpdateWithoutGroupsInput>
+    create: XOR<EventCreateWithoutGroupsInput, EventUncheckedCreateWithoutGroupsInput>
+    where?: EventWhereInput
+  }
+
+  export type EventUpdateToOneWithWhereWithoutGroupsInput = {
+    where?: EventWhereInput
+    data: XOR<EventUpdateWithoutGroupsInput, EventUncheckedUpdateWithoutGroupsInput>
+  }
+
+  export type EventUpdateWithoutGroupsInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    date?: DateTimeFieldUpdateOperationsInput | Date | string
+    description?: NullableStringFieldUpdateOperationsInput | string | null
+    maxPlayers?: NullableIntFieldUpdateOperationsInput | number | null
+    entryFee?: NullableFloatFieldUpdateOperationsInput | number | null
+    status?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    course?: CourseUpdateOneRequiredWithoutEventsNestedInput
+    participants?: UserUpdateManyWithoutEventsNestedInput
+    scores?: ScoreUpdateManyWithoutEventNestedInput
+  }
+
+  export type EventUncheckedUpdateWithoutGroupsInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    date?: DateTimeFieldUpdateOperationsInput | Date | string
+    courseId?: StringFieldUpdateOperationsInput | string
+    description?: NullableStringFieldUpdateOperationsInput | string | null
+    maxPlayers?: NullableIntFieldUpdateOperationsInput | number | null
+    entryFee?: NullableFloatFieldUpdateOperationsInput | number | null
+    status?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    participants?: UserUncheckedUpdateManyWithoutEventsNestedInput
+    scores?: ScoreUncheckedUpdateManyWithoutEventNestedInput
+  }
+
+  export type UserUpsertWithWhereUniqueWithoutGroupsInput = {
+    where: UserWhereUniqueInput
+    update: XOR<UserUpdateWithoutGroupsInput, UserUncheckedUpdateWithoutGroupsInput>
+    create: XOR<UserCreateWithoutGroupsInput, UserUncheckedCreateWithoutGroupsInput>
+  }
+
+  export type UserUpdateWithWhereUniqueWithoutGroupsInput = {
+    where: UserWhereUniqueInput
+    data: XOR<UserUpdateWithoutGroupsInput, UserUncheckedUpdateWithoutGroupsInput>
+  }
+
+  export type UserUpdateManyWithWhereWithoutGroupsInput = {
+    where: UserScalarWhereInput
+    data: XOR<UserUpdateManyMutationInput, UserUncheckedUpdateManyWithoutGroupsInput>
+  }
+
   export type EventCreateWithoutScoresInput = {
     id?: string
     name: string
     date: Date | string
-    location: string
+    description?: string | null
+    maxPlayers?: number | null
+    entryFee?: number | null
+    status?: string
     createdAt?: Date | string
     updatedAt?: Date | string
+    course: CourseCreateNestedOneWithoutEventsInput
     participants?: UserCreateNestedManyWithoutEventsInput
+    groups?: GroupCreateNestedManyWithoutEventInput
   }
 
   export type EventUncheckedCreateWithoutScoresInput = {
     id?: string
     name: string
     date: Date | string
-    location: string
+    courseId: string
+    description?: string | null
+    maxPlayers?: number | null
+    entryFee?: number | null
+    status?: string
     createdAt?: Date | string
     updatedAt?: Date | string
     participants?: UserUncheckedCreateNestedManyWithoutEventsInput
+    groups?: GroupUncheckedCreateNestedManyWithoutEventInput
   }
 
   export type EventCreateOrConnectWithoutScoresInput = {
@@ -5451,9 +10912,12 @@ export namespace Prisma {
     email: string
     name: string
     handicap?: number | null
+    phoneNumber?: string | null
+    profileImage?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
     events?: EventCreateNestedManyWithoutParticipantsInput
+    groups?: GroupCreateNestedManyWithoutMembersInput
   }
 
   export type UserUncheckedCreateWithoutScoresInput = {
@@ -5461,14 +10925,42 @@ export namespace Prisma {
     email: string
     name: string
     handicap?: number | null
+    phoneNumber?: string | null
+    profileImage?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
     events?: EventUncheckedCreateNestedManyWithoutParticipantsInput
+    groups?: GroupUncheckedCreateNestedManyWithoutMembersInput
   }
 
   export type UserCreateOrConnectWithoutScoresInput = {
     where: UserWhereUniqueInput
     create: XOR<UserCreateWithoutScoresInput, UserUncheckedCreateWithoutScoresInput>
+  }
+
+  export type HoleCreateWithoutScoresInput = {
+    id?: string
+    holeNumber: number
+    par: number
+    handicap: number
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    course: CourseCreateNestedOneWithoutHolesInput
+  }
+
+  export type HoleUncheckedCreateWithoutScoresInput = {
+    id?: string
+    courseId: string
+    holeNumber: number
+    par: number
+    handicap: number
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type HoleCreateOrConnectWithoutScoresInput = {
+    where: HoleWhereUniqueInput
+    create: XOR<HoleCreateWithoutScoresInput, HoleUncheckedCreateWithoutScoresInput>
   }
 
   export type EventUpsertWithoutScoresInput = {
@@ -5486,20 +10978,30 @@ export namespace Prisma {
     id?: StringFieldUpdateOperationsInput | string
     name?: StringFieldUpdateOperationsInput | string
     date?: DateTimeFieldUpdateOperationsInput | Date | string
-    location?: StringFieldUpdateOperationsInput | string
+    description?: NullableStringFieldUpdateOperationsInput | string | null
+    maxPlayers?: NullableIntFieldUpdateOperationsInput | number | null
+    entryFee?: NullableFloatFieldUpdateOperationsInput | number | null
+    status?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    course?: CourseUpdateOneRequiredWithoutEventsNestedInput
     participants?: UserUpdateManyWithoutEventsNestedInput
+    groups?: GroupUpdateManyWithoutEventNestedInput
   }
 
   export type EventUncheckedUpdateWithoutScoresInput = {
     id?: StringFieldUpdateOperationsInput | string
     name?: StringFieldUpdateOperationsInput | string
     date?: DateTimeFieldUpdateOperationsInput | Date | string
-    location?: StringFieldUpdateOperationsInput | string
+    courseId?: StringFieldUpdateOperationsInput | string
+    description?: NullableStringFieldUpdateOperationsInput | string | null
+    maxPlayers?: NullableIntFieldUpdateOperationsInput | number | null
+    entryFee?: NullableFloatFieldUpdateOperationsInput | number | null
+    status?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     participants?: UserUncheckedUpdateManyWithoutEventsNestedInput
+    groups?: GroupUncheckedUpdateManyWithoutEventNestedInput
   }
 
   export type UserUpsertWithoutScoresInput = {
@@ -5518,9 +11020,12 @@ export namespace Prisma {
     email?: StringFieldUpdateOperationsInput | string
     name?: StringFieldUpdateOperationsInput | string
     handicap?: NullableFloatFieldUpdateOperationsInput | number | null
+    phoneNumber?: NullableStringFieldUpdateOperationsInput | string | null
+    profileImage?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     events?: EventUpdateManyWithoutParticipantsNestedInput
+    groups?: GroupUpdateManyWithoutMembersNestedInput
   }
 
   export type UserUncheckedUpdateWithoutScoresInput = {
@@ -5528,15 +11033,52 @@ export namespace Prisma {
     email?: StringFieldUpdateOperationsInput | string
     name?: StringFieldUpdateOperationsInput | string
     handicap?: NullableFloatFieldUpdateOperationsInput | number | null
+    phoneNumber?: NullableStringFieldUpdateOperationsInput | string | null
+    profileImage?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     events?: EventUncheckedUpdateManyWithoutParticipantsNestedInput
+    groups?: GroupUncheckedUpdateManyWithoutMembersNestedInput
+  }
+
+  export type HoleUpsertWithoutScoresInput = {
+    update: XOR<HoleUpdateWithoutScoresInput, HoleUncheckedUpdateWithoutScoresInput>
+    create: XOR<HoleCreateWithoutScoresInput, HoleUncheckedCreateWithoutScoresInput>
+    where?: HoleWhereInput
+  }
+
+  export type HoleUpdateToOneWithWhereWithoutScoresInput = {
+    where?: HoleWhereInput
+    data: XOR<HoleUpdateWithoutScoresInput, HoleUncheckedUpdateWithoutScoresInput>
+  }
+
+  export type HoleUpdateWithoutScoresInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    holeNumber?: IntFieldUpdateOperationsInput | number
+    par?: IntFieldUpdateOperationsInput | number
+    handicap?: IntFieldUpdateOperationsInput | number
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    course?: CourseUpdateOneRequiredWithoutHolesNestedInput
+  }
+
+  export type HoleUncheckedUpdateWithoutScoresInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    courseId?: StringFieldUpdateOperationsInput | string
+    holeNumber?: IntFieldUpdateOperationsInput | number
+    par?: IntFieldUpdateOperationsInput | number
+    handicap?: IntFieldUpdateOperationsInput | number
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
   export type ScoreCreateManyUserInput = {
     id?: string
     eventId: string
-    score: number
+    holeId: string
+    grossScore: number
+    netScore?: number | null
+    skinWon?: boolean
     createdAt?: Date | string
     updatedAt?: Date | string
   }
@@ -5545,9 +11087,14 @@ export namespace Prisma {
     id?: StringFieldUpdateOperationsInput | string
     name?: StringFieldUpdateOperationsInput | string
     date?: DateTimeFieldUpdateOperationsInput | Date | string
-    location?: StringFieldUpdateOperationsInput | string
+    description?: NullableStringFieldUpdateOperationsInput | string | null
+    maxPlayers?: NullableIntFieldUpdateOperationsInput | number | null
+    entryFee?: NullableFloatFieldUpdateOperationsInput | number | null
+    status?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    course?: CourseUpdateOneRequiredWithoutEventsNestedInput
+    groups?: GroupUpdateManyWithoutEventNestedInput
     scores?: ScoreUpdateManyWithoutEventNestedInput
   }
 
@@ -5555,9 +11102,14 @@ export namespace Prisma {
     id?: StringFieldUpdateOperationsInput | string
     name?: StringFieldUpdateOperationsInput | string
     date?: DateTimeFieldUpdateOperationsInput | Date | string
-    location?: StringFieldUpdateOperationsInput | string
+    courseId?: StringFieldUpdateOperationsInput | string
+    description?: NullableStringFieldUpdateOperationsInput | string | null
+    maxPlayers?: NullableIntFieldUpdateOperationsInput | number | null
+    entryFee?: NullableFloatFieldUpdateOperationsInput | number | null
+    status?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    groups?: GroupUncheckedUpdateManyWithoutEventNestedInput
     scores?: ScoreUncheckedUpdateManyWithoutEventNestedInput
   }
 
@@ -5565,23 +11117,33 @@ export namespace Prisma {
     id?: StringFieldUpdateOperationsInput | string
     name?: StringFieldUpdateOperationsInput | string
     date?: DateTimeFieldUpdateOperationsInput | Date | string
-    location?: StringFieldUpdateOperationsInput | string
+    courseId?: StringFieldUpdateOperationsInput | string
+    description?: NullableStringFieldUpdateOperationsInput | string | null
+    maxPlayers?: NullableIntFieldUpdateOperationsInput | number | null
+    entryFee?: NullableFloatFieldUpdateOperationsInput | number | null
+    status?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
   export type ScoreUpdateWithoutUserInput = {
     id?: StringFieldUpdateOperationsInput | string
-    score?: IntFieldUpdateOperationsInput | number
+    grossScore?: IntFieldUpdateOperationsInput | number
+    netScore?: NullableIntFieldUpdateOperationsInput | number | null
+    skinWon?: BoolFieldUpdateOperationsInput | boolean
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     event?: EventUpdateOneRequiredWithoutScoresNestedInput
+    hole?: HoleUpdateOneRequiredWithoutScoresNestedInput
   }
 
   export type ScoreUncheckedUpdateWithoutUserInput = {
     id?: StringFieldUpdateOperationsInput | string
     eventId?: StringFieldUpdateOperationsInput | string
-    score?: IntFieldUpdateOperationsInput | number
+    holeId?: StringFieldUpdateOperationsInput | string
+    grossScore?: IntFieldUpdateOperationsInput | number
+    netScore?: NullableIntFieldUpdateOperationsInput | number | null
+    skinWon?: BoolFieldUpdateOperationsInput | boolean
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
@@ -5589,15 +11151,192 @@ export namespace Prisma {
   export type ScoreUncheckedUpdateManyWithoutUserInput = {
     id?: StringFieldUpdateOperationsInput | string
     eventId?: StringFieldUpdateOperationsInput | string
-    score?: IntFieldUpdateOperationsInput | number
+    holeId?: StringFieldUpdateOperationsInput | string
+    grossScore?: IntFieldUpdateOperationsInput | number
+    netScore?: NullableIntFieldUpdateOperationsInput | number | null
+    skinWon?: BoolFieldUpdateOperationsInput | boolean
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type GroupUpdateWithoutMembersInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    groupNumber?: IntFieldUpdateOperationsInput | number
+    teeTime?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    event?: EventUpdateOneRequiredWithoutGroupsNestedInput
+  }
+
+  export type GroupUncheckedUpdateWithoutMembersInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    eventId?: StringFieldUpdateOperationsInput | string
+    groupNumber?: IntFieldUpdateOperationsInput | number
+    teeTime?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type GroupUncheckedUpdateManyWithoutMembersInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    eventId?: StringFieldUpdateOperationsInput | string
+    groupNumber?: IntFieldUpdateOperationsInput | number
+    teeTime?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type EventCreateManyCourseInput = {
+    id?: string
+    name: string
+    date: Date | string
+    description?: string | null
+    maxPlayers?: number | null
+    entryFee?: number | null
+    status?: string
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type HoleCreateManyCourseInput = {
+    id?: string
+    holeNumber: number
+    par: number
+    handicap: number
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type EventUpdateWithoutCourseInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    date?: DateTimeFieldUpdateOperationsInput | Date | string
+    description?: NullableStringFieldUpdateOperationsInput | string | null
+    maxPlayers?: NullableIntFieldUpdateOperationsInput | number | null
+    entryFee?: NullableFloatFieldUpdateOperationsInput | number | null
+    status?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    participants?: UserUpdateManyWithoutEventsNestedInput
+    groups?: GroupUpdateManyWithoutEventNestedInput
+    scores?: ScoreUpdateManyWithoutEventNestedInput
+  }
+
+  export type EventUncheckedUpdateWithoutCourseInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    date?: DateTimeFieldUpdateOperationsInput | Date | string
+    description?: NullableStringFieldUpdateOperationsInput | string | null
+    maxPlayers?: NullableIntFieldUpdateOperationsInput | number | null
+    entryFee?: NullableFloatFieldUpdateOperationsInput | number | null
+    status?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    participants?: UserUncheckedUpdateManyWithoutEventsNestedInput
+    groups?: GroupUncheckedUpdateManyWithoutEventNestedInput
+    scores?: ScoreUncheckedUpdateManyWithoutEventNestedInput
+  }
+
+  export type EventUncheckedUpdateManyWithoutCourseInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    date?: DateTimeFieldUpdateOperationsInput | Date | string
+    description?: NullableStringFieldUpdateOperationsInput | string | null
+    maxPlayers?: NullableIntFieldUpdateOperationsInput | number | null
+    entryFee?: NullableFloatFieldUpdateOperationsInput | number | null
+    status?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type HoleUpdateWithoutCourseInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    holeNumber?: IntFieldUpdateOperationsInput | number
+    par?: IntFieldUpdateOperationsInput | number
+    handicap?: IntFieldUpdateOperationsInput | number
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    scores?: ScoreUpdateManyWithoutHoleNestedInput
+  }
+
+  export type HoleUncheckedUpdateWithoutCourseInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    holeNumber?: IntFieldUpdateOperationsInput | number
+    par?: IntFieldUpdateOperationsInput | number
+    handicap?: IntFieldUpdateOperationsInput | number
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    scores?: ScoreUncheckedUpdateManyWithoutHoleNestedInput
+  }
+
+  export type HoleUncheckedUpdateManyWithoutCourseInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    holeNumber?: IntFieldUpdateOperationsInput | number
+    par?: IntFieldUpdateOperationsInput | number
+    handicap?: IntFieldUpdateOperationsInput | number
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type ScoreCreateManyHoleInput = {
+    id?: string
+    eventId: string
+    userId: string
+    grossScore: number
+    netScore?: number | null
+    skinWon?: boolean
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type ScoreUpdateWithoutHoleInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    grossScore?: IntFieldUpdateOperationsInput | number
+    netScore?: NullableIntFieldUpdateOperationsInput | number | null
+    skinWon?: BoolFieldUpdateOperationsInput | boolean
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    event?: EventUpdateOneRequiredWithoutScoresNestedInput
+    user?: UserUpdateOneRequiredWithoutScoresNestedInput
+  }
+
+  export type ScoreUncheckedUpdateWithoutHoleInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    eventId?: StringFieldUpdateOperationsInput | string
+    userId?: StringFieldUpdateOperationsInput | string
+    grossScore?: IntFieldUpdateOperationsInput | number
+    netScore?: NullableIntFieldUpdateOperationsInput | number | null
+    skinWon?: BoolFieldUpdateOperationsInput | boolean
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type ScoreUncheckedUpdateManyWithoutHoleInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    eventId?: StringFieldUpdateOperationsInput | string
+    userId?: StringFieldUpdateOperationsInput | string
+    grossScore?: IntFieldUpdateOperationsInput | number
+    netScore?: NullableIntFieldUpdateOperationsInput | number | null
+    skinWon?: BoolFieldUpdateOperationsInput | boolean
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type GroupCreateManyEventInput = {
+    id?: string
+    groupNumber: number
+    teeTime?: Date | string | null
+    createdAt?: Date | string
+    updatedAt?: Date | string
   }
 
   export type ScoreCreateManyEventInput = {
     id?: string
     userId: string
-    score: number
+    holeId: string
+    grossScore: number
+    netScore?: number | null
+    skinWon?: boolean
     createdAt?: Date | string
     updatedAt?: Date | string
   }
@@ -5607,9 +11346,12 @@ export namespace Prisma {
     email?: StringFieldUpdateOperationsInput | string
     name?: StringFieldUpdateOperationsInput | string
     handicap?: NullableFloatFieldUpdateOperationsInput | number | null
+    phoneNumber?: NullableStringFieldUpdateOperationsInput | string | null
+    profileImage?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     scores?: ScoreUpdateManyWithoutUserNestedInput
+    groups?: GroupUpdateManyWithoutMembersNestedInput
   }
 
   export type UserUncheckedUpdateWithoutEventsInput = {
@@ -5617,9 +11359,12 @@ export namespace Prisma {
     email?: StringFieldUpdateOperationsInput | string
     name?: StringFieldUpdateOperationsInput | string
     handicap?: NullableFloatFieldUpdateOperationsInput | number | null
+    phoneNumber?: NullableStringFieldUpdateOperationsInput | string | null
+    profileImage?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     scores?: ScoreUncheckedUpdateManyWithoutUserNestedInput
+    groups?: GroupUncheckedUpdateManyWithoutMembersNestedInput
   }
 
   export type UserUncheckedUpdateManyWithoutEventsInput = {
@@ -5627,22 +11372,56 @@ export namespace Prisma {
     email?: StringFieldUpdateOperationsInput | string
     name?: StringFieldUpdateOperationsInput | string
     handicap?: NullableFloatFieldUpdateOperationsInput | number | null
+    phoneNumber?: NullableStringFieldUpdateOperationsInput | string | null
+    profileImage?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type GroupUpdateWithoutEventInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    groupNumber?: IntFieldUpdateOperationsInput | number
+    teeTime?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    members?: UserUpdateManyWithoutGroupsNestedInput
+  }
+
+  export type GroupUncheckedUpdateWithoutEventInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    groupNumber?: IntFieldUpdateOperationsInput | number
+    teeTime?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    members?: UserUncheckedUpdateManyWithoutGroupsNestedInput
+  }
+
+  export type GroupUncheckedUpdateManyWithoutEventInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    groupNumber?: IntFieldUpdateOperationsInput | number
+    teeTime?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
   export type ScoreUpdateWithoutEventInput = {
     id?: StringFieldUpdateOperationsInput | string
-    score?: IntFieldUpdateOperationsInput | number
+    grossScore?: IntFieldUpdateOperationsInput | number
+    netScore?: NullableIntFieldUpdateOperationsInput | number | null
+    skinWon?: BoolFieldUpdateOperationsInput | boolean
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     user?: UserUpdateOneRequiredWithoutScoresNestedInput
+    hole?: HoleUpdateOneRequiredWithoutScoresNestedInput
   }
 
   export type ScoreUncheckedUpdateWithoutEventInput = {
     id?: StringFieldUpdateOperationsInput | string
     userId?: StringFieldUpdateOperationsInput | string
-    score?: IntFieldUpdateOperationsInput | number
+    holeId?: StringFieldUpdateOperationsInput | string
+    grossScore?: IntFieldUpdateOperationsInput | number
+    netScore?: NullableIntFieldUpdateOperationsInput | number | null
+    skinWon?: BoolFieldUpdateOperationsInput | boolean
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
@@ -5650,7 +11429,47 @@ export namespace Prisma {
   export type ScoreUncheckedUpdateManyWithoutEventInput = {
     id?: StringFieldUpdateOperationsInput | string
     userId?: StringFieldUpdateOperationsInput | string
-    score?: IntFieldUpdateOperationsInput | number
+    holeId?: StringFieldUpdateOperationsInput | string
+    grossScore?: IntFieldUpdateOperationsInput | number
+    netScore?: NullableIntFieldUpdateOperationsInput | number | null
+    skinWon?: BoolFieldUpdateOperationsInput | boolean
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type UserUpdateWithoutGroupsInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    email?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    handicap?: NullableFloatFieldUpdateOperationsInput | number | null
+    phoneNumber?: NullableStringFieldUpdateOperationsInput | string | null
+    profileImage?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    events?: EventUpdateManyWithoutParticipantsNestedInput
+    scores?: ScoreUpdateManyWithoutUserNestedInput
+  }
+
+  export type UserUncheckedUpdateWithoutGroupsInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    email?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    handicap?: NullableFloatFieldUpdateOperationsInput | number | null
+    phoneNumber?: NullableStringFieldUpdateOperationsInput | string | null
+    profileImage?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    events?: EventUncheckedUpdateManyWithoutParticipantsNestedInput
+    scores?: ScoreUncheckedUpdateManyWithoutUserNestedInput
+  }
+
+  export type UserUncheckedUpdateManyWithoutGroupsInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    email?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    handicap?: NullableFloatFieldUpdateOperationsInput | number | null
+    phoneNumber?: NullableStringFieldUpdateOperationsInput | string | null
+    profileImage?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
@@ -5665,17 +11484,41 @@ export namespace Prisma {
      */
     export type UserCountOutputTypeArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = UserCountOutputTypeDefaultArgs<ExtArgs>
     /**
+     * @deprecated Use CourseCountOutputTypeDefaultArgs instead
+     */
+    export type CourseCountOutputTypeArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = CourseCountOutputTypeDefaultArgs<ExtArgs>
+    /**
+     * @deprecated Use HoleCountOutputTypeDefaultArgs instead
+     */
+    export type HoleCountOutputTypeArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = HoleCountOutputTypeDefaultArgs<ExtArgs>
+    /**
      * @deprecated Use EventCountOutputTypeDefaultArgs instead
      */
     export type EventCountOutputTypeArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = EventCountOutputTypeDefaultArgs<ExtArgs>
+    /**
+     * @deprecated Use GroupCountOutputTypeDefaultArgs instead
+     */
+    export type GroupCountOutputTypeArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = GroupCountOutputTypeDefaultArgs<ExtArgs>
     /**
      * @deprecated Use UserDefaultArgs instead
      */
     export type UserArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = UserDefaultArgs<ExtArgs>
     /**
+     * @deprecated Use CourseDefaultArgs instead
+     */
+    export type CourseArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = CourseDefaultArgs<ExtArgs>
+    /**
+     * @deprecated Use HoleDefaultArgs instead
+     */
+    export type HoleArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = HoleDefaultArgs<ExtArgs>
+    /**
      * @deprecated Use EventDefaultArgs instead
      */
     export type EventArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = EventDefaultArgs<ExtArgs>
+    /**
+     * @deprecated Use GroupDefaultArgs instead
+     */
+    export type GroupArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = GroupDefaultArgs<ExtArgs>
     /**
      * @deprecated Use ScoreDefaultArgs instead
      */

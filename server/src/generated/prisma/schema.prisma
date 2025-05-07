@@ -15,36 +15,88 @@ datasource db {
 }
 
 model User {
-  id        String   @id @default(cuid())
-  email     String   @unique
-  name      String
-  handicap  Float?
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
-  events    Event[]  @relation("EventParticipants")
-  scores    Score[]
+  id           String   @id @default(cuid())
+  email        String   @unique
+  name         String
+  handicap     Float?
+  phoneNumber  String?
+  profileImage String?
+  createdAt    DateTime @default(now())
+  updatedAt    DateTime @updatedAt
+  events       Event[]  @relation("EventParticipants")
+  scores       Score[]
+  groups       Group[]  @relation("GroupMembers")
+}
+
+model Course {
+  id          String   @id @default(cuid())
+  name        String
+  address     String
+  phoneNumber String?
+  website     String?
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+  events      Event[]
+  holes       Hole[]
+}
+
+model Hole {
+  id         String   @id @default(cuid())
+  courseId   String
+  holeNumber Int
+  par        Int
+  handicap   Int // Course hole handicap (1-18)
+  createdAt  DateTime @default(now())
+  updatedAt  DateTime @updatedAt
+  course     Course   @relation(fields: [courseId], references: [id])
+  scores     Score[]
+
+  @@unique([courseId, holeNumber])
 }
 
 model Event {
   id           String   @id @default(cuid())
   name         String
   date         DateTime
-  location     String
+  courseId     String
+  description  String?
+  maxPlayers   Int?
+  entryFee     Float?
+  status       String   @default("upcoming") // upcoming, in-progress, completed, cancelled
   createdAt    DateTime @default(now())
   updatedAt    DateTime @updatedAt
+  course       Course   @relation(fields: [courseId], references: [id])
   participants User[]   @relation("EventParticipants")
+  groups       Group[]
   scores       Score[]
 }
 
-model Score {
-  id        String   @id @default(cuid())
-  eventId   String
-  userId    String
-  score     Int
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
-  event     Event    @relation(fields: [eventId], references: [id])
-  user      User     @relation(fields: [userId], references: [id])
+model Group {
+  id          String    @id @default(cuid())
+  eventId     String
+  groupNumber Int // Tee time group number
+  teeTime     DateTime?
+  createdAt   DateTime  @default(now())
+  updatedAt   DateTime  @updatedAt
+  event       Event     @relation(fields: [eventId], references: [id])
+  members     User[]    @relation("GroupMembers")
 
-  @@unique([eventId, userId])
+  @@unique([eventId, groupNumber])
+}
+
+model Score {
+  id         String   @id @default(cuid())
+  eventId    String
+  userId     String
+  holeId     String
+  grossScore Int // Actual score on the hole
+  netScore   Int? // Score after handicap adjustment
+  skinWon    Boolean  @default(false)
+  createdAt  DateTime @default(now())
+  updatedAt  DateTime @updatedAt
+  event      Event    @relation(fields: [eventId], references: [id])
+  user       User     @relation(fields: [userId], references: [id])
+  hole       Hole     @relation(fields: [holeId], references: [id])
+
+  @@unique([eventId, userId, holeId])
 }
