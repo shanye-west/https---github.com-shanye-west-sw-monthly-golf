@@ -2,8 +2,10 @@ import express from 'express';
 import cors from 'cors';
 import helmet from 'helmet';
 import dotenv from 'dotenv';
-import { PrismaClient } from './generated/prisma';
+import { PrismaClient } from '@prisma/client';
 import eventRoutes from './routes/events';
+import groupRoutes from './routes/groups';
+import playerRoutes from './routes/players';
 
 // Load environment variables
 dotenv.config();
@@ -19,6 +21,8 @@ app.use(express.json());
 
 // Routes
 app.use('/api/events', eventRoutes);
+app.use('/api/groups', groupRoutes);
+app.use('/api/players', playerRoutes);
 
 // Health check endpoint
 app.get('/health', (req, res) => {

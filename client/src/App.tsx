@@ -5,6 +5,7 @@ import Layout from "@/components/Layout";
 import HomePage from "@/pages/HomePage";
 import EventPage from "@/pages/EventPage";
 import GroupPage from "@/pages/GroupPage";
+import { ToastProvider } from '@/components/ui/toast-provider';
 import './App.css'
 
 const API_URL = 'http://localhost:3000';
@@ -105,15 +106,17 @@ const queryClient = new QueryClient({
 function App() {
   return (
     <QueryClientProvider client={queryClient}>
-      <BrowserRouter>
-        <Layout>
-          <Routes>
-            <Route path="/" element={<HomePage />} />
-            <Route path="/events/:id" element={<EventPage />} />
-            <Route path="/groups/:id" element={<GroupPage />} />
-          </Routes>
-        </Layout>
-      </BrowserRouter>
+      <ToastProvider>
+        <BrowserRouter>
+          <Layout>
+            <Routes>
+              <Route path="/" element={<HomePage />} />
+              <Route path="/events/:id" element={<EventPage />} />
+              <Route path="/groups/:id" element={<GroupPage />} />
+            </Routes>
+          </Layout>
+        </BrowserRouter>
+      </ToastProvider>
     </QueryClientProvider>
   );
 }
