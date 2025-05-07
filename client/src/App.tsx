@@ -132,15 +132,6 @@ function HomePage() {
   )
 }
 
-function GroupPage() {
-  return (
-    <div className="container">
-      <h1>Group Scorecard</h1>
-      {/* We'll implement this next */}
-    </div>
-  )
-}
-
 function AdminPage() {
   return (
     <div className="container mx-auto px-4 py-8">
@@ -188,7 +179,6 @@ function App() {
           <Routes>
             <Route path="/" element={<HomePage />} />
             <Route path="/events/:id" element={<EventPage />} />
-            <Route path="/groups/:id" element={<GroupPage />} />
             <Route path="/admin" element={<AdminPage />} />
           </Routes>
         </main>

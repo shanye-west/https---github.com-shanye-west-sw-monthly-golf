@@ -2,6 +2,48 @@
 @tailwind components;
 @tailwind utilities;
 
+/* Custom styles for scorecards */
+.scorecard-container {
+  overflow-x: auto;
+  overflow-y: visible;
+  -webkit-overflow-scrolling: touch;
+  scrollbar-width: thin;
+}
+
+.scorecard-table {
+  min-width: 800px;
+  border-collapse: separate;
+  border-spacing: 0;
+}
+
+.scorecard-table td {
+  background-color: inherit;
+}
+
+/* Sticky column styling */
+.sticky-column {
+  position: sticky;
+  left: 0;
+  z-index: 1;
+}
+
+/* Styling for non-counting scores */
+.non-counting-score {
+  color: #999;
+  background-color: rgba(200, 200, 200, 0.2);
+}
+
+/* Optimize for mobile input */
+input[type="number"].score-input {
+  -moz-appearance: textfield;
+}
+
+input[type="number"].score-input::-webkit-outer-spin-button,
+input[type="number"].score-input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
 :root {
   --background: 0 0% 97%;
   --foreground: 210 7% 16%;
@@ -60,44 +102,6 @@
   h1, h2, h3, h4, h5, h6 {
     @apply font-heading;
   }
-}
-
-/* Custom styles for scorecards */
-.scorecard-container {
-  overflow-x: auto;
-  overflow-y: visible;
-  -webkit-overflow-scrolling: touch;
-  scrollbar-width: thin;
-}
-
-.scorecard-table {
-  min-width: 800px;
-  border-collapse: separate;
-  border-spacing: 0;
-}
-
-.scorecard-table td {
-  background-color: inherit;
-}
-
-/* Sticky column styling */
-.sticky-column {
-  position: sticky;
-  left: 0;
-  z-index: 1;
-  background-color: inherit;
-  box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
-}
-
-/* Optimize for mobile input */
-input[type="number"].score-input {
-  -moz-appearance: textfield;
-}
-
-input[type="number"].score-input::-webkit-outer-spin-button,
-input[type="number"].score-input::-webkit-inner-spin-button {
-  -webkit-appearance: none;
-  margin: 0;
 }
 
 /* Force page to scroll to top on navigation */
