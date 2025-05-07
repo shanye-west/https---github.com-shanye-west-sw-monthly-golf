@@ -1,7 +1,12 @@
 import React from 'react'
-import { BrowserRouter as Router, Routes, Route, Link } from 'react-router-dom'
+import { BrowserRouter } from "react-router-dom";
+import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
+import Layout from "@/components/Layout";
+import { Routes, Route } from "react-router-dom";
+import HomePage from "@/pages/HomePage";
+import EventPage from "@/pages/EventPage";
+import GroupPage from "@/pages/GroupPage";
 import './App.css'
-import EventPage from './pages/EventPage'
 
 const API_URL = 'http://localhost:3000';
 
@@ -147,76 +152,30 @@ function AdminPage() {
   )
 }
 
-function Layout({ children }: { children: React.ReactNode }) {
-  return (
-    <div className="min-h-screen flex flex-col bg-background">
-      <header className="bg-card border-b border-border sticky top-0 z-50">
-        <div className="container mx-auto px-4">
-          <nav className="flex justify-between items-center h-16">
-            <Link to="/" className="text-2xl font-heading font-bold text-primary hover:text-primary/90 transition-colors">
-              SW Golf
-            </Link>
-            <div className="flex items-center space-x-6">
-              <Link 
-                to="/" 
-                className="text-foreground hover:text-primary transition-colors font-medium hidden sm:inline-block"
-              >
-                Home
-              </Link>
-              <Link 
-                to="/admin" 
-                className="text-foreground hover:text-primary transition-colors font-medium"
-              >
-                Admin
-              </Link>
-            </div>
-          </nav>
-        </div>
-      </header>
-      
-      <main className="flex-1">
-        {children}
-      </main>
-
-      <footer className="bg-card border-t border-border py-6 mt-auto">
-        <div className="container mx-auto px-4">
-          <div className="flex flex-col sm:flex-row justify-between items-center gap-4">
-            <p className="text-sm text-muted-foreground">
-              © 2024 SW Monthly Golf. All rights reserved.
-            </p>
-            <div className="flex items-center space-x-4">
-              <Link 
-                to="/" 
-                className="text-sm text-foreground hover:text-primary transition-colors"
-              >
-                Home
-              </Link>
-              <Link 
-                to="/admin" 
-                className="text-sm text-foreground hover:text-primary transition-colors"
-              >
-                Admin
-              </Link>
-            </div>
-          </div>
-        </div>
-      </footer>
-    </div>
-  )
-}
+// Create a client
+const queryClient = new QueryClient({
+  defaultOptions: {
+    queries: {
+      staleTime: 1000 * 60 * 5, // 5 minutes
+      retry: 1,
+    },
+  },
+});
 
 function App() {
   return (
-    <Router>
-      <Layout>
-        <Routes>
-          <Route path="/" element={<HomePage />} />
-          <Route path="/events/:id" element={<EventPage />} />
-          <Route path="/admin" element={<AdminPage />} />
-        </Routes>
-      </Layout>
-    </Router>
-  )
+    <QueryClientProvider client={queryClient}>
+      <BrowserRouter>
+        <Layout>
+          <Routes>
+            <Route path="/" element={<HomePage />} />
+            <Route path="/events/:id" element={<EventPage />} />
+            <Route path="/groups/:id" element={<GroupPage />} />
+          </Routes>
+        </Layout>
+      </BrowserRouter>
+    </QueryClientProvider>
+  );
 }
 
-export default App
+export default App;
